@@ -149,11 +149,7 @@ Fluid.events = {
     }
     // eslint-disable-next-line no-console
     console.log(`
-·▄▄▄ ▄▄▄· .▄▄ ·
-▐▄▄·▐█ ▀█ ▐█ ▀.
-██▪ ▄█▀▀█ ▄▀▀▀█▄
-██▌.▐█ ▪▐▌▐█▄▪▐█
-▀▀▀  ▀  ▀  ▀▀▀▀
+你小子。
     `);
   }
 };
