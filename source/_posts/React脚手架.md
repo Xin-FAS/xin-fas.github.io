@@ -5,11 +5,11 @@ tags: [react]
 categories: [前端,react]
 ---
 
-# 搭建react项目
+## 搭建react项目
 
-## 使用webpack
+### 使用webpack
 
-### yarn
+#### yarn
 
 ```bash
 yarn create react-app 项目名
@@ -21,7 +21,7 @@ npx create-react-app 项目名
 
 > 使用webpack作为底层服务器，构建比较慢，需要一分钟左右，启动在`3000`端口
 
-## 使用vite构建
+### 使用vite构建
 
 ```bash
 yarn create vite 项目名
@@ -29,9 +29,9 @@ yarn create vite 项目名
 
 选择react即可，启动在`5173`端口
 
-# webpack构建的项目
+## webpack构建的项目
 
-## public中的结构
+### public中的结构
 
 | 文件名        | 说明                   |
 | ------------- | ---------------------- |
@@ -39,7 +39,7 @@ yarn create vite 项目名
 | manifest.json | 应用加壳需要的配置文件 |
 | robots.txt    | 爬虫协议文件           |
 
-### 分析index.html
+#### 分析index.html
 
 ```html
 <!DOCTYPE html>
@@ -71,7 +71,7 @@ yarn create vite 项目名
 </html>
 ```
 
-## src中的结构
+### src中的结构
 
 | 文件名             | 说明                            |
 | ------------------ | ------------------------------- |
@@ -81,7 +81,7 @@ yarn create vite 项目名
 | reportWebVitals.js | 用于记录页面性能的配置文件      |
 | setupTests.js      | 做组件测试的                    |
 
-### 分析index.js
+#### 分析index.js
 
 ```js
 import React from 'react';
@@ -103,9 +103,9 @@ root.render(
 reportWebVitals();
 ```
 
-## 简化结构
+### 简化结构
 
-### public
+#### public
 
 只剩下`index.html`即可
 
@@ -122,7 +122,7 @@ reportWebVitals();
 </html>
 ```
 
-### src
+#### src
 
 只剩下`App.js`和`index.js`即可
 
@@ -162,13 +162,13 @@ root.render(
 
 
 
-# 样式混乱
+## 样式混乱
 
 定义多个组件时，使用的样式文件重复名字的话会产生样式混乱
 
 解决：可以在取名时加上module
 
-# 子组件向父组件传参
+## 子组件向父组件传参
 
 子组件：
 
@@ -215,7 +215,7 @@ class Index extends Component {
 export default Index as any
 ```
 
-# vite代理跨域
+## vite代理跨域
 
 请求地址：`/api/XXX`，接口地址：`http://localhost:5000/api/XXX`
 
@@ -249,11 +249,11 @@ export default defineConfig({
 >
 > 注意一点：请求本地的时候，先是去获取到项目中的静态资源，没找到才会通过代理
 
-# 消息订阅与发布（PubSub）
+## 消息订阅与发布（PubSub）
 
 用于任意组件的沟通
 
-## 下载
+### 下载
 
 ```bash
 npm i pubsub-js
@@ -263,7 +263,7 @@ yarn add pubsub-js
 yarn add @types/pubsub-js
 ```
 
-## 订阅消息
+### 订阅消息
 
 ```tsx
 token: string = ''
@@ -283,7 +283,7 @@ componentWillUnmount () {
 
 > _ 下划线占位元素用的，类似c#中的弃元
 
-## 发布消息
+### 发布消息
 
 ```tsx
 pubsub.publish('demoData', '这是一条消息')
@@ -291,9 +291,9 @@ pubsub.publish('demoData', '这是一条消息')
 
 > 但是发送后莫名其妙的会有两次接收
 
-# TodoList案例
+## TodoList案例
 
-## ToDoList.tsx
+### ToDoList.tsx
 
 ```tsx
 // vite.config.ts
@@ -432,7 +432,7 @@ class ToDoList extends Component<null, IState> {
 export default ToDoList as any
 ```
 
-## ToDoList.scss
+### ToDoList.scss
 
 ```scss
 #todoList {
@@ -507,11 +507,11 @@ export default ToDoList as any
 }
 ```
 
-# 路由实现
+## 路由实现
 
-## 底层
+### 底层
 
-### 历史模式（history）
+#### 历史模式（history）
 
 路由是怎么判断刷新和记录的？
 
@@ -521,13 +521,13 @@ export default ToDoList as any
 
 学习实现基础可以使用`history.js`（原生的api不好用）
 
-### 哈希模式（Hash）
+#### 哈希模式（Hash）
 
 这个模式就没有用到dom中的history记录，主要就是类似锚点跳转，所以路由后都会有`#`
 
 优点：兼容性极佳
 
-## 下载
+### 下载
 
 ```bash
 yarn add react-router-dom
@@ -535,7 +535,7 @@ yarn add react-router-dom
 npm i react-router-dom
 ```
 
-## 引入使用
+### 引入使用
 
 ```tsx
 <BrowserRouter>
@@ -594,13 +594,13 @@ createRoot(dom).render(
 )
 ```
 
-## Link 和 NavLink
+### Link 和 NavLink
 
 共同点：都是用来跳转的
 
 区别：NavLink 在style和className上支持函数形式
 
-### 使用NavLink做访问后的样式
+#### 使用NavLink做访问后的样式
 
 新版本：
 
@@ -652,7 +652,7 @@ createRoot(dom).render(
 >
 > 在旧版本中，默认的`activeClassName`为`active`
 
-### 二次封装NavLink
+#### 二次封装NavLink
 
 ```tsx
 import React, { Component } from 'react'
@@ -700,7 +700,7 @@ export default Index
 
 > 对于标签体内容，子组件接收的方式是放在`props`的`children`属性中
 
-## Switch使用（旧版本）
+### Switch使用（旧版本）
 
 在旧版本的时候，使用多个`route`标签注册路由的时候，在同`path`属性时，会将匹配的页面全部显示
 
@@ -719,13 +719,13 @@ export default Index
 >
 > 在新版本中已经弃用，直接正常使用路由即可
 
-## 样式丢失bug（旧版本）
+### 样式丢失bug（旧版本）
 
 对于多级路由的情况下，刷新时如果使用的相对路径的css就会出现样式丢失的问题，因为多级路径下，相对路径的请求会也会带上上一级路由，然后找不到请求路径，自动跳转到`public`的`index.html`下
 
 解决办法：换为绝对路径，如：`'./css/bootstrap.css'` 改为 `‘/css/bootstrap.css’`或`%PUBLIC_URL%/css/bootstrap.css%`
 
-## 路由模糊与精准匹配
+### 路由模糊与精准匹配
 
 旧版本中路由默认匹配就是模糊匹配，如下：
 
@@ -746,7 +746,7 @@ export default Index
 
 > 默认为`exact={true}`，可以省略
 
-## 路由重定向
+### 路由重定向
 
 ```tsx
 <Routes>
@@ -765,7 +765,7 @@ export default Index
 > <Redirect to="/about" />
 > ```
 
-## 子组件
+### 子组件
 
 先在`Routes`中使用`Route`标签注册路由，然后再包含子组件的页面中需要展示的地方使用`Outlet`标签
 
@@ -819,9 +819,9 @@ export default Index
 > 1. 先使用`Route`嵌套标签注册路由
 > 2. 在父组件要显示子组件的位置使用`Outlet`标签
 
-## 路由传参
+### 路由传参
 
-### params参数（路径传递）
+#### params参数（路径传递）
 
 父组件（跳转的时候直接拼接到路径上就行了）：
 
@@ -917,7 +917,7 @@ export default Index
 >
 > 旧版本获取是放在`props`下的`match`当中的，只能自己从`urlencoded`格式获取数据
 
-### search参数（问号拼接传递）
+#### search参数（问号拼接传递）
 
 同样将参数拼接到路径上即可
 
@@ -997,7 +997,7 @@ export default Index
 > swapUrlEncoded('id=1&title=主题&content=传递内容')
 > ```
 
-### state参数（对象传递）
+#### state参数（对象传递）
 
 特点：传递的参数不会在路径中显示出来
 
@@ -1066,7 +1066,7 @@ export default Index
 
 页面刷新的时候，会发现数据还在，原理：我们用的是`BrowserRouter`路由模式，`state`属性放在浏览器的`history`中，`history`中的数据是一直被记录的，但是当清空了浏览器缓存的时候，数据就没了
 
-## 路由覆盖
+### 路由覆盖
 
 当我们点击一个路由后，会在栈结构中添加一个路由记录，使用浏览器回退的时候，回退顺序就是根据这个栈结构回退的，要是想让当前路由记录被新增的路由记录覆盖，也就是回退不到上一个页面，使用`replace`属性即可
 
@@ -1074,7 +1074,7 @@ export default Index
 <Link replace to={'detail'} state={{ id: v.id, title: v.title }}>{v.title}</Link>
 ```
 
-## 编程式导航
+### 编程式导航
 
 ```tsx
 import { useNavigate } from 'react-router-dom'
@@ -1097,16 +1097,16 @@ navigate('', { state: { id: 1, title: 'FSAN1' } })
 > export default withRouter(Index)
 > ```
 
-# 使用UI组件库
-## [Material-ui](https://mui.com/zh/material-ui/getting-started/overview/)
+## 使用UI组件库
+### [Material-ui](https://mui.com/zh/material-ui/getting-started/overview/)
 
 material-ui是一个国外的react ui库，使用较为繁琐
 
-## [Ant-design](https://ant.design/index-cn)
+### [Ant-design](https://ant.design/index-cn)
 
 ant-design 是由国内蚂蚁金服出的，下列记录基于这个UI库（简称`antd`）
 
-## 下载
+### 下载
 
 ```cmd
 yarn add antd
@@ -1114,7 +1114,7 @@ yarn add antd
 npm i antd -D
 ```
 
-## 导入并使用
+### 导入并使用
 
 在`main.tsx`中先引入`css`文件
 
@@ -1154,11 +1154,11 @@ class App extends Component {
 export default App
 ```
 
-## CRA项目css按需引入
+### CRA项目css按需引入
 
 对于CRA（create-react-app）项目来说，可以直接使用官网提供的carco插件进行配置，但我是使用vite构建的，目前暂没找到配置步骤
 
-### 下载craco
+#### 下载craco
 
 ```bash
 yarn add @craco/craco
@@ -1166,7 +1166,7 @@ yarn add @craco/craco
 npm i @craco/craco -D
 ```
 
-### 修改配置项
+#### 修改配置项
 
 ```json
 /* package.json */
@@ -1180,7 +1180,7 @@ npm i @craco/craco -D
 }
 ```
 
-### 创建配置文件
+#### 创建配置文件
 
 在根目录下创建`craco.config.js`
 
@@ -1191,7 +1191,7 @@ module.exports = {
 };
 ```
 
-### 下载babel-plugin-import
+#### 下载babel-plugin-import
 
 `babel-plugin-import`是一个用于按需加载组件代码和样式的 babel 插件
 
@@ -1199,7 +1199,7 @@ module.exports = {
 yarn add babel-plugin-import
 ```
 
-### 在`craco.config.js`中配置如下：
+#### 在`craco.config.js`中配置如下：
 
 ```js
 module.exports = {
@@ -1213,17 +1213,17 @@ module.exports = {
 };
 ```
 
-## Vite项目css按需引入
+### Vite项目css按需引入
 
 删除在`main.tsx`中的全局引入样式
 
-### 下载vite-plugin-imp
+#### 下载vite-plugin-imp
 
 ```bash
 yarn add vite-plugin-imp
 ```
 
-### 下载less
+#### 下载less
 
 因为antd的默认样式文件是less文件，编译需要使用less
 
@@ -1231,7 +1231,7 @@ yarn add vite-plugin-imp
 yarn add less
 ```
 
-###  修改vite.config.ts
+####  修改vite.config.ts
 
 ```ts
 import { defineConfig } from 'vite'
@@ -1278,9 +1278,9 @@ export default defineConfig({
 
 添加上`css`，`vitePluginImp`
 
-# 打包后使用serve服务器启动
+## 打包后使用serve服务器启动
 
-## 下载
+### 下载
 
 ```bash
 npm i serve -g
@@ -1288,7 +1288,7 @@ npm i serve -g
 
 > 尝试了使用yarn，结果不行，可能要自己配置环境变量
 
-## 启动打包后的文件
+### 启动打包后的文件
 
 ```bash
 cd dist

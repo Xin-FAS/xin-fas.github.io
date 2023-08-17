@@ -5,7 +5,7 @@ tags: [redux,react]
 categories: [[前端]]
 ---
 
-# Redux介绍
+## Redux介绍
 
 redux是一个专门用来做状态管理的JS库（不是react插件库），前端三大框架都可以使用，但基本和react配合使用，[点击进入官方文档](https://redux.js.org/)
 
@@ -15,9 +15,9 @@ redux是一个专门用来做状态管理的JS库（不是react插件库），�
 2. 一个组件需要改变另一个组件的状态（通信）
 3. 总体原则：能不用就不用，如果不用比较吃力才考虑使用
 
-# 三大核心属性
+## 三大核心属性
 
-## action
+### action
 
 一个js对象，包含两个属性：
 
@@ -26,7 +26,7 @@ redux是一个专门用来做状态管理的JS库（不是react插件库），�
 
 > 必须带有`type`属性，只是说明有事情发生了这件事，并没有说明应该如何跟更新state
 
-## reducer
+### reducer
 
 一个纯函数，作用：
 
@@ -37,7 +37,7 @@ redux是一个专门用来做状态管理的JS库（不是react插件库），�
 
 > `(previousState, action) => newState`
 
-## store
+### store
 
 仓库，redux的核心，整合action和reducer
 
@@ -52,7 +52,7 @@ redux是一个专门用来做状态管理的JS库（不是react插件库），�
 >
 > 取消监听：`unSubscribe()`
 
-# 下载
+## 下载
 
 ```bash
 yarn add redux
@@ -60,9 +60,9 @@ yarn add redux
 npm i redux -S
 ```
 
-# 使用Redux
+## 使用Redux
 
-## 创建store（主要仓库）
+### 创建store（主要仓库）
 
 新建 `redux / store.ts`
 
@@ -77,9 +77,9 @@ export default store
 
 > 在react18版本，`createStore`已被标记为弃用，新用法需要用到`redux-thunk`这个中间件（见下面的异步action）
 
-### 使用RTK（Redux Toolkit）
+#### 使用RTK（Redux Toolkit）
 
-#### 下载
+##### 下载
 
 ```bash
 npm i @reduxjs/toolkit
@@ -87,7 +87,7 @@ npm i @reduxjs/toolkit
 yarn add @reduxjs/toolkit
 ```
 
-#### 创建store对象
+##### 创建store对象
 
 ```ts
 import { configureStore } from '@reduxjs/toolkit'
@@ -100,7 +100,7 @@ const store = configureStore({
 export default store
 ```
 
-## 创建reducers（执行函数）
+### 创建reducers（执行函数）
 
 新建 `redux / reducers / countReducer.ts`
 
@@ -123,14 +123,14 @@ export default (state: number = 0, action: {type: string, data: any}) => {
 > 2. action 要处理的行为
 > 3. 返回新的state树
 
-## 获取state的值
+### 获取state的值
 
 ```js
 import store from '../../redux/store'
 store.getState()
 ```
 
-## 使用reducers函数更新state
+### 使用reducers函数更新state
 
 ```js
 import store from '../../redux/store'
@@ -139,7 +139,7 @@ store.dispatch({ type: '+', data: 1 })
 
 > 但是注意：就算更新state中的数据，dom也不会刷新，需要手动监听后刷新
 
-## 手动监听渲染
+### 手动监听渲染
 
 直接在`main.tsx`中建立redux的监听即可
 
@@ -167,7 +167,7 @@ render()
 store.subscribe(render)
 ```
 
-## 小案例
+### 小案例
 
 计数器：
 
@@ -249,9 +249,9 @@ const store = createStore(countReducer)
 export default store
 ```
 
-## 完善结构
+### 完善结构
 
-### 封装类型ts文件
+#### 封装类型ts文件
 
 ```ts
 // src -> typeFile.ts
@@ -273,7 +273,7 @@ export interface IReducerHandle<T> {
 }
 ```
 
-### 封装type常量文件
+#### 封装type常量文件
 
 ```ts
 // src -> redux -> typeConstant.ts
@@ -281,7 +281,7 @@ export const INCREASE = 'increase'
 export const DECREASE = 'decrease'
 ```
 
-### 用于创建action的文件
+#### 用于创建action的文件
 
 ```ts
 // redux -> countActionCreator.ts
@@ -295,7 +295,7 @@ export default {
 } as ICreateAction<number>
 ```
 
-### reducer执行文件
+#### reducer执行文件
 
 ```ts
 // redux -> reducers -> countReducer.ts
@@ -327,15 +327,15 @@ export default ((state = 0, action) => {
 // }
 ```
 
-## 异步action
+### 异步action
 
 同步action就只是封装返回一个有type和data属性的对象
 
 异步action就是返回一个函数，但是需要引入中间件，因为action只能为一个简单的object对象，需要使用中间件配置store
 
-### 配置中间件
+#### 配置中间件
 
-#### 下载中间件
+##### 下载中间件
 
 ```bash
 npm install redux-thunk
@@ -343,7 +343,7 @@ npm install redux-thunk
 yarn add redux-thunk
 ```
 
-#### 在store.ts中配置
+##### 在store.ts中配置
 
 ```ts
 import { configureStore, applyMiddleware } from '@reduxjs/toolkit'
@@ -362,7 +362,7 @@ export default store
 >
 > 但不知道为什么，我不配置发现也可以正常使用
 
-### 创建异步action
+#### 创建异步action
 
 ```ts
 import { Dispatch } from 'react'
@@ -394,11 +394,11 @@ export default creatorAction
 > }
 > ```
 
-# 使用React-Redux
+## 使用React-Redux
 
 react看在项目都使用redux状态管理，所以自己出了一个库，就叫[react-redux](https://react-redux.js.org/)，配合原生`redux`使用
 
-## 介绍
+### 介绍
 
 1. 所有的UI组件都应该包裹一个容器组件，他们是父子关系
 2. 容器组件是真正和redux打交道的，里面可以随意的使用redux的api
@@ -408,7 +408,7 @@ react看在项目都使用redux状态管理，所以自己出了一个库，就�
    2. 用于操作状态的方法
 5. 备注：容器给UI传递：状态，操作状态的方法，均通过props传递
 
-## 下载
+### 下载
 
 ```bash
 npm install react-redux
@@ -416,7 +416,7 @@ npm install react-redux
 yarn add react-redux
 ```
 
-## 创建容器组件
+### 创建容器组件
 
 创建 `src/containers/Count/index.ts`
 
@@ -456,7 +456,7 @@ export default App
 
 > 使用了connect连接之后就相当于UI组件变成了容器组件的子组件
 
-## 使用容器组件向UI组件传递状态和函数
+### 使用容器组件向UI组件传递状态和函数
 
 在connect方法第一次调用时传递参数即可，在标签处只能使用store
 
@@ -477,7 +477,7 @@ export default connect(stateObject, fnObject)(Count)
 
 > connect两个参数返回的都是一个简单对象，第一个传递状态，第二个传递函数
 
-## UI组件接收参数和函数对象
+### UI组件接收参数和函数对象
 
 对于class组件来说，直接使用props就可以接收到，对于函数式组件来说，写在第一个参数接收
 
@@ -493,7 +493,7 @@ const Count = (props: IProps) => {
     ...
 ```
 
-## 修改计数器案例
+### 修改计数器案例
 
 封装类型接口
 
@@ -635,7 +635,7 @@ export default Count
 >
 > 但是，用了react-redux之后，因为是react自己出的，当容器组件的状态发生改变，会自动的渲染一次到UI组件上，就可以省略监听的代码了
 
-## 自动传递store属性（Provider）
+### 自动传递store属性（Provider）
 
 对于很多容器组件都需要传递store时，如下写法会太麻烦：
 
@@ -685,7 +685,7 @@ rootDom.render(
 )
 ```
 
-## 容器组件和UI组件结构优化
+### 容器组件和UI组件结构优化
 
 写成多个文件，会使以后的文件成倍增长，所以可以直接将容器组件和UI组件成为一个文件
 
@@ -755,7 +755,7 @@ export default connect(
     })(Count) as any
 ```
 
-## 多组件共享状态（combineReducers）
+### 多组件共享状态（combineReducers）
 
 在多个组件下，state就不能是个单一的值，就应该是一个对象，多组件步骤如下
 
@@ -850,7 +850,7 @@ export default (state: any = [], action: IAction<any>) => {
 
 > 在reducer中的state属性是单个组件的
 
-## 总结：
+### 总结：
 
 1. 使用`@reduxjs/toolkit`创建store文件（下载`redux-thunk`实现中间件异步，多组件需要使用`combineReducers`组合，将最后的组合对象交给store）
 2. 创建reducer处理文件，接收state和action(`{type: xxx, data: xxx}`)，暴露一个函数，返回内容就是该组件使用的state，负责具体任务的执行（调用使用`dispatch(action)`）
@@ -859,11 +859,11 @@ export default (state: any = [], action: IAction<any>) => {
 5. 从外面传入store对象，可以使用`Provider`标签自动传递
 6. 在UI组件中使用props接收（函数式组件直接写第一个参数接收）
 
-# reducer返回对象注意点：
+## reducer返回对象注意点：
 
 在reducer中，返回的对象地址不可相同，如向数组中添加一个元素后返回这个数组，不可直接使用push或者unshift添加，必须要返回一个深拷贝的数组
 
-## 错误
+### 错误
 
 ```ts
 import { IAction } from '../../typeFile'
@@ -889,7 +889,7 @@ export default (state: any = [], action: IAction<any>) => {
 }
 ```
 
-## 正确
+### 正确
 
 ```ts
 import { IAction } from '../../typeFile'

@@ -5,11 +5,11 @@ tags: [react]
 categories: [前端,react]
 ---
 
-# 介绍
+## 介绍
 
 之前记录的react脚手架中，我记录的全是react router 6的用法，这里来统计一下，也详细记录下react-router
 
-## React Router介绍
+### React Router介绍
 
 React Router 以三个不同的报发布到npm上，它们分别为：
 
@@ -24,27 +24,27 @@ React Router 以三个不同的报发布到npm上，它们分别为：
 3. 新增多个hook：`useParams`，`useNavigate`，`useMatch`等
 4. **官方明确推荐使用函数式组件！！**
 
-# 功能点
+## 功能点
 
-## BrowserRouter
+### BrowserRouter
 
 不演示
 
-## HashRouter
+### HashRouter
 
 同上
 
-## Link
+### Link
 
 同上
 
-## NavLink
+### NavLink
 
 同上，在5中使用 activeClassName定义当前样式名，6里面想想className和style使用回调函数就能记起来了，建议封装一个方法中，不然太冗余了
 
 属性`end`，默认为false，当有子路由时，使用end属性可以使访问子路由时父路由不高亮
 
-## Routes和Route
+### Routes和Route
 
 ```tsx
 <Route caseSensitive path="/main" element={<MenuLink />} />
@@ -54,7 +54,7 @@ React Router 以三个不同的报发布到npm上，它们分别为：
 
 其他不演示了
 
-## Navigate
+### Navigate
 
 只要渲染就跳转，如下：
 
@@ -92,7 +92,7 @@ export default Index
 >
 > replace为true可以使路由跳转后无法后退
 
-## useRoutes（important！）
+### useRoutes（important！）
 
 使用useRoutes对路由进行对象化，和vue一样
 
@@ -156,15 +156,15 @@ return (
 },
 ```
 
-## Outlet（important！）
+### Outlet（important！）
 
 配合嵌套路由使用，定义渲染位置，同vue中的`router-view`
 
-## useParams
+### useParams
 
 接收路由中携带的params参数`/detail/1/FSAN`，注册路由时需要使用`:参数名`
 
-## useMatch
+### useMatch
 
 分析一个地址，如：
 
@@ -174,7 +174,7 @@ useMatch('/home/message/detail/:id/:title')
 
 > 使用`:参数名`支持匹配
 
-## useSearchParams
+### useSearchParams
 
 接收路由中携带的search参数`/detail?id=1&title=FSAN`
 
@@ -189,7 +189,7 @@ console.log(search.get('title'))
 
 > 使用urlEncoded格式的字符串修改search参数
 
-## useLocaltion（important！）
+### useLocaltion（important！）
 
 分析当前路由，并且可以从中获取到传递的state数据
 
@@ -208,7 +208,7 @@ link传递state数据
 />
 ```
 
-## useNavigate（important！）
+### useNavigate（important！）
 
 ```tsx
 const navigate = useNavigate()
@@ -229,7 +229,7 @@ const toPath = (path:string) => {
 
 > 编程式导航，一看就懂了吧
 
-## useNavigationType
+### useNavigationType
 
 返回当前的导航类型（用户是怎么来的）
 
@@ -239,10 +239,10 @@ const toPath = (path:string) => {
 | PUSH    | 通过跳转进来的                             |
 | REPLACE | 通过替代当前路由记录进来的（replace）      |
 
-## useOutlet
+### useOutlet
 
 查看当前渲染的路由组件
 
-## useResolvedPath
+### useResolvedPath
 
 给定一个url值，解析其中的path，search，hash值

@@ -5,11 +5,11 @@ tags: [js,ajax]
 categories: [前端]
 ---
 
-# ajax简介
+## ajax简介
 Ajax（Asynchronous JavaScript and XML），直译为“异步的JavaScript与XML技术”，是一种创建交互式网页应用的网页开发技术，用于创建快速动态网页，由杰西·詹姆士·贾瑞特所提出。与传统的Web应用相比，Ajax通过浏览器与服务器进行少量的数据交换就可以实现网页的异步更新，在不重新加载整个网页的情况下，即可对网页进行更新。
 
 
-# 简单操作
+## 简单操作
 ```javascript
 //根据浏览器创建ajax实例
 function createXMLHttpRequest() {
@@ -20,7 +20,7 @@ function createXMLHttpRequest() {
     }
 }
 ```
-## get请求
+### get请求
 1. 创建ajax实例对象
 2. 设置接口地址
 3. 设置回调函数
@@ -43,7 +43,7 @@ function handle() {
         }
 }
 ```
-## post请求
+### post请求
 1. 创建ajax实例对象
 2. 设置接口地址
 3. 设置实例对象（发送方式，发送地址，是否异步）

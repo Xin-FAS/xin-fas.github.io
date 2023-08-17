@@ -4,10 +4,10 @@ date: 2022-05-16 20:22:28
 tags: [java,aop]
 categories: [[后端,java]]
 ---
-# 介绍
+## 介绍
 AOP （Aspect Orient Programming）,直译过来就是 面向切面编程。AOP 是一种编程思想，是面向对象编程（OOP）的一种补充。面向对象编程将程序抽象成各个层次的对象，而面向切面编程是将程序抽象成各个切面。
 
-# 导入依赖
+### 导入依赖
 
 ```xml
 <dependency>
@@ -16,8 +16,8 @@ AOP （Aspect Orient Programming）,直译过来就是 面向切面编程。AOP 
 </dependency>
 ```
 
-# 切面通知注解和执行顺序
-## 五种通知注解
+## 切面通知注解和执行顺序
+### 五种通知注解
 | 注解名         | 用法                             |
 | -------------- | -------------------------------- |
 | @Before        | 前置通知, 在方法执行之前执行     |
@@ -25,7 +25,7 @@ AOP （Aspect Orient Programming）,直译过来就是 面向切面编程。AOP 
 | @AfterRunning  | 返回通知, 在方法返回结果之后执行 |
 | @AfterThrowing | 异常通知, 在方法抛出异常之后     |
 | @Around        | 环绕通知, 围绕着方法执行         |
-## 执行顺序
+### 执行顺序
 1. @Around
 2. @Before
 3. 执行方法
@@ -34,9 +34,9 @@ AOP （Aspect Orient Programming）,直译过来就是 面向切面编程。AOP 
 6. @AfterReturning
 
 
-# 切点@Pointcut
+## 切点@Pointcut
 
-## 切点表达式标签（10种）
+### 切点表达式标签（10种）
 
 | 标记名      | 作用                                                         |
 | ----------- | ------------------------------------------------------------ |
@@ -57,9 +57,9 @@ AOP （Aspect Orient Programming）,直译过来就是 面向切面编程。AOP 
 @Pointcut("execution(* com.javacode2018.aop.demo9.test1.Service1.*(..))")
 ```
 
-## 关于切点中execution表达式
+### 关于切点中execution表达式
 
-### 常用写法
+#### 常用写法
 
 `execution(public * *(..))`	 表示匹配所有public方法
 
@@ -73,7 +73,7 @@ AOP （Aspect Orient Programming）,直译过来就是 面向切面编程。AOP 
 
 `execution(* *To(..))`	匹配目标类所有以To为后缀的方法
 
-### 基本语法如下：
+#### 基本语法如下：
 
 execution(<修饰符模式>?<返回类型模式><方法名模式>(<参数模式>)<异常模式>?) 除了返回类型模式、方法名模式和参数模式外，其它项都是可选的。
 
@@ -87,11 +87,11 @@ execution(<修饰符模式>?<返回类型模式><方法名模式>(<参数模式>
 | 第二个 “  *  ”       | 表示类名，* 即所有类                                 |
 | .\*(..)              | 表示任何方法名，括号表示参数，两个点表示任何参数类型 |
 
-# 实现简单的控制台日志
+## 实现简单的控制台日志
 
-## 输出日志（使用注解控制）
+### 输出日志（使用注解控制）
 
-### 自定义注解
+#### 自定义注解
 
 因为要演示对被自定义注解标记的类做切面，所以先建立一个自定义注解
 
@@ -137,7 +137,7 @@ public class UserController {
 ```
 
 
-### 建立切面类
+#### 建立切面类
 
 创建 aspect > LogAsp.java
 
@@ -186,9 +186,9 @@ public class LogAsp {
 >
 > `@AfterReturning`修饰的注解有两个参数，第一个是切点信息，第二个是方法的方法的返回值
 
-## 错误日志（控制某个包下的所有类）
+### 错误日志（控制某个包下的所有类）
 
-### 在切面类中使用@AfterThrowing
+#### 在切面类中使用@AfterThrowing
 
 ```java
 @AfterThrowing(pointcut = "execution(* com.fsan.service.impl.*.*(..))", throwing = "e")
@@ -205,7 +205,7 @@ public void logCutAfterThrowing(JoinPoint joinPoint, Throwable e) {
 
 >`@AfterThrowing(pointcut = "execution(* com.fsan.service.impl.*.*(..))", throwing = "e")`	pointcut属性也可以像上面一样先定义切面方法，语法详细看上面，接收错误信息为e
 
-### 跳过某个异常
+#### 跳过某个异常
 
 在有自定义异常的时候，不想输出自己的自定义异常，就可以这样做
 
@@ -225,16 +225,16 @@ public void logCutAfterThrowing(JoinPoint joinPoint, Throwable e) {
 }
 ```
 
-# 其他切点表达式写法
+## 其他切点表达式写法
 
-## 定义测试切点（controller下所有类下方法）
+### 定义测试切点（controller下所有类下方法）
 
 ```java
 @Pointcut("execution(* com.fsan.controller.*.*(..))")
 public void demoCut(){}
 ```
 
-## @Before前置通知
+### @Before前置通知
 
 在目标方法的执行之前执行，即在连接点之前进行执行
 
@@ -248,7 +248,7 @@ public void doBefore(JoinPoint joinPoint) {
 }
 ```
 
-## @After后置通知
+### @After后置通知
 
 无论连接点方法执行成功还是出现异常，都将执行后置方法。
 
@@ -264,19 +264,19 @@ public void doAfter(JoinPoint joinPoint){
 
 方法参数同@before
 
-## @AfterRunning返回通知
+### @AfterRunning返回通知
 
 当连接点方法成功执行后，返回通知方法才会执行
 
 不演示了，上面有实例
 
-## @AfterThrowing异常通知
+### @AfterThrowing异常通知
 
 异常通知方法只在连接点方法出现异常后才会执行
 
 同不演示了，上面有例子
 
-## @Around环绕通知
+### @Around环绕通知
 
 环绕通知方法可以包含上面四种通知方法，环绕通知的功能最全面。
 

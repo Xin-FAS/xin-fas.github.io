@@ -5,7 +5,7 @@ tags: []
 categories: [教程文档]
 ---
 
-# 介绍
+## 介绍
 
 NVM是node的版本管理工具，用于在一个设备上同时拥有多个node版本，并快速切换使用对应版本npm，同作者所说，nvm最初是基于Mac/Linux的独立项目，并不包含windows的使用，但是他们还是推出了`nvm for windows`
 
@@ -15,17 +15,17 @@ nvm for windows：https://github.com/coreybutler/nvm-windows
 
 > 目前作者已打算放弃nvm for windows，开发Runtime（NVM4W 2.0.0）作为下一代windows的node管理工具，更多介绍：https://github.com/coreybutler/nvm-windows/wiki/Runtime
 
-# 准备操作
+## 准备操作
 
 使用nvm管理前，本地必须要先清空node环境
 
-# 下载并安装nvm for windows
+## 下载并安装nvm for windows
 
 下载地址：https://github.com/coreybutler/nvm-windows/releases
 
 最好使用exe进行安装，后续就不需要手动配置环境变量，下载后跟着一步步走就行了，记一下nvm的安装路径，后续需要修改镜像地址
 
-# 配置镜像地址
+## 配置镜像地址
 
 打开nvm的安装路径，在文件夹中找到`setting.txt`，把下面两行复制到最后
 
@@ -34,7 +34,7 @@ node_mirror :https://npm.taobao.org/mirrors/node/
 npm_mirror: https://npm.taobao.org/mirrors/npm/
 ```
 
-# 使用
+## 使用
 
 首先查看下可供下载的版本，除了下面这行命令外，也可以直接去node官网查看https://nodejs.org/en/download/releases
 
@@ -58,7 +58,7 @@ nvm use 18
 
 使用`use`命令时输入的版本号只要保证可以找到并且唯一就行
 
-# 常用命令
+## 常用命令
 
 * `nvm install <version>`：下载指定版本，可以用`lts`下载最新的LTS版本，用`latest`下载最新版本
 * `nvm uninstall <version>`：卸载指定版本

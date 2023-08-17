@@ -5,10 +5,10 @@ tags: [springboot,jsr303]
 categories: [后端,java]
 ---
 
-# 关于JSR303
+## 关于JSR303
 JSR-303 是JAVA EE 6 中的一项子规范，叫做Bean Validation，Hibernate Validator 是 Bean Validation 的参考实现 . Hibernate Validator 提供了 JSR 303 规范中所有内置 constraint 的实现，除此之外还有一些附加的 constraint。
 
-# 引入依赖
+## 引入依赖
 
 ```xml
 <dependency>
@@ -19,7 +19,7 @@ JSR-303 是JAVA EE 6 中的一项子规范，叫做Bean Validation，Hibernate V
 
 > 可以直接从spring项目创建时快捷引入
 
-# 校验常用注解
+## 校验常用注解
 
 | 注解名   | 作用                                                         |
 | -------- | ------------------------------------------------------------ |
@@ -32,11 +32,11 @@ JSR-303 是JAVA EE 6 中的一项子规范，叫做Bean Validation，Hibernate V
 
 > 以上大部分注释都由message属性，表示自定义异常信息
 
-# 简单校验
+## 简单校验
 
 简单校验就是在一个实体类上对元素写上注释限制，如：
 
-## 实体类（User）
+### 实体类（User）
 
 ```java
 @Data
@@ -62,7 +62,7 @@ public class User {
 }
 ```
 
-## Controller演示
+### Controller演示
 
 ```java
 @PostMapping("/valid")
@@ -80,13 +80,13 @@ public User valid(@Valid @RequestBody User user, BindingResult result){
 
 对于简单的校验来说，需要给校验的属性或实体类使用`@Valid`注解开启校验，在方法后跟上`BindingResult`用于收集jsr303所抛出的校验异常
 
-# 分组校验
+## 分组校验
 
 分组校验的实际使用常见为：当你有两个接受对象都是同一个实体类，但是类似注册和登录，注册需要填入邮箱地址，登录不需要，这时候就需要对邮箱地址这个属性定义分组校验
 
 分组校验的规则为：在类上的规则后跟上`groups`属性，写一个简单的接口表示一个组即可，如：
 
-## 实体类（User）
+### 实体类（User）
 
 ```java
 @Data
@@ -117,7 +117,7 @@ public class User {
 
 > 对于一个属性，校验的组可有多个
 
-## Controller演示
+### Controller演示
 
 ```java
 @PostMapping("/valid")
@@ -134,6 +134,6 @@ public User valid(@Validated(User.LoginDto.class) @RequestBody User user, Bindin
 
 > JSR303本身的`@Valid`并不支持分组校验，但是Spring在其基础提供了一个注解`@Validated`支持分组校验。`@Validated`这个注解`value`属性指定需要校验的分组。
 
-# 嵌套校验
+## 嵌套校验
 
 同名字，等于在一个Dto或实体类中包含其他实体类的校验情况，加上@Valid即可，就不演示了

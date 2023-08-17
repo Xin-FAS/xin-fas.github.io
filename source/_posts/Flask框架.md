@@ -6,9 +6,9 @@ categories: [后端,python]
 ---
 
 
-# Flask
+## Flask
 
-## 使用flask框架
+### 使用flask框架
 
 官网：https://dormousehole.readthedocs.io/en/latest/quickstart.html#id2
 
@@ -26,7 +26,7 @@ pip install flask
 2. 定义一个变量初始化flask框架  Flask("")
 3. 在main方法中使用初始化变量的run方法，定义两个参数，host和port
 
-## 最小的程序
+### 最小的程序
 
 ```python
 from flask import Flask
@@ -45,7 +45,7 @@ def hello_world():
 > flask run
 ```
 
-## 使用python启动的最小程序
+### 使用python启动的最小程序
 
 ```python
 from flask import Flask
@@ -67,7 +67,7 @@ if __name__ == '__main__':
 
  注意：这里run下的两个参数，host是启动的地址，写0.0.0.0就是使用网络地址http://192.168.214.206:5000/ ，端口号默认5000
 
-## 使用Blueprint
+### 使用Blueprint
 
 > 写Blueprint
 
@@ -115,7 +115,7 @@ if __name__ == '__main__':
     )
 ```
 
-## 自定义路径和接口地址
+### 自定义路径和接口地址
 
 > yaml文件
 
@@ -161,7 +161,7 @@ if __name__ == '__main__':
     )
 ```
 
-## 使用before和after实现判断
+### 使用before和after实现判断
 
 > 判断是否是程序访问
 
@@ -245,9 +245,7 @@ def start():
 1. post方法发送的是json形式，使用request下的json方法接收
 2. get方法发送的是地址形式，使用request下的args方法接收
 
-
-
-## input发送并接收file文件
+### input发送并接收file文件
 
 > 思路：
 

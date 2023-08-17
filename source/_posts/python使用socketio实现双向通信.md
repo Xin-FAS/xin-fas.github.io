@@ -5,12 +5,12 @@ tags: [socket,python]
 categories: [后端,python]
 ---
 
-# H5 建立socket连接
+## H5 建立socket连接
 
-## 使用原生对象
+### 使用原生对象
 
 
-### 建立连接
+#### 建立连接
 
 判断浏览器是否支持websocket服务
 
@@ -35,9 +35,9 @@ websocket.onerror = () => {
 ```
 建议使用封装更好的socket.io.js
 
-## 使用socket.io.js
+### 使用socket.io.js
 
-### 下载并引入：
+#### 下载并引入：
 
 官网：https://socket.io/
 
@@ -58,7 +58,7 @@ let socket = io.connect(websocket_url)
 ```
 > 没错，直接使用http协议，这个库会自动解析并创建websocket对象
 
-### 简单使用
+#### 简单使用
 使用连接对象监听和发送
 
 ```js
@@ -76,11 +76,11 @@ socket.on("response", (data) => {
 
 使用send发送就一定是message接收（与emit的区别）
 
-# python中socket服务编写
+## python中socket服务编写
 
 python中对应的包为`flask-socketio`
 
-## 步骤：
+### 步骤：
 
 1. 导入flask-socketio下的SocketIO和emit
 2. 导入flask框架，并初始化(记得使用跨域)
@@ -92,7 +92,7 @@ python中对应的包为`flask-socketio`
 > 1. socket 使用 `cors_allowed_origins="*"`解决跨域
 > 2. 如要广播多个网页，要在emit或者send方法后面加上broadcast=True
 
-## 最简结构
+### 最简结构
 
 ```python
 from flask-socketio import SocketIO,emit

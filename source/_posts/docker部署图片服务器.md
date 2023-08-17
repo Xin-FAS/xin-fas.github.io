@@ -5,11 +5,11 @@ tags: [docker,nginx]
 categories: [服务器]
 ---
 
-# 介绍
+## 介绍
 
 图片服务器就是通过配置nginx服务完成的，所以建立nginx容器的过程就省略了，需要注意的是，在`usr/share/nginx/`下建立一个img文件夹用于存放静态文件，也需要挂载出去
 
-# 区分root和alias
+## 区分root和alias
 
 使用root：
 
@@ -31,7 +31,7 @@ location /img {
 
 当访问 /img 路径的时候，nginx会映射到 /static 下，如 /img/hello.png 返回的是 /static/hello.png，即用 /static 替换掉 /img
 
-# 配置nginx
+## 配置nginx
 
 ```conf
 location /img/ {

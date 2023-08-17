@@ -7,12 +7,12 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2023/08/17/mEqM5TYLxfpnHiF.png">
+  <link rel="icon" href="https://s2.loli.net/2023/08/17/mEqM5TYLxfpnHiF.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="rgba(242,242,242,.7)">
+  <meta name="theme-color" content="#f2f2f2">
   <meta name="author" content="Xin-FAS">
   <meta name="keywords" content="">
   
@@ -20,18 +20,19 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="sprinboot中jjwt工具类">
 <meta property="og:url" content="http://example.com/2022/02/19/sprinboot%E4%B8%ADjjwt%E5%B7%A5%E5%85%B7%E7%B1%BB/index.html">
-<meta property="og:site_name" content="Xin-FAS&#39;Blog">
+<meta property="og:site_name" content="Xin-FAS&#39;blog">
 <meta property="og:description" content="导入jwt的依赖库123456&lt;!--jwt--&gt;&lt;dependency&gt;    &lt;groupId&gt;io.jsonwebtoken&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;jjwt&lt;&#x2F;artifactId&gt;    &lt;version&gt;0.9.1&lt;&#x2F;version&gt;&lt;&#x2F;dependency&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-19T11:32:10.000Z">
-<meta property="article:modified_time" content="2023-03-19T13:24:52.189Z">
+<meta property="article:modified_time" content="2023-08-17T15:00:17.519Z">
 <meta property="article:author" content="Xin-FAS">
 <meta property="article:tag" content="springboot">
 <meta property="article:tag" content="jwt">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>sprinboot中jjwt工具类 - Xin-FAS&#39;Blog</title>
+  
+  <title>sprinboot中jjwt工具类 - Xin-FAS&#39;blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -66,16 +67,24 @@
 
 
   
-<link rel="stylesheet" href="/css/myCss/index.css">
+<link rel="stylesheet" href="/css/f-index.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 6.3.0"></head>
@@ -111,7 +120,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -123,7 +132,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -135,7 +144,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -147,7 +156,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -159,7 +168,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -171,7 +180,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                友链
+                <span>友链</span>
               </a>
             </li>
           
@@ -179,15 +188,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -227,7 +237,6 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          <!-- compatible with older versions-->
           2.3k 字
         
       </span>
@@ -239,7 +248,6 @@
         
         
         
-          <!-- compatible with older versions-->
           20 分钟
         
       </span>
@@ -277,21 +285,22 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">sprinboot中jjwt工具类</h1>
+            <h1 id="seo-header">sprinboot中jjwt工具类</h1>
             
-            <div class="markdown-body">
-              
-              <h1 id="导入jwt的依赖库"><a href="#导入jwt的依赖库" class="headerlink" title="导入jwt的依赖库"></a>导入jwt的依赖库</h1><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--jwt--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.jsonwebtoken<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jjwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.9.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+            
+              <div class="markdown-body">
+                
+                <h2 id="导入jwt的依赖库"><a href="#导入jwt的依赖库" class="headerlink" title="导入jwt的依赖库"></a>导入jwt的依赖库</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--jwt--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.jsonwebtoken<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jjwt<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.9.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h1 id="工具类："><a href="#工具类：" class="headerlink" title="工具类："></a>工具类：</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.fsan.springsecurity.Utils;<br><br><span class="hljs-keyword">import</span> io.jsonwebtoken.Claims;<br><span class="hljs-keyword">import</span> io.jsonwebtoken.JwtBuilder;<br><span class="hljs-keyword">import</span> io.jsonwebtoken.Jwts;<br><span class="hljs-keyword">import</span> io.jsonwebtoken.SignatureAlgorithm;<br><br><span class="hljs-keyword">import</span> java.nio.charset.StandardCharsets;<br><span class="hljs-keyword">import</span> java.util.Date;<br><span class="hljs-keyword">import</span> java.util.HashMap;<br><span class="hljs-keyword">import</span> java.util.Map;<br><span class="hljs-keyword">import</span> java.util.UUID;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JwtUtil</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 生成jwt</span><br><span class="hljs-comment">     * 使用Hs256算法, 私匙使用固定JWT_SEC秘钥</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> jwtSec    jwt秘钥 此秘钥一定要保留好在服务端, 不能暴露出去, 否则sign就可以被伪造, 如果对接多个客户端建议改造成多个</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ttlMillis jwt过期时间(毫秒)</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> username  用户名 可根据需要传递的信息添加更多, 因为浏览器get传参url限制，不建议放置过多的参数</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">createJWT</span><span class="hljs-params">(String jwtSec, <span class="hljs-type">long</span> ttlMillis, String username)</span> &#123;<br>        <span class="hljs-comment">// 指定签名的时候使用的签名算法，也就是header那部分</span><br>        <span class="hljs-type">SignatureAlgorithm</span> <span class="hljs-variable">signatureAlgorithm</span> <span class="hljs-operator">=</span> SignatureAlgorithm.HS256;<br><br>        <span class="hljs-comment">// 生成JWT的时间</span><br>        <span class="hljs-type">long</span> <span class="hljs-variable">nowMillis</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>        <span class="hljs-type">Date</span> <span class="hljs-variable">now</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(nowMillis);<br><br>        <span class="hljs-comment">// 创建payload的私有声明（根据特定的业务需要添加）</span><br>        Map&lt;String, Object&gt; claims = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        claims.put(<span class="hljs-string">&quot;username&quot;</span>, username);<br><br>        <span class="hljs-comment">// 添加payload声明</span><br>        <span class="hljs-comment">// 设置jwt的body</span><br>        <span class="hljs-type">JwtBuilder</span> <span class="hljs-variable">builder</span> <span class="hljs-operator">=</span> Jwts.builder()<br>                <span class="hljs-comment">// 如果有私有声明，一定要先设置这个自己创建的私有的声明，这个是给builder的claim赋值，一旦写在标准的声明赋值之后，就是覆盖了那些标准的声明的</span><br>                .setClaims(claims)<br>                <span class="hljs-comment">// 设置jti(JWT ID)：是JWT的唯一标识，根据业务需要，这个可以设置为一个不重复的值，主要用来作为一次性token,从而回避重放攻击。</span><br>                .setId(UUID.randomUUID().toString())<br>                <span class="hljs-comment">// iat: jwt的签发时间</span><br>                .setIssuedAt(now)<br>                <span class="hljs-comment">// 代表这个JWT的主体，即它的所有人，这个是一个json格式的字符串</span><br>                .setSubject(username)<br>                <span class="hljs-comment">// 设置签名使用的签名算法和签名使用的秘钥</span><br>                .signWith(signatureAlgorithm, jwtSec.getBytes(StandardCharsets.UTF_8));<br>        <span class="hljs-keyword">if</span> (ttlMillis &gt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-type">long</span> <span class="hljs-variable">expMillis</span> <span class="hljs-operator">=</span> nowMillis + ttlMillis;<br>            <span class="hljs-type">Date</span> <span class="hljs-variable">exp</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(expMillis);<br>            <span class="hljs-comment">// 设置过期时间</span><br>            builder.setExpiration(exp);<br>        &#125;<br>        <span class="hljs-keyword">return</span> builder.compact();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        System.out.println(createJWT(<span class="hljs-string">&quot;FSAN&quot;</span>, <span class="hljs-number">5</span>, <span class="hljs-string">&quot;admin&quot;</span>));<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * Token的解密</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> jwtSec jwt秘钥 此秘钥一定要保留好在服务端, 不能暴露出去, 否则sign就可以被伪造, 如果对接多个客户端建议改造成多个</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> token  加密后的token</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Claims <span class="hljs-title function_">parseJWT</span><span class="hljs-params">(String jwtSec, String token)</span> &#123;<br>        <span class="hljs-comment">// 得到DefaultJwtParser</span><br>        <span class="hljs-type">Claims</span> <span class="hljs-variable">claims</span> <span class="hljs-operator">=</span> Jwts.parser()<br>                <span class="hljs-comment">// 设置签名的秘钥</span><br>                .setSigningKey(jwtSec.getBytes(StandardCharsets.UTF_8))<br>                <span class="hljs-comment">// 设置需要解析的jwt</span><br>                .parseClaimsJws(token).getBody();<br>        <span class="hljs-keyword">return</span> claims;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="工具类："><a href="#工具类：" class="headerlink" title="工具类："></a>工具类：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.fsan.springsecurity.Utils;<br><br><span class="hljs-keyword">import</span> io.jsonwebtoken.Claims;<br><span class="hljs-keyword">import</span> io.jsonwebtoken.JwtBuilder;<br><span class="hljs-keyword">import</span> io.jsonwebtoken.Jwts;<br><span class="hljs-keyword">import</span> io.jsonwebtoken.SignatureAlgorithm;<br><br><span class="hljs-keyword">import</span> java.nio.charset.StandardCharsets;<br><span class="hljs-keyword">import</span> java.util.Date;<br><span class="hljs-keyword">import</span> java.util.HashMap;<br><span class="hljs-keyword">import</span> java.util.Map;<br><span class="hljs-keyword">import</span> java.util.UUID;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JwtUtil</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 生成jwt</span><br><span class="hljs-comment">     * 使用Hs256算法, 私匙使用固定JWT_SEC秘钥</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> jwtSec    jwt秘钥 此秘钥一定要保留好在服务端, 不能暴露出去, 否则sign就可以被伪造, 如果对接多个客户端建议改造成多个</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> ttlMillis jwt过期时间(毫秒)</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> username  用户名 可根据需要传递的信息添加更多, 因为浏览器get传参url限制，不建议放置过多的参数</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">createJWT</span><span class="hljs-params">(String jwtSec, <span class="hljs-type">long</span> ttlMillis, String username)</span> &#123;<br>        <span class="hljs-comment">// 指定签名的时候使用的签名算法，也就是header那部分</span><br>        <span class="hljs-type">SignatureAlgorithm</span> <span class="hljs-variable">signatureAlgorithm</span> <span class="hljs-operator">=</span> SignatureAlgorithm.HS256;<br><br>        <span class="hljs-comment">// 生成JWT的时间</span><br>        <span class="hljs-type">long</span> <span class="hljs-variable">nowMillis</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>        <span class="hljs-type">Date</span> <span class="hljs-variable">now</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(nowMillis);<br><br>        <span class="hljs-comment">// 创建payload的私有声明（根据特定的业务需要添加）</span><br>        Map&lt;String, Object&gt; claims = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        claims.put(<span class="hljs-string">&quot;username&quot;</span>, username);<br><br>        <span class="hljs-comment">// 添加payload声明</span><br>        <span class="hljs-comment">// 设置jwt的body</span><br>        <span class="hljs-type">JwtBuilder</span> <span class="hljs-variable">builder</span> <span class="hljs-operator">=</span> Jwts.builder()<br>                <span class="hljs-comment">// 如果有私有声明，一定要先设置这个自己创建的私有的声明，这个是给builder的claim赋值，一旦写在标准的声明赋值之后，就是覆盖了那些标准的声明的</span><br>                .setClaims(claims)<br>                <span class="hljs-comment">// 设置jti(JWT ID)：是JWT的唯一标识，根据业务需要，这个可以设置为一个不重复的值，主要用来作为一次性token,从而回避重放攻击。</span><br>                .setId(UUID.randomUUID().toString())<br>                <span class="hljs-comment">// iat: jwt的签发时间</span><br>                .setIssuedAt(now)<br>                <span class="hljs-comment">// 代表这个JWT的主体，即它的所有人，这个是一个json格式的字符串</span><br>                .setSubject(username)<br>                <span class="hljs-comment">// 设置签名使用的签名算法和签名使用的秘钥</span><br>                .signWith(signatureAlgorithm, jwtSec.getBytes(StandardCharsets.UTF_8));<br>        <span class="hljs-keyword">if</span> (ttlMillis &gt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-type">long</span> <span class="hljs-variable">expMillis</span> <span class="hljs-operator">=</span> nowMillis + ttlMillis;<br>            <span class="hljs-type">Date</span> <span class="hljs-variable">exp</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>(expMillis);<br>            <span class="hljs-comment">// 设置过期时间</span><br>            builder.setExpiration(exp);<br>        &#125;<br>        <span class="hljs-keyword">return</span> builder.compact();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        System.out.println(createJWT(<span class="hljs-string">&quot;FSAN&quot;</span>, <span class="hljs-number">5</span>, <span class="hljs-string">&quot;admin&quot;</span>));<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * Token的解密</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> jwtSec jwt秘钥 此秘钥一定要保留好在服务端, 不能暴露出去, 否则sign就可以被伪造, 如果对接多个客户端建议改造成多个</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> token  加密后的token</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Claims <span class="hljs-title function_">parseJWT</span><span class="hljs-params">(String jwtSec, String token)</span> &#123;<br>        <span class="hljs-comment">// 得到DefaultJwtParser</span><br>        <span class="hljs-type">Claims</span> <span class="hljs-variable">claims</span> <span class="hljs-operator">=</span> Jwts.parser()<br>                <span class="hljs-comment">// 设置签名的秘钥</span><br>                .setSigningKey(jwtSec.getBytes(StandardCharsets.UTF_8))<br>                <span class="hljs-comment">// 设置需要解析的jwt</span><br>                .parseClaimsJws(token).getBody();<br>        <span class="hljs-keyword">return</span> claims;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li>设置过期时间过期之后，token过期会在读取的时候报错，需要自行判断</li>
 </ul>
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -328,9 +337,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/springboot/">#springboot</a>
+        <a href="/tags/springboot/" class="print-no-link">#springboot</a>
       
-        <a href="/tags/jwt/">#jwt</a>
+        <a href="/tags/jwt/" class="print-no-link">#jwt</a>
       
     </div>
   
@@ -343,7 +352,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>sprinboot中jjwt工具类</div>
-      <div>http://example.com/2022/02/19/sprinboot%E4%B8%ADjjwt%E5%B7%A5%E5%85%B7%E7%B1%BB/</div>
+      <div>http://example.com/2022/02/19/sprinboot中jjwt工具类/</div>
     </div>
     <div class="license-meta">
       
@@ -359,21 +368,23 @@
         </div>
       
       
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
             
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
             
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
+          </div>
         </div>
-      </div>
+      
     </div>
     <div class="license-icon iconfont"></div>
   </div>
@@ -407,34 +418,6 @@
             </div>
 
             
-  <article id="comments" lazyload>
-    
-  <div id="valine"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.18/Valine.min.js', function() {
-        var options = Object.assign(
-          {"appId":"augFsRtouEKVq5HCo9PfSBcR-gzGzoHsz","appKey":"f1dnnlHVg4ldu9okAViDVDnE","path":"window.location.pathname","placeholder":"吐槽","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://augfsrto.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
-          {
-            el: "#valine",
-            path: window.location.pathname
-          }
-        )
-        new Valine(options);
-        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          var imgSelector = '#valine .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
-        })
-      });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
-
-
-  </article>
-
-
           </article>
         </div>
       </div>
@@ -444,7 +427,10 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -483,12 +469,6 @@
 
 
 
-  <!-- Custom -->
-  <div class="col-lg-7 mx-auto nopadding-x-md">
-    <div class="container custom post-custom mx-auto">
-       <p style="font-family: 微软雅黑;text-align: center;font-weight: bold"> 喜欢就点个star吧 </p> 
-    </div>
-  </div>
 
 
     
@@ -530,30 +510,6 @@
     <div class="footer-inner">
   
   
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
-  
   
   
 </div>
@@ -574,7 +530,7 @@
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
@@ -598,8 +554,6 @@
 
 
 
-
-
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -609,100 +563,47 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
     var toc = jQuery('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init({
+    window.tocbot.init(Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
       linkClass       : 'tocbot-link',
       activeLinkClass : 'tocbot-active-link',
       listClass       : 'tocbot-list',
       isCollapsedClass: 'tocbot-is-collapsed',
       collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
       scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
   });
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   
@@ -724,6 +625,21 @@
       window.anchors.options.class = 'anchorjs-link-left';
     }
     window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
   });
 </script>
 
@@ -739,8 +655,6 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

@@ -5,7 +5,7 @@ tags: [java,security框架]
 categories: [[后端,java]]
 ---
 
-# SpringSecurity介绍
+## SpringSecurity介绍
 
 spring security是spring家族中的一个安全管理框架，相对与另外一个安全框架shiro，提供了更丰富的功能（shiro上手更加简单）
 
@@ -16,11 +16,11 @@ spring security是spring家族中的一个安全管理框架，相对与另外�
 
 而认证和授权也是spring security作为安全框架的核心功能。
 
-# 请求到security内部执行的流程
+## 请求到security内部执行的流程
 
 spring security的原理其实就是一个过滤器链，内部包含了提供各种功能的过滤器（Filter）。
 
-## 请求过程：
+### 请求过程：
 
 请求 --->  经过`UsernamePasswordAuthenticationFilter`---> 经过`ExceptionTranslationFilter `---> 经过`FilterSecurityInterceptor` ---> API
 
@@ -38,15 +38,15 @@ spring security的原理其实就是一个过滤器链，内部包含了提供�
 >>
 >> 调用访问控制器进行鉴权操作等核心功能
 
-## 响应过程
+### 响应过程
 
 响应也是需要再反过来走一遍过滤器的
 
 APi ---> 经过`FilterSecurityInterceptor` ---> 经过`ExceptionTranslationFilter` ---> 经过`UsernamePasswordAuthenticationFilter` ---> 响应
 
-# 思路分析
+## 思路分析
 
-## 登录：
+### 登录：
 
 1. 自定义登录接口
    1. 调用`ProviderManager`的方法进行认证，通过则生成jwt返回
@@ -59,7 +59,7 @@ APi ---> 经过`FilterSecurityInterceptor` ---> 经过`ExceptionTranslationFilte
 >
 >LambdaQueryWrapper：`mybatis-plus`中使用`lambda`表达式写条件查询
 
-## 校验：
+### 校验：
 
 1. 定义`jwt`认证过滤器
    1. 获取token
@@ -67,7 +67,7 @@ APi ---> 经过`FilterSecurityInterceptor` ---> 经过`ExceptionTranslationFilte
    3. 使用userId从redis中查询用户信息
    4. 存入`SecurityContextHolder`供后续过滤器调用
 
-# 准备工作
+## 准备工作
 
 1. 启动springboot项目，引入redis，security
 2. 导入redis工具类（见redis使用fastjson序列化）
@@ -76,13 +76,13 @@ APi ---> 经过`FilterSecurityInterceptor` ---> 经过`ExceptionTranslationFilte
 5. 配置yml连接mysql和redis
 6. 在yml修改security用户名和密码
 
-# 数据库校验用户
+## 数据库校验用户
 
-## 数据库准备
+### 数据库准备
 
 创建RBAC数据库结构，写对应的实体类（使用@TableName可以mybatis-plus映射指定数据表，并不需要表名一致）
 
-## 写一个类实现UserDetailsService，重写loadUserByUsername
+### 写一个类实现UserDetailsService，重写loadUserByUsername
 
 ```java
 package com.fsan.springsecurity.service.impl;
@@ -136,7 +136,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 因为loadUserByUsername返回的是UserDetails类型数据，创建一个实体类实现UserDetails，将所有方法重写，并改为返回true
 
-## 创建一个实体类实现UserDetails
+### 创建一个实体类实现UserDetails
 
 ```java
 package com.fsan.springsecurity.pojo;
@@ -251,11 +251,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 }
 ```
 
-# 密码加密校验
+## 密码加密校验
 
 返回的`UserDetails`对象会经过权限过滤器，在权限过滤器中判断输入的用户名，密码和`UserDetails`中存储的用户名密码，但是`UserDetails`对象中默认的密码格式为：`{id}password`，security会根据id判断密码的加密方式，我们一般不会采用默认的方式，所以就需要将`PasswordEncoder`替换为`BCryptPasswordEncoder`
 
-## 测试BCryptPasswordEncoder类的加密和判断：
+### 测试BCryptPasswordEncoder类的加密和判断：
 
 ```java
 // 字符串加密：
@@ -267,7 +267,7 @@ new BCryptPasswordEncoder().matches("FSAN", "$2a$10$qNin1NOP265Zqme378882uxos.ha
 
 >对一个字符串，重复使用加密后也是不同的，内部是随机加盐生成的
 
-## 定义一个Security的配置类，继承WebSecurityConfigurerAdapter，注入BCryptPasswordEncoder
+### 定义一个Security的配置类，继承WebSecurityConfigurerAdapter，注入BCryptPasswordEncoder
 
 ```java
 package com.fsan.springsecurity.config;
@@ -292,7 +292,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 >
 > 直接@Autowired注入使用passwordEncoder.encode("FSAN")
 
-# security配置
+## security配置
 
 1. 关闭csrf
 2. 不使用session获取SecurityContent
@@ -315,7 +315,7 @@ protected void configure(HttpSecurity http) throws Exception {
 }
 ```
 
-## 注入AuthenticationManager权限管理
+### 注入AuthenticationManager权限管理
 
 ```java
 /**
@@ -331,7 +331,7 @@ public AuthenticationManager authenticationManagerBean() throws Exception {
 }
 ```
 
-# 写登录的controller和service
+## 写登录的controller和service
 
 **controller:**
 
@@ -418,11 +418,11 @@ public class LoginServiceImpl implements LoginService {
 >
 > 将返回的消息封装返回，使用map可以使data如{token: 'token'}这种格式
 
-# 到此用户登录请求完毕，开始做jwt过滤器
+## 到此用户登录请求完毕，开始做jwt过滤器
 
 jwt过滤器主要的功能是接收前端放在请求头的token，使用token获取用户信息，存入`SecurityContextHolder`供后续模块调用
 
-## 定义过滤器
+### 定义过滤器
 
 1. 建立filter 下 JwtAuthenticationTokenFilter文件
 2. 继承OncePerRequestFilter重写doFilterInternal方法
@@ -512,7 +512,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 >
 > claims.getSubject()  使用getSubject方法获取解密之后的值，也就是之前加密的userId
 
-## 在security配置类中添加这个过滤器
+### 在security配置类中添加这个过滤器
 
 添加一个过滤器要指定两个参数
 
@@ -544,9 +544,9 @@ protected void configure(HttpSecurity http) throws Exception {
 >
 > 这是一个请求判断的过滤器，所以要放在前面
 
-# 授权实现
+## 授权实现
 
-## 授权基本流程
+### 授权基本流程
 
 在SpringSecurity中，会使用默认的`FilterSecurityInterceptor`来进行权限校验。在FilterSecurityInterceptor中会从`SecurityContextHolder`获取其中的Authentication，然后获取其中的权限信息。当前用户是否拥有访问当前资源所需的权限。
 
@@ -554,7 +554,7 @@ protected void configure(HttpSecurity http) throws Exception {
 
 然后设置我们的资源所需要的权限即可。
 
-## 配置类中配置开启权限控制方案
+### 配置类中配置开启权限控制方案
 
 ```java
 @Configuration
@@ -562,7 +562,7 @@ protected void configure(HttpSecurity http) throws Exception {
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 ```
 
-## 使用@PreAuthorize定义方法所需要的权限
+### 使用@PreAuthorize定义方法所需要的权限
 
 ```java
 @RestController
@@ -578,7 +578,7 @@ public class HelloController {
 
 > hasAuthority 这里去调用这个方法判断是否有这个权限，现在是写死的
 
-## 封装权限信息
+### 封装权限信息
 
 由于LoginUser中只写了User字段，现在要存权限要加上一个List类型的字段
 
@@ -710,7 +710,7 @@ public Collection<? extends GrantedAuthority> getAuthorities() {
 >
 > 但是这样在存入redis时，`List<SimpleGrantedAuthority>这种类型是无法存入`的，需要加上`@JSONField(serialize = false)`表示无需序列化
 
-## 从数据库查询权限信息
+### 从数据库查询权限信息
 
 创建RBAC权限模型（Role-Based Access Control）即：基于角色的权限控制。这是目前最常被开发者使用也是相对易用，通用的权限模型
 
@@ -740,7 +740,7 @@ WHERE
 
 > distinct 排除重复项（因为一个用户可能有多个角色，每个角色的权限会有重复）
 
-# 菜单表的实体类
+## 菜单表的实体类
 
 ```java
 package com.fsan.springsecurity.pojo;
@@ -798,7 +798,7 @@ public class Menu implements Serializable {
 
 > 实现Serializable类表示该类可以序列化，必须要加上serialVersionUID属性
 
-## 使用mybatis plus自定义配置实现多表联查
+### 使用mybatis plus自定义配置实现多表联查
 
 1. 创建MenuMapper
 2. 创建配置文件
@@ -858,7 +858,7 @@ mybatis-plus:
 
 > 这里查看源码发现默认就是classpath*:/mapper/**/*.xml，所以创建mapper下的配置文件的时候，不定义也没事
 
-## 在UserDetails中获取权限
+### 在UserDetails中获取权限
 
 **先写测试类获取权限列表：**
 
@@ -922,11 +922,11 @@ public class HelloController {
 }
 ```
 
-# 自定义权限校验方法
+## 自定义权限校验方法
 
 除了直接使用security的hasAuthority, hasAnyAuthority, 等权限校验方法，我们还可以自定义权限校验方法，实现复杂的权限校验
 
-## 创建自定义权限类
+### 创建自定义权限类
 
 ```java
 @Component("hasMyAuth")
@@ -949,7 +949,7 @@ public class UserPreAuth {
 >
 > @Component("hasMyAuth") 对注入spring容器的bean取别名，方便下一步调用
 
-## 测试
+### 测试
 
 ```java
 @RestController
@@ -965,9 +965,9 @@ public class HelloController {
 
 > 在SPEL表达式中使用@ 获取容器中bean的别名对象，然后再调用这个对象类的方法
 
-# 数据库联表知识
+## 数据库联表知识
 
-## MySql LEFT JOIN（左连接）
+### MySql LEFT JOIN（左连接）
 
 left join 子句允许您从两个或多个数据库表查询数据。left join子句是select语句的可选部分，出现在form子句之后。
 
@@ -986,7 +986,7 @@ FROM
 >
 > 讲的通俗一点就是：t2表的满足t1.c1 = t2.c1的部分在查询时加入了t1表
 
-## 更多用法：
+### 更多用法：
 
 ```sql
 SELECT
@@ -1008,7 +1008,7 @@ FROM
 
 > using 使用
 
-# 自定义异常处理
+## 自定义异常处理
 
 如果是认证过程出现的异常会被封装成AuthenticationException然后调用AuthenticationEntryPoint对象的方法取进行异常处理。
 
@@ -1016,7 +1016,7 @@ FROM
 
 所以如果我们需要自定义异常处理，我们只需要自定义AuthenticationEntryPoint和AccessDeniedHandler然后配置给SpringSecurity即可
 
-## 实现AuthenticationEntryPoint完成认证失败的错误处理
+### 实现AuthenticationEntryPoint完成认证失败的错误处理
 
 1. 创建handler下的`AuthenticationEntryPointImpl`
 2. 实现`AuthenticationEntryPoint`，重写`commence`方法
@@ -1075,7 +1075,7 @@ public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint {
 >
 > 404 肯定为请求地址写错了
 
-## 实现AccessDeniedHandler完成权限不足的错误处理
+### 实现AccessDeniedHandler完成权限不足的错误处理
 
 1. 创建handler下的AccessDeniedHandlerImpl
 2. 实现AccessDeniedHandler，重写handle方法
@@ -1097,7 +1097,7 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 
 > 权限不足的错误处理其实和上面的认证失败一样，只是认证失败使用的是401，权限不足返回的错误为403
 
-## 在security配置类中配置异常处理器
+### 在security配置类中配置异常处理器
 
 ```java
 @Override
@@ -1124,7 +1124,7 @@ protected void configure(HttpSecurity http) throws Exception {
 }
 ```
 
-# 解决security跨域
+## 解决security跨域
 
 非常简单，在配置类中使用cors方法即可
 
@@ -1156,7 +1156,7 @@ protected void configure(HttpSecurity http) throws Exception {
 }
 ```
 
-# 使用权限配置权限控制
+## 使用权限配置权限控制
 
 在方法上使用注解，在有很多方法需要控制的时候，查找比较麻烦，所以可以在security的配置类中配置全部方法的一个权限情况，方便管理
 
@@ -1194,7 +1194,7 @@ protected void configure(HttpSecurity http) throws Exception {
 
 > 在这个方法中直接传入要控制的路径，后续调用的方法和使用注解是一样的
 
-# CSRF
+## CSRF
 
 CSRF是指跨站请求伪造（Cross-site request forgery），是web常见的攻击之一。
 
@@ -1202,7 +1202,7 @@ SpringSecurity去防止CSRF攻击的方式就是通过csrf_token。后端会生�
 
 我们可以发现CSRF攻击依靠的是cookie中所携带的认证信息。但是在前后端分离的项目中我们的认证信息其实是token，而token并不是存储在cookie中，并且需要前端代码去把token设置到请求头中才可以，所以csrf攻击也就不用担心了。
 
-# 认证成功和失败处理器
+## 认证成功和失败处理器
 
 实际上在`UsernamePasswordAuthenticationFilter`进行登录认证的时候，如果登录成功了是会调用`AuthenticationSuccessHandler`的方法进行认证成功后的处理的。AuthenticationSuccessHandler就是登录成功处理器，`AuthenticationFailureHandler`就是登录失败
 
@@ -1210,7 +1210,7 @@ SpringSecurity去防止CSRF攻击的方式就是通过csrf_token。后端会生�
 
 但按照我们上面的jwt流程的话是完全用不到这两个处理器的，这里算是扩展
 
-## 认证成功处理器
+### 认证成功处理器
 
 写一个类，实现AuthenticationSuccessHandler类
 
@@ -1242,7 +1242,7 @@ protected void configure(HttpSecurity http) throws Exception {
 }
 ```
 
-## 认证失败处理器
+### 认证失败处理器
 
 创个类，实现AuthenticationFailureHandler类
 
@@ -1259,9 +1259,9 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 
 添加配置类（看上面的成功处理器即可）
 
-# 注销成功处理器
-
 ## 注销成功处理器
+
+### 注销成功处理器
 
 写一个类实现LogoutSuccessHandler
 

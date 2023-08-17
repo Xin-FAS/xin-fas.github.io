@@ -5,30 +5,30 @@ tags: []
 categories: [教程文档]
 ---
 
-# WTG介绍
+## WTG介绍
 
-## 是什么
+### 是什么
 
 WTG即Windows to go，简称为WTG。对于WTG的规定请看：
 
 https://learn.microsoft.com/zh-cn/windows/deployment/planning/windows-to-go-overview
 
-## 好处
+### 好处
 
 1. WTG和使用它的设备相互独立，资料互不影响
 2. WTG的u盘可以随声携带
 3. WTG可以让你在不同电脑中使用自己熟悉的环境
 4. 即使u盘已经装了WTG系统，但还可以正常使用
 
-# 开始制作
+## 开始制作
 
-## 硬件准备
+### 硬件准备
 
 一个32g以上u盘
 
 > 个人建议：有条件最好使用外接的固态硬盘
 
-## 下载系统镜像
+### 下载系统镜像
 
 官方：https://www.microsoft.com/zh-cn/software-download
 
@@ -44,11 +44,11 @@ MSDN（有迅雷推荐使用）：https://msdn.itellyou.cn/?lang=zh-cn
 > 6. Home：家庭版（不推荐）
 > 7. Pro xxxxx：专业工作站（推荐）
 
-## 下载WTG辅助工具
+### 下载WTG辅助工具
 
 萝卜头：https://bbs.luobotou.org/thread-761-1-1.html
 
-## 使用辅助工具
+### 使用辅助工具
 
  ![image.png](https://s2.loli.net/2023/08/13/FYsEgWKwfD9Odm4.png)
 
@@ -65,7 +65,7 @@ MSDN（有迅雷推荐使用）：https://msdn.itellyou.cn/?lang=zh-cn
 
 选择好之后点击部署，慢慢等待就可以了
 
-# 使用WTG系统
+## 使用WTG系统
 
 1. 当软件提示制作完成之后，重启电脑，进入BIOS，具体查看对应主板按键或笔记本按键（通常为F2）
 2. 设置系统启动项为你的u盘后F10保存即可（BIOS中Security）

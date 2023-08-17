@@ -4,7 +4,7 @@ date: 2022-07-08 17:00:45
 tags: [react]
 categories: [前端,react]
 ---
-# 初识React
+## 初识React
 
 相对于js渲染页面来说，react使用空间换取时间，渲染相似数据时，只改变改动的数据
 
@@ -14,7 +14,7 @@ react渲染过程：遍历数据添加虚拟dom ——》虚拟dom于上次比�
 
 > 以下都是基于React16.x版本开发的单页内容
 
-# Hello, React
+## Hello, React
 
 创建html，引入`react.development.js`（核心库）和`react-dom.development.js`（dom的操作库），和vue只需要引入一个不一样，react需要引入两个，引入顺序也必须为先引入核心库，再引入`babel.min.js`作为jsx与js的转换
 
@@ -50,7 +50,7 @@ react渲染过程：遍历数据添加虚拟dom ——》虚拟dom于上次比�
 
 > 注意 ReactDOM 别写错，DOM是大写，官网的18版本中`render`函数已经淘汰了
 
-# React中使用jsx与js差别
+## React中使用jsx与js差别
 
 现在需要创建一个这样的标签
 
@@ -62,7 +62,7 @@ react渲染过程：遍历数据添加虚拟dom ——》虚拟dom于上次比�
 </div>
 ```
 
-## 使用JS
+### 使用JS
 
 ```js
 // 创建虚拟dom，createElement(标签名，标签属性，标签内容)
@@ -83,7 +83,7 @@ ReactDOM.render(VDOM, document.getElementById('app'))
 > app.appendChild(h1)
 > ```
 
-## 使用JSX（javascript xml）
+### 使用JSX（javascript xml）
 
 ```jsx
 // 创建虚拟dom
@@ -98,11 +98,11 @@ ReactDOM.render(VDOM, document.getElementById('app'))
 
 > 使用jsx的语法编译后还是上面的样子，只不过自己写的舒服
 
-# react jsx常识
+## react jsx常识
 
 虚拟dom实际上是一个一般对象：`Object`
 
-## 标签中混入js表达式要使用{}
+### 标签中混入js表达式要使用{}
 
 ```jsx
 const myId = 'tITlE'
@@ -118,7 +118,7 @@ const VDOM = (
 ReactDOM.render(VDOM, document.getElementById('app'))
 ```
 
-## 样式的类名指定不要使用class，要使用className
+### 样式的类名指定不要使用class，要使用className
 
 在jsx的模板html中，`class`属性已经被替换为`className`了，因为`jsx`怕和`es6`中的`class`关键字发生冲突，使用如下：
 
@@ -164,7 +164,7 @@ ReactDOM.render(VDOM, document.getElementById('app'))
 </html>
 ```
 
-## 使用`style`设置样式的时候，需要使用键值对
+### 使用`style`设置样式的时候，需要使用键值对
 
 如下：
 
@@ -176,7 +176,7 @@ ReactDOM.render(VDOM, document.getElementById('app'))
 
 `style`后面第一个`{}`表示这是js表达式，第二个才是样式的键值对
 
-## 在模板字符串中只能有一个根标签
+### 在模板字符串中只能有一个根标签
 
 如需要在页面上再渲染一个input
 
@@ -193,7 +193,7 @@ const VDOM = (
 )
 ```
 
-## 标签必须闭合
+### 标签必须闭合
 
 如`input`在html上写的时候：
 
@@ -207,12 +207,12 @@ const VDOM = (
 
 代码见上一个中的input标签
 
-## 标签首字母大小写区别
+### 标签首字母大小写区别
 
 1. 小写字母开头， 则转换为html中同名元素，若html中无同名标签，就报错
 2. 大写字母开头，react就会渲染组件，若组件没定义，就报错
 
-## 遍历渲染
+### 遍历渲染
 
 在jsx中使用数组的时候，会自动的遍历，如：
 
@@ -295,14 +295,14 @@ const VDOM = (
 )
 ```
 
-# React的组件开发
+## React的组件开发
 
 组件开发分为两个部分：
 
 1. 函数式组件（用于函数定义的组件，适用于【简单组件】的定义）
 2. 类式组件（适用于【复杂组件】的定义）
 
-## 函数式组件
+### 函数式组件
 
 见名知意，使用函数开发，将html模板封装在函数中使用，如下：
 
@@ -322,7 +322,7 @@ ReactDOM.render(<FInput/>, document.getElementById('app'))
 1. React解析组件标签，找到了自定义的组件（没找到就报错）
 2. 发现组件是函数定义的，随后调用该函数，将接收返回的虚拟dom转为真实dom后渲染
 
-## 类式组件
+### 类式组件
 
 使用es6中的类声明一个组件，步骤如下：
 
@@ -346,18 +346,18 @@ ReactDOM.render(<FInput/>, document.getElementById('app'))
 2. 发现这个组件是使用类定义的，随后使用new创建该类的实例
 3. 使用实例对象调用了render方法，获取返回的虚拟dom
 
-# 组件实例的三大属性
+## 组件实例的三大属性
 
 只有使用类定义的组件有实例属性
 
-## 核心属性1：state
+### 核心属性1：state
 
-### 理解
+#### 理解
 
 1. state 是组件对象最重要的属性，值是对象（可以包含多个key-value的组合）
 2. 组件被称为“状态机”，通过更新组件的state来更新对应的页面的显示（重新渲染组件）
 
-### 强烈注意
+#### 强烈注意
 
 1. 组件中**render**方法中的**this**为组件实例对象
 2. 组件自定义的方法中**this**为**undefined**，如何解决？
@@ -365,7 +365,7 @@ ReactDOM.render(<FInput/>, document.getElementById('app'))
    2. 箭头函数
 3. 状态数据，不能直接修改或更新
 
-### 案例一
+#### 案例一
 
 效果：渲染一个`h1`标签，点击标签改变其中的文字
 
@@ -422,11 +422,11 @@ ReactDOM.render(<FInput/>, document.getElementById('app'))
 
 针对以上第二点，有三个解决方法（箭头函数，赋值this，使用bind）
 
-#### 方法一（使用箭头函数）
+##### 方法一（使用箭头函数）
 
 上面就是
 
-#### 方法二（暂存this）
+##### 方法二（暂存this）
 
 ```jsx
 let that
@@ -459,7 +459,7 @@ ReactDOM.render(<FInput/>, document.getElementById('app'))
 
 > 原理就是利用构造器中this一定为类的实例对象
 
-#### 方法三（使用bind函数）
+##### 方法三（使用bind函数）
 
 ```jsx
 class FInput extends React.Component {
@@ -492,7 +492,7 @@ ReactDOM.render(<FInput/>, document.getElementById('app'))
 >
 > 方法是特殊的属性
 
-### 最简结构
+#### 最简结构
 
 ```jsx
 class FInput extends React.Component {
@@ -514,9 +514,9 @@ class FInput extends React.Component {
 ReactDOM.render(<FInput/>, document.getElementById('app'))
 ```
 
-## 核心属性2：props
+### 核心属性2：props
 
-### 属性单个传递
+#### 属性单个传递
 
 ```html
 <!DOCTYPE html>
@@ -560,7 +560,7 @@ ReactDOM.render(<FInput/>, document.getElementById('app'))
 </html>
 ```
 
-### 属性多个传递
+#### 属性多个传递
 
 利用`babel`+`react`的特性，就可以在标签中使用扩展运算符来传递一个对象中所有属性
 
@@ -623,9 +623,9 @@ ReactDOM.render(<FInput/>, document.getElementById('app'))
 </html>
 ```
 
-### props输入类型校验
+#### props输入类型校验
 
-#### 旧方式（react15.5已弃用）
+##### 旧方式（react15.5已弃用）
 
 ```jsx
 Ul.propTypes = {
@@ -634,7 +634,7 @@ Ul.propTypes = {
 }
 ```
 
-#### 新方式
+##### 新方式
 
 引入`prop-types`这个库
 
@@ -707,7 +707,7 @@ Ul.propTypes = {
 
 > PropTypes支持类似链式一样的写法：`isRequired`表示必填，函数要使用`func`表示
 
-### props默认值
+#### props默认值
 
 当props参数不传递的时候，页面不会出现错误，只会显示为空，这时候就可以设置默认值
 
@@ -719,7 +719,7 @@ Ul.defaultProps = {
 }
 ```
 
-### 简化props类型和默认值
+#### 简化props类型和默认值
 
 以上的类型校验和设置默认值都是在设置`Ul`这个类静态属性，又因为这是一个组件，所以这类东西应该放在组件内部才合理
 
@@ -757,7 +757,7 @@ const speak = () => {
 ReactDOM.render(<Ul name={'FSAN'} age={18} speak={speak}/>, document.getElementById(`demo1`))
 ```
 
-### 构造器的作用
+#### 构造器的作用
 
 有无构造器只有一个地方有区别：在构造器内部是否可以使用`this.props`
 
@@ -769,7 +769,7 @@ ReactDOM.render(<Ul name={'FSAN'} age={18} speak={speak}/>, document.getElementB
 
 1. 大多时候不需要写构造器，除非你要在构造器中使用`props`，那也用不着`this`
 
-### 在函数式组件中使用props传参
+#### 在函数式组件中使用props传参
 
 组件实例的有三大属性，只有class定义的组件才有组件实例，函数式组件只有一个props（最新的可以使用hooks）
 
@@ -801,9 +801,9 @@ Ul.defaultProps = {
 ReactDOM.render(<Ul name={'FSAN'} age={18}/>, document.getElementById(`demo1`))
 ```
 
-## 核心属性3：refs
+### 核心属性3：refs
 
-### 字符串形式（最老写法）
+#### 字符串形式（最老写法）
 
 存在效率上的问题（过时并在未来版本可能会淘汰）
 
@@ -829,7 +829,7 @@ class Cl extends React.Component {
 ReactDOM.render(<Cl/>, document.getElementById('app'))
 ```
 
-### 回调形式（更新时会有点小问题）
+#### 回调形式（更新时会有点小问题）
 
 ```jsx
 class Cl extends React.Component {
@@ -895,7 +895,7 @@ class Cl extends React.Component {
 ReactDOM.render(<Cl/>, document.getElementById('app'))
 ```
 
-### API创建形式（推荐）
+#### API创建形式（推荐）
 
 ```jsx
 class Cl extends React.Component {
@@ -927,9 +927,9 @@ ReactDOM.render(<Cl/>, document.getElementById('app'))
 
 使用React的createRef这个函数去创建一个响应对象，和vue3一样
 
-# 组件的两个赋值状态
+## 组件的两个赋值状态
 
-## 受控组件
+### 受控组件
 
 ```jsx
 class C1 extends React.Component {
@@ -954,7 +954,7 @@ ReactDOM.render(<C1/>, document.getElementById('app'))
 
 > 受控组件的展示就是，当我们点击登录按钮才会去获取input的值，发出登录请求（默认get）
 
-## 非受控组件
+### 非受控组件
 
 ```jsx
 class C1 extends React.Component {
@@ -996,7 +996,7 @@ ReactDOM.render(<C1/>, document.getElementById('app'))
 
 > 在非受控组件中，input就值就像vue中的双向绑定一样，先赋值在一个属性上，要拿的时候直接使用这个属性即可
 
-# 高阶函数（函数柯里化）
+## 高阶函数（函数柯里化）
 
 在看到上一个非受控组件的时候，保存状态两个函数中冗余度太高，更别说如果是注册的逻辑了，所以可以把这两个函数整合到一起
 
@@ -1037,7 +1037,7 @@ ReactDOM.render(<C1/>, document.getElementById('app'))
 
 > 柯里化（currying）指的是将一个多参数的函数拆分成一系列函数，每个拆分后的函数都只接受一个参数（unary）
 
-## 简化说明
+### 简化说明
 
 ```jsx
 onChange={this.saveFormData('username')}
@@ -1065,7 +1065,7 @@ saveFormData = k => {
 
 这时候，传进去的`username`被k接受，然后返回一个函数，当作点击回调，回调时没有参数，e就是event
 
-## 函数柯里化例子
+### 函数柯里化例子
 
 ```js
 // 正常
@@ -1095,9 +1095,9 @@ const endGetNum = a => b => a+++b
 console.log(endGetNum(1)(2));
 ```
 
-# 函数生命周期
+## 函数生命周期
 
-## 案例一
+### 案例一
 
 需要实现文字的透明度变化，和取消元素挂载，需要包括取消组件挂载后关闭定时器
 
@@ -1150,9 +1150,9 @@ console.log(endGetNum(1)(2));
 > 2. `componentWillUnmount()`组件卸载及销毁之前调用
 > 3. `componentDidMount()`组件挂载完毕后调用
 
-## 完整生命周期（17.x之前）
+### 完整生命周期（17.x之前）
 
-### 挂载时
+#### 挂载时
 
 ```jsx
 class Count extends React.Component {
@@ -1196,7 +1196,7 @@ class Count extends React.Component {
 ReactDOM.render(<Count/>, document.getElementById('app'))
 ```
 
-### 更新数据时
+#### 更新数据时
 
 ```jsx
 /**
@@ -1240,7 +1240,7 @@ componentDidUpdate(prevProps, prevState, snapshot) {
 
 > 强制更新是不走阀门的，直接到`componentWillUpdate`
 
-### 传递参数时
+#### 传递参数时
 
 ```jsx
 class A extends React.Component {
@@ -1286,7 +1286,7 @@ ReactDOM.render(<A/>, document.getElementById('app'))
 >
 > 1. `componentWillReceiveProps`
 
-### 总结
+#### 总结
 
 最常用的三个钩子：
 
@@ -1294,7 +1294,7 @@ ReactDOM.render(<A/>, document.getElementById('app'))
 2. `render()`
 3. `componentWillUnmount()`组件销毁或卸载之前
 
-## 新的生命周期以及变化(17.x)
+### 新的生命周期以及变化(17.x)
 
 1. 除了`componentWillUnmount()`之外，其他所有有`will`的生命周期在新版本都需要在前面加上`UNSAFE`（unsafe这里并不是表示不安全，而是在未来使用异步渲染的时候可能会出现问题），具体变化的钩子如下
    1. `componentWillMount()`组件挂载之前  ==》`UNSAFE_componentWillMount()`
@@ -1308,11 +1308,11 @@ ReactDOM.render(<A/>, document.getElementById('app'))
    | `getDerivedStateFromProps()` | 返回对象对state的更新（罕见使用：若state的值在任何时候都取决于props），派生状态会导致代码冗余，并使组件难以维护 |
    | `getSnapshotBeforeUpdate()`  | 更新时在render后，在视图更新之前执行，可以保存更新前的状态，返回的值传递给`componentDidUpdate()`（组件更新完毕），此用法并不常见 |
 
-## 案例二（控制滚动条）
+### 案例二（控制滚动条）
 
 类似直播的弹幕，可随时跟踪最新也可以停止查看
 
-### 新增在顶部
+#### 新增在顶部
 
 ```html
 <!DOCTYPE html>
@@ -1411,7 +1411,7 @@ ReactDOM.render(<A/>, document.getElementById('app'))
 </html>
 ```
 
-### 新增在底部
+#### 新增在底部
 
 ```html
 <!DOCTYPE html>
@@ -1497,7 +1497,7 @@ ReactDOM.render(<A/>, document.getElementById('app'))
 </html>
 ```
 
-# diffing算法
+## diffing算法
 
 渲染时对比新旧标签的key和标签本身决定是否要替换
 

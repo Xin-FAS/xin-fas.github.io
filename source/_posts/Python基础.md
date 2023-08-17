@@ -5,12 +5,12 @@ tags: [python]
 categories: [后端,python]
 ---
 ---
-# Pyhon准备工作
-## 下载python和配置环境
+## Pyhon准备工作
+### 下载python和配置环境
 很简单，去 www.pyhton.org下载
 打开执行文件，勾选上下面addpath就完成了
 
-# Hello Python
+## Hello Python
 使用的编辑器是官方自带的python入门级IDLE，以后熟练了可以去使用PyCharm
 ```Python
 print("Hello Python!")
@@ -44,7 +44,7 @@ print("Hello Python!")
 
 
 
-## 小程序
+### 小程序
 做一个输入判断
 ```Python
 temp = input("不妨猜一下wo现在心里想的是哪个数字：1-10......")
@@ -62,7 +62,7 @@ else:
 print("来？")
 ```
 
-## 转换数值型
+### 转换数值型
 因为使用input接收的数字是字符串类型的
 需要使用int()转换才能比较
 ```Python
@@ -77,11 +77,11 @@ print("来？")
 False
 ```
 
-## Input()
+### Input()
 作用：用来接收用户输入并返回
 就相当于java里面的Scanner
 
-## 变量
+### 变量
 变量不能以数字开头
 变量可以使用中文，如：
 
@@ -101,7 +101,7 @@ False
 'me'
 ```
 
-## 换行和print空格
+### 换行和print空格
 反斜杠加n
 \n
 
@@ -114,10 +114,10 @@ print('1')
 
 
 
-## 快速CV上一条记录（IDLE）
+### 快速CV上一条记录（IDLE）
 AIt+P
 
-## 打印路径
+### 打印路径
 
 因为反斜杠之后如果有转义字符，python进行转义
 
@@ -140,8 +140,8 @@ D:\three\two\one\now
 D:\three\two\one\now
 ```
 
-## 打印图形
-### 方法一：
+### 打印图形
+#### 方法一：
 原理，在一行结束时使用\n换行，再加上\表示没结束，使用Ctrl+J换行
 
 三角形：
@@ -168,7 +168,7 @@ D:\three\two\one\now
      *         ***       *****     *******
 ```
 
-### 方法二：
+#### 方法二：
 原理，使用'''标识，或"""
 如：
 ```Python
@@ -183,7 +183,7 @@ D:\three\two\one\now
 使用关键字这么多。。。。
 ```
 
-## 重复打印
+### 重复打印
 使用*
 ```Python
 >>> print("buhuibahaizhenyou\n" * 10)
@@ -199,7 +199,7 @@ buhuibahaizhenyou
 buhuibahaizhenyou
 ```
 
-## 加程序注释
+### 加程序注释
 单独使用三引号字符串
 如：
 ```Python
@@ -207,7 +207,7 @@ buhuibahaizhenyou
 print("woshi shabi")
 ```
 
-## 使用while循环
+### 使用while循环
 格式：
 ```Python
 while 条件:
@@ -293,7 +293,7 @@ print("打印完成！")
 
 * end= ' '防止print的自动换行
 * 
-## for循环
+### for循环
 
 for in  类似java的for :
 格式：
@@ -341,7 +341,7 @@ range(start,stop,step)
 3
 ```
 
-## 使用伪随机数
+### 使用伪随机数
 生成一到十的伪随机数
 ```Python
 import random
@@ -376,7 +376,7 @@ print(random.randint(1,10))
 ```
 这样，产生的随机数就完全相同
 
-## 浮点数
+### 浮点数
 因为Python和C一样，都是采用IEEE754的标准来存储浮点数的，所以在精度上就有误差
 比如：
 
@@ -409,7 +409,7 @@ True
 这个 e-05 就表示的十的负五次方，也就是0.00001
 
 
-## 复数
+### 复数
 复数由实部和虚部构成
 使用 j 定义一个数为虚部，比如
 
@@ -425,7 +425,7 @@ True
 * 使用 real 调用实部
 * 使用 imag 调用虚部
 
-## 更多计算方法
+### 更多计算方法
 |操作|结果|
 | :---: | :---: |
 |x + y|x加y|
@@ -446,6 +446,7 @@ True
 
 **地板除：
 取比目标结果小的整数，如：**
+
 ```Python
 >>> 3/2
 1.5
@@ -469,16 +470,16 @@ pow函数可以传入第三个值，是用来对前两个值运算结果的取�
 结果等同于：2 // 3 % 4
 **注意一点：实部和虚部都是使用浮点数存储的，进行计算还需要使用Decimal**
 
-## 关于true和false
+### 关于true和false
 使用bool()函数可以直接判断true false
 在bool()函数中写字符串就不一样了，除了空字符串是false，其他都是true，哪怕就只有一个空格
 数值中0都是false，浮点数0.0也一样
 空的数组，空列表，空集合，空对象都是false
 
-## and or not优先级
+### and or not优先级
 not > and > or
 
-## 函数语法
+### 函数语法
 写一个叫做getName的函数
 ```Python
 def getName (id):
@@ -494,13 +495,13 @@ name = getName(id)
 print("下面有人吗    " + name)
 ```
 
-## 一行之内的if语法
+### 一行之内的if语法
 ```Python
 num = input()
 print(False) if num==0 else print(True)
 ```
 
-### 多分支行内写法
+#### 多分支行内写法
 
 ```Python
 score = int(input("1-100\n"))
@@ -510,7 +511,7 @@ level = ('A' if score>=80 else
 print(level)
 ```
 
-## 列表
+### 列表
 ```Python
 >>> listName=[1,2,3,5,"FSAN"]
 >>> print(listName)
@@ -518,7 +519,7 @@ print(level)
 >>> 
 ```
 
-### 索引列表
+#### 索引列表
 
 列表的索引可以使用负数
 如，最后一项的索引值就为负一
@@ -549,7 +550,7 @@ print(level)
 [1, 3, 'FSAN']
 ```
 
-### 使用切片向列表后面添加值：
+#### 使用切片向列表后面添加值：
 
 ```Python
 >>> listName[len(listName):] = ['new1','new2','new3']
@@ -557,7 +558,7 @@ print(level)
 [1, 2, 3, 5, 'FSAN', 'new1', 'new2', 'new3']
 ```
 
-### 使用列表的extend函数直接向列表内部添加一个可迭代对象，如：
+#### 使用列表的extend函数直接向列表内部添加一个可迭代对象，如：
 
 ```Python
 >>> addList = ['test1','test2','test3']
@@ -566,14 +567,14 @@ print(level)
 [1, 2, 3, 5, 'FSAN', 'new1', 'new2', 'new3', 'test1', 'test2', 'test3']
 ```
 
-### 使用列表的insert方法可以向列表的指定位置插入数据，如：
+#### 使用列表的insert方法可以向列表的指定位置插入数据，如：
 
 ```Python
 >>> print(listName)
 [1, 2, 3, 5, 'FSAN', 'new1', 'new2', 'new3', 'test1', 'test2', 'test3', 'endList']
 ```
 
-### 使用列表的remove方法可以删除指定的列表数据，如：
+#### 使用列表的remove方法可以删除指定的列表数据，如：
 
 ```Python
 >>> print(listName)
@@ -585,7 +586,7 @@ print(level)
 * 使用remove时，如有多个数据，则只会删除下标最小的那个
 * 删除时如果元素不存在则会报错
 
-### 使用pop方法可以删除对应下标的元素，如：
+#### 使用pop方法可以删除对应下标的元素，如：
 
 ```Python
 >>> listName.pop(0)
@@ -594,13 +595,13 @@ print(level)
 [2, 3, 5, 'FSAN', 'new1', 'new2', 'new3', 'test1', 'test2', 'test3']
 ```
 
-### 使用clean方法清空整个列表
+#### 使用clean方法清空整个列表
 
 ```Python
 >>> listName.clean()
 ```
 
-### 列表的自动排序
+#### 列表的自动排序
 
 使用列表自带的sort方法
 s.sort(key=None,reverse=False): 对列表中的元素进行原地排序（key用于指定一个比较函数，reverse参数用于指定排序结果是否翻转）
@@ -618,7 +619,7 @@ s.sort(key=None,reverse=False): 对列表中的元素进行原地排序（key用
 ```
 * reverse默认为false，也就是从大到小
 
-### 查找某个元素的出现次数
+#### 查找某个元素的出现次数
 
 ```Python
 >>> print(nums)
@@ -627,7 +628,7 @@ s.sort(key=None,reverse=False): 对列表中的元素进行原地排序（key用
 2
 ```
 
-### 查找某个元素第一次出现的下标
+#### 查找某个元素第一次出现的下标
 
 ```Python
 >>> print(nums)
@@ -637,7 +638,7 @@ s.sort(key=None,reverse=False): 对列表中的元素进行原地排序（key用
 ```
 * index(x,[start],[stop])看参数名思意
 
-### 拷贝一个列表，使用copy()，如：
+#### 拷贝一个列表，使用copy()，如：
 
 ```Python
 >>> nums_copy = nums.copy()
@@ -652,7 +653,7 @@ nums1_copy = nums1[:]
 
 以上拷贝都算是浅拷贝
 
-### 把两个列表合并为一个列表
+#### 把两个列表合并为一个列表
 
 ```Python
 >>> nums1 = [1,2,3]
@@ -661,7 +662,7 @@ nums1_copy = nums1[:]
 ```
 也可以使用上面提到的使用切片向后面添加一个列表
 
-### 创建二维列表
+#### 创建二维列表
 
 ```Python
 numss1 = [[0,0],[0,0],[0,0]]
@@ -683,7 +684,7 @@ True
 ```
 使用is判断出numss2这两个是放在一个内存地址的，所以才会一起被改变
 
-## 使用深拷贝
+### 使用深拷贝
 浅拷贝处理一维列表是没有问题的，但是要处理嵌套列表就，如：
 ```Python
 >>> name = [[1,2],[1,2,3]]
@@ -716,12 +717,12 @@ True
 [[1, 2], [1, 3, 3]]
 ```
 
-### 原理：
+#### 原理：
 
 浅拷贝在拷贝嵌套对象的时候只是使用一个新的名字去引用，内容没有真正复制出来
 深拷贝才是完完整整的复制了一个
 
-## 输出变量类型
+### 输出变量类型
 
 使用type方法
 
@@ -733,7 +734,7 @@ print(type(a))
 <class 'i'>
 ```
 
-## 使用try处理异常报错
+### 使用try处理异常报错
 
 比如找一个不存在的文件
 
@@ -751,7 +752,7 @@ print("123")
 
 在except后面也可以跟上捕获异常的类型，如：except IOError:
 
-## 列表推导式
+### 列表推导式
 要把列表里面每个值都 * 2
 传统方法就是遍历里面的全部元素，然后重新赋值
 这时候就可以使用Python的列表推导式：
@@ -762,7 +763,7 @@ print("123")
 [2, 4, 6, 8]
 ```
 
-## 对文件的操作
+### 对文件的操作
 
 注意：每一次打开之后都要关闭，这样才能让别人再打开
 
@@ -886,7 +887,7 @@ os.mkdir("文件夹min")
 
 
 
-## 多线程
+### 多线程
 
 1. 导入threading插件
 2. 使用下的Thread方法去定义操作对象，如def函数
@@ -930,7 +931,7 @@ fsan
 
 
 
-## if __name__ == '__main__'
+### if __name__ == '__main__'
 
 模块都有一个变量name,可以在模块中输出查看
 
@@ -989,7 +990,7 @@ test1.run()
 
 *  这样其他模块调用的时候才正常
 
-## 在字符串中添加input中输入的值
+### 在字符串中添加input中输入的值
 
 > 方法一
 
@@ -1016,7 +1017,7 @@ print(url)
 
 这种写法就显得更专业
 
-## 打包
+### 打包
 
 安装pyinstaller模块
 
@@ -1030,7 +1031,7 @@ pip install pyinstaller
 pyinstaller -F 文件名
 ```
 
-## 使用正则判断
+### 使用正则判断
 
 条件：第一个字符不为数字，由数字字母下划线组成
 
@@ -1063,7 +1064,7 @@ if s:
 
 * 其中的第一个请求可以使用try报错简单实现
 
-# Python就是方便！！（彩蛋）
+## Python就是方便！！（彩蛋）
 
 在IDLE里输入import this，会出现一首开发者的诗
 

@@ -5,7 +5,7 @@ tags: [react]
 categories: [前端,react]
 ---
 
-# setState（状态更新）
+## setState（状态更新）
 
 在类组件中，setState用于更新state中的数据，有以下两种写法：
 
@@ -53,11 +53,11 @@ setCount = () => {
 1. 当修改后的状态不需要在state基础上更新时，使用对象式写法
 2. 当需要在state基础上更新时，使用函数式
 
-# lazyload（组件懒加载）
+## lazyload（组件懒加载）
 
 lazyload一般来说是对于路由组件使用的，用法如下：
 
-## 不使用懒加载的路由
+### 不使用懒加载的路由
 
 ```tsx
 import MenuLink from './components/MenuLink'
@@ -71,7 +71,7 @@ import My from './components/My'
 </Routes>
 ```
 
-## 使用懒加载
+### 使用懒加载
 
 1. 引入lazy，用法类似vue3的defineAsyncComponent
 2. 将路由标签使用Suspense标签包裹，并指定加载过程显示组件
@@ -96,9 +96,9 @@ const My = lazy(() => import('./components/My'))
 >
 > lazy不可放入函数组件中，会导致浏览器一直处于加载状态
 
-# Hooks
+## Hooks
 
-## useState
+### useState
 
 因为函数式组件中没有state状态，所以需要引入useState创建一个状态管理，如下：
 
@@ -136,7 +136,7 @@ const Index = (props: any) => {
 
 > 如果使用解构的方式，推荐第一种，因为第一个参数就是count
 
-## useEffect
+### useEffect
 
 在React更新DOM后调用
 
@@ -169,7 +169,7 @@ export default Count
 >
 > useEffect 第二个参数是一个数组，传递的值作为检测值，在后续更新渲染时，检测值发生变化才会触发 useEffect 中的函数，如这里如果比较值只有一个num，则除了第一次渲染会触发函数，后续点击都不会触发，如果是空数组，则只会在第一次渲染render的时候调用一次
 
-### 自动累加器案例
+#### 自动累加器案例
 
 ```tsx
 import { useEffect, useState } from 'react'
@@ -204,7 +204,7 @@ const Index = (props: any) => {
 }
 ```
 
-## useRef
+### useRef
 
 ```tsx
 const inputRef = useRef() as MutableRefObject<HTMLInputElement>
@@ -219,7 +219,7 @@ return (
 
 > 使用`?.`就算value属性为undefined也不会报错
 
-# Fragment
+## Fragment
 
 Fragment标签作用就和vue中的template差不多，当你不想要有一个父标签时可以使用，只支持接收一个参数`key`方便遍历
 
@@ -251,7 +251,7 @@ return (
 >
 > `[...Array(100).keys()]`用于生成指定长度数组，内容为0-99
 
-# createContext（上下文）
+## createContext（上下文）
 
 ```tsx
 import { createContext } from 'react'
@@ -339,7 +339,7 @@ export default My
 > 1. Provider标签的value属性表示传递数据，也可以为对象或数组，推荐对象写法，解构时无需考虑顺序
 > 2. 向下传递的所有子组件都可以使用Consumer标签来接收数据，内容是一个函数，value即使传递的数据
 
-# useContext（使用上下文）
+## useContext（使用上下文）
 
 在`createContext`中，传递过去的参数，使用`Consumer`标签接受较为繁琐，所以就有了`useContext`
 
@@ -417,13 +417,13 @@ export default My
 
 直接将创建出来的上下文对象交给`useContext`，就可以获取到其中的值
 
-# 优化子父组件渲染
+## 优化子父组件渲染
 
 状态更新后的重新渲染会非常影响性能，特别是子组件数量多的情况下
 
-## 类式组件优化
+### 类式组件优化
 
-### 方法一：自己修改钩子
+#### 方法一：自己修改钩子
 
 ```tsx
 shouldComponentUpdate (nextProps: Readonly<{}>, nextState: Readonly<{}>, nextContext: any): boolean {
@@ -432,7 +432,7 @@ shouldComponentUpdate (nextProps: Readonly<{}>, nextState: Readonly<{}>, nextCon
 }
 ```
 
-### 方法二：使用PureComponent
+#### 方法二：使用PureComponent
 
 ```tsx
 class Index extends PureComponent {
@@ -441,7 +441,7 @@ class Index extends PureComponent {
 
 > 将Component替换为PureComponent，react将自行浅判断
 
-## 函数式组件优化
+### 函数式组件优化
 
 ```tsx
 import React, { useState, useEffect, memo } from 'react'
@@ -497,9 +497,9 @@ export default memo(Index)
 >
 > 注意：和`shouldComponentUpdate`不同，如果`props`相同则应返回`true`，否则返回`false`。这点二者正好相反。
 
-# 子父组件两种构成方式
+## 子父组件两种构成方式
 
-## 使用props
+### 使用props
 
 ```tsx
 import { memo } from 'react'
@@ -609,7 +609,7 @@ export default memo(Index)
 > export default memo(Index)
 > ```
 
-## 直接子组件放入父组件
+### 直接子组件放入父组件
 
 ```tsx
 import { memo } from 'react'
@@ -680,9 +680,9 @@ export default memo(Parent)
 > export default memo(Parent)
 > ```
 
-# 错误处理
+## 错误处理
 
-## 函数式组件
+### 函数式组件
 
 ```tsx
 const Index = () => {
@@ -725,7 +725,7 @@ const Index = () => {
 export default Index
 ```
 
-## 类式组件
+### 类式组件
 
 类式组件可以使用`componentDidCatch`生命周期，它会收集错误，可以返回state对象，最后判断渲染即可
 
@@ -764,7 +764,7 @@ class ErrorBoundary extends React.Component {
 > </ErrorBoundary>
 > ```
 
-# 组件通信方式总结
+## 组件通信方式总结
 
 1. props：
    1. 普通属性

@@ -6,7 +6,7 @@ categories: [[后端,java]]
 ---
 
 
-## 依赖
+### 依赖
 
 ```xml
 <!-- spring data redis 依赖 -->
@@ -27,7 +27,7 @@ categories: [[后端,java]]
 </dependency>
 ```
 
-## 实现RedisSerializer接口
+### 实现RedisSerializer接口
 
 ```java
 import com.alibaba.fastjson.JSON;
@@ -79,7 +79,7 @@ public class FastJson2JsonRedisSerializer<T> implements RedisSerializer<T> {
 }
 ```
 
-## 配置redisTemplate
+### 配置redisTemplate
 
 ```java
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -117,7 +117,7 @@ public class RedisCacheAutoConfiguration {
 }
 ```
 
-## redis通用工具
+### redis通用工具
 
 ```java
 import org.springframework.beans.factory.annotation.Autowired;
@@ -305,7 +305,7 @@ public class RedisUtil {
 }
 ```
 
-## 原文地址：
+### 原文地址：
 
 https://www.jianshu.com/p/1b3f33a045bf
 

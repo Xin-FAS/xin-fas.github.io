@@ -6,12 +6,12 @@ categories: [后端,java]
 ---
 ---
 
-# 项目初始化
+## 项目初始化
 创建项目，依赖必选MySQL Driver，JDBC API，Spring web
 在maven官方仓库中CV MyBatis Spring Boot Starter依赖文件
 在配置文件中建立数据连接
 
-## 建立接口类
+### 建立接口类
 建立mapper包下接口类
 
 > 使用interface(接口代替class)，写数据库操作
@@ -32,9 +32,7 @@ public interface UserMapper {
 }
 ```
 
-<!--more-->
-
-## 创建mybatis的配置类
+### 创建mybatis的配置类
 
 在resources下新建mybatis下mapper下的xml配置文件
 
@@ -61,7 +59,7 @@ parameterType 输入数据格式
 
 然后写对应的接口sql语句
 
-## 使用mybatis
+### 使用mybatis
 在controller里面创建实例类，在方法里面调用mapper类里的对应方法就可以了
 注意：java实体类里面名字一定要和数据库属性名一样，使用mybatis是默认自动赋值封装的
 
@@ -117,14 +115,14 @@ loginUser(username=usetest2, password=pwdtest2)
 null
 ```
 
-# 注解
+## 注解
 **@Mapper** 这个注解表示了这是一个 mybatis 的 Mapper 类
 
 * 也可以在主入口处 使用 **@MapperScan("com.FSAN.mapper")** 手动添加扫描 Mapper 类
 
 **@Repository** 使用这个注解实例化一个对象类，也可以使用万能的 **@Component**
 
-# 总结MyBatis
+## 总结MyBatis
 > 依赖包：
 
 mybatis-spring-boot-starter
@@ -138,7 +136,7 @@ mybatis-spring-boot-starter
 5. service 调用 dao
 6. controller 调用 service
 
-# 踩坑记录
+## 踩坑记录
 1. 配置文件的文件名一定要和Mapper文件名相同
 2. 找不到接口的时候就说明是配置文件出现问题，注意配置文件的后缀，一定要看的到才行！！
 

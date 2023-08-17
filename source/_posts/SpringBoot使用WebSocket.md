@@ -5,7 +5,7 @@ tags: [java,websocket]
 categories: [后端,java]
 ---
 
-# 导入依赖
+## 导入依赖
 
 ```xml
 <dependency>
@@ -14,9 +14,9 @@ categories: [后端,java]
 </dependency>
 ```
 
-# 最简结构
+## 最简结构
 
-## 建立websocket服务类
+### 建立websocket服务类
 
 ```java
 package com.fsan.socket;
@@ -53,7 +53,7 @@ public class WsService extends AbstractWebSocketHandler {
 }
 ```
 
-## websocket配置开启服务
+### websocket配置开启服务
 
 创建 config > SocketConfig.java
 
@@ -88,7 +88,7 @@ public class SocketConfig implements WebSocketConfigurer {
 
 这里 "/ws/user" 就是连接路径，如 “ws://localhost:8081/ws/user”
 
-## html页面
+### html页面
 
 ```html
 <!DOCTYPE html>
@@ -118,9 +118,9 @@ public class SocketConfig implements WebSocketConfigurer {
 </html>
 ```
 
-# 存储每个socket连接
+## 存储每个socket连接
 
-## 建立websocket管理类
+### 建立websocket管理类
 
 socket > WsSocketManage.java
 
@@ -225,7 +225,7 @@ public class WsSocketManage {
 >
 > session中参数 在前端中就是类似get的params传递 ：ws://localhost:8081/msg/user?name=FSAN
 
-## 建立连接时以用户名存储
+### 建立连接时以用户名存储
 
 ```java
 package com.fsan.socket;
@@ -292,7 +292,7 @@ public class WsService extends AbstractWebSocketHandler {
 
 ```
 
-## html页面
+### html页面
 
 ```java
 <!DOCTYPE html>
@@ -338,11 +338,11 @@ public class WsService extends AbstractWebSocketHandler {
 
 这样对已连接的session对象进行存储之后，就可以进行进一步的通知操作了
 
-# 封装websocket的返回消息
+## 封装websocket的返回消息
 
 因为socket消息的发送并不是向axios一样，axios前端可以接收指定业务的返回情况，而socket接收返回时不知道是什么业务，所以包装类根据参数数量划分，枚举类根据业务种类划分（越细越好）
 
-## 包装类
+### 包装类
 
 创建 entity > WsRespResult.java
 
@@ -410,7 +410,7 @@ public class WsRespResult {
 
 发送给自己和发送给对方的区别就是要不要带上发送者的用户名
 
-## 枚举类
+### 枚举类
 
 创建 stateEnum > WsRespResultEnum.java
 
@@ -443,11 +443,11 @@ public enum WsRespResultEnum {
 ```
 
 
-# 使用广播实现实时在线人数
+## 使用广播实现实时在线人数
 
-## 更改自己连接状态和实时在线人数
+### 更改自己连接状态和实时在线人数
 
-### 管理类新增方法
+#### 管理类新增方法
 
 ```java
 package com.fsan.socket;
@@ -512,7 +512,7 @@ public class WsSocketManage {
 
 ```
 
-### 服务类在建立连接之后更新状态
+#### 服务类在建立连接之后更新状态
 
 ```java
 /**
@@ -536,7 +536,7 @@ public void afterConnectionEstablished(WebSocketSession session) {
 }
 ```
 
-### 服务类在断开连接后更新人数
+#### 服务类在断开连接后更新人数
 
 ```java
 /**
@@ -558,7 +558,7 @@ public void afterConnectionClosed(WebSocketSession session, CloseStatus status) 
 }
 ```
 
-## html页面
+### html页面
 
 ```html
 <!DOCTYPE html>
@@ -615,9 +615,9 @@ public void afterConnectionClosed(WebSocketSession session, CloseStatus status) 
 </html>
 ```
 
-# 群体广播和指定人发送
+## 群体广播和指定人发送
 
-## 管理类增加方法
+### 管理类增加方法
 
 ```java
 /**
@@ -670,7 +670,7 @@ static void sendToUser(WebSocketSession webSocketSession, String name, String co
 }
 ```
 
-## 服务类接收消息时
+### 服务类接收消息时
 
 ```java
 /**
@@ -714,7 +714,7 @@ protected void handleTextMessage(WebSocketSession session, TextMessage message) 
 > }
 > ```
 
-## html页面
+### html页面
 
 增加指定发送人输入框，增加接收广播消息和指定消息
 
@@ -829,9 +829,9 @@ protected void handleTextMessage(WebSocketSession session, TextMessage message) 
 > }
 > ```
 
-# 完整代码
+## 完整代码
 
-## 服务类
+### 服务类
 
 socket > WsService.java
 
@@ -922,7 +922,7 @@ public class WsService extends AbstractWebSocketHandler {
 }
 ```
 
-## 管理类
+### 管理类
 
 scoket > WsSocketManage.java
 
@@ -1117,7 +1117,7 @@ public class WsSocketManage {
 }
 ```
 
-## 返回包装类
+### 返回包装类
 
 entity > WsRespResult.java
 
@@ -1182,7 +1182,7 @@ public class WsRespResult {
 }
 ```
 
-## 状态枚举类
+### 状态枚举类
 
 stateEnum > WsRespResultEnum.java
 
@@ -1214,7 +1214,7 @@ public enum WsRespResultEnum {
 }
 ```
 
-## socket配置类
+### socket配置类
 
 config > SocketConfig.java
 
@@ -1247,7 +1247,7 @@ public class SocketConfig implements WebSocketConfigurer {
 }
 ```
 
-## html页面
+### html页面
 
 ```html
 <!DOCTYPE html>
@@ -1346,6 +1346,6 @@ public class SocketConfig implements WebSocketConfigurer {
 </html>
 ```
 
-## 最后说明
+### 最后说明
 
 封装的比较烂，轻喷

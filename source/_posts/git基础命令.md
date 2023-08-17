@@ -5,20 +5,20 @@ tags: [git命令]
 categories: [其他]
 ---
 
-# 准备工作
-## 下载并安装git工具
+## 准备工作
+### 下载并安装git工具
 
  * [点此进入baidu云盘下载](http://pan.baidu.com/s/1hrgTIdu)
  * [点此查看安装教程](http://jingyan.baidu.com/article/e52e36154233ef40c70c5153.html)
 
-## git提交结构
+### git提交结构
 
 1. 工作区（就是本地初始化地方的文件）
 2. 暂存区（add 中的文件）
 3. 本地库（commit 打上标签的文件）
 4. 远程库（github或gitee仓库） 
 
-## 提交流程
+### 提交流程
 
 1. 首次利用git提交需要配置好全局用户信息
 
@@ -57,9 +57,9 @@ git remote add 别名 地址
 git push -u 别名 分支名
 ```
 
-# 常用命令
+## 常用命令
 
-## 工作区提交暂存区
+### 工作区提交暂存区
 
 ```bash
 $ git add .
@@ -67,7 +67,7 @@ $ git add .
 
 > .表示全部提交覆盖，提交更新个别请输入单个文件路径
 
-## 暂存区提交至本地库
+### 暂存区提交至本地库
 
 ```bash
 $ git commit -m "测试"
@@ -75,16 +75,16 @@ $ git commit -m "测试"
 
 在测试后面还可以加一个参数，表示文件名
 
-## 分支操作
+### 分支操作
 
-### 查看分支
+#### 查看分支
 
 ```bash
 $ git branch  // 查看当前分支
 $ git branch -v  // 查看当前分支详细 最后一次提交索引 + 备注
 ```
 
-### 创建分支
+#### 创建分支
 
 ```bash
 $ git branch [分支名]
@@ -92,12 +92,12 @@ $ git branch [分支名]
 
 使用branch命令，不加是查看，加上名字就是创建
 
-### 切换分支
+#### 切换分支
 
 ```bash
 $ git checkout [分支名]
 ```
-### 分支合并
+#### 分支合并
 
 ```bash
 $ git merge [合并的分支]
@@ -109,7 +109,7 @@ $ git merge [合并的分支]
 $ git merge origin/merge
 ```
 
-### 查看远程分支全部文件
+#### 查看远程分支全部文件
 
 1. 切换到远程分支
 2. 使用ll列出全部文件
@@ -123,9 +123,9 @@ $ cat [文件名]
 
 >  这里的origin是仓库别名，master是分支名字
 
-## 版本控制
+### 版本控制
 
-### 查看版本日志
+#### 查看版本日志
 
 ```bash
 $ git log
@@ -137,7 +137,7 @@ $ git log
 $ git reflog
 ```
 
-### 回退版本
+#### 回退版本
 
 ```bash
 $ git reset --hard 索引
@@ -153,21 +153,21 @@ $ git reset --hard 索引
 > git push -f -u origin master 
 > ```
 
-## 本地地址库
+### 本地地址库
 
-### 查看本地的地址库
+#### 查看本地的地址库
 
 ```bash
 $ git remote -v
 ```
 
-### 添加本地的地址
+#### 添加本地的地址
 
 ```bash
 $ git remote add [别名] [仓库地址]
 ```
 
-## 推送
+### 推送
 
 ```bash
 $ git push [别名] [分支名]
@@ -179,7 +179,7 @@ $ git push [别名] [分支名]
 >
 > 当然这些可以在windows凭据里面查看
 
-## 克隆远程仓库
+### 克隆远程仓库
 
 ```bash
 $ git clone [仓库地址]
@@ -187,7 +187,7 @@ $ git clone [仓库地址]
 
 将远程仓库克隆下来之后，会自动的将链接取一个别名origin
 
-## 抓取操作
+### 抓取操作
 
 ```bash 
 $ git fetch origin master
@@ -195,7 +195,7 @@ $ git fetch origin master
 
 仓库别名加上分支，抓取操作将远程的仓库内容抓到本地，但并不会更新工作区
 
-## pull操作
+### pull操作
 
 pull操作就是抓取操作加上分支合并操作
 
@@ -205,24 +205,24 @@ $ git pull origin master
 
 * 别名加地址
 
-## 添加到暂存区并加上说明
+### 添加到暂存区并加上说明
 ```bash
 $ git add .
 $ git commit -m "[对提交文件的说明]"
 ```
 注意：要确保提交文件夹<mark>只有一个.git文件夹</mark>
-## 提交暂存区
+### 提交暂存区
 ```bash
 $ git branch   #查看本地分支，无误后提交
 $ git push -u remote地址
 ```
-## 清空git缓存
+### 清空git缓存
 
 ```bash
 $ git rm -r -f --cached .   #清空git缓存
 ```
 
-# gitee免费部署
+## gitee免费部署
 
 步骤：
 
@@ -230,9 +230,9 @@ $ git rm -r -f --cached .   #清空git缓存
 2. 提交包含index.html的目录
 3. 进入仓库，点击服务下git pages中的启动按钮
 
-# 问题：
+## 问题：
 
-## add 后提示warning
+### add 后提示warning
 
 描述：`The file will have its original line endings in your working directory`
 

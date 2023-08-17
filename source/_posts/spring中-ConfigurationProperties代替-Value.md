@@ -5,7 +5,7 @@ tags: [springboot]
 categories: [[后端,java]]
 ---
 
-# 需求
+## 需求
 
 注入`application.yml`配置文件中的常量
 
@@ -35,7 +35,7 @@ about-you:
 
 ```
 
-## 使用@Value
+### 使用@Value
 
 ### entity > Me.java
 
@@ -58,7 +58,7 @@ public class Me {
 >
 > #{} 运算式
 
-### 测试类中调用测试
+#### 测试类中调用测试
 
 ```java
 @SpringBootTest
@@ -76,9 +76,9 @@ class ValueConfigurationApplicationTests {
 
 > 使用注入属性之后，也只能通过注入才能显示注入好的值，使用 `new Me()` 去构造会显示为`null`
 
-## 使用@ConfigurationProperties
+### 使用@ConfigurationProperties
 
-### entity > You.java
+#### entity > You.java
 
 ```java
 @Data
@@ -98,7 +98,7 @@ public class You {
 
 > `ConfigurationProperties`使用这个注解的时候，注入的名字不能使用下划线和大写
 
-### 测试类中调用测试
+#### 测试类中调用测试
 
 ```java
 @SpringBootTest
@@ -114,7 +114,7 @@ class ValueConfigurationApplicationTests {
 }
 ```
 
-# 区别
+## 区别
 
 1. @Value 只能注入一个属性，@ConfigurationProperties 能匹配多个
 2. @Value 不支持JSR303数据校验，@ConfigurationProperties  配合@Validated 能对数据做校验

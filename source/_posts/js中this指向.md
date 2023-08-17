@@ -4,7 +4,7 @@ date: 2022-07-12 14:08:27
 tags: [js, this指向]
 categories: [前端]
 ---
-# 普通函数中的this
+## 普通函数中的this
 
 我们都知道在普通的函数（使用`function`关键字定义）中，`this`的指的是它所属的对象
 
@@ -16,15 +16,15 @@ categories: [前端]
 4. 在函数中，严格模式（`"use strict";`）下，`this`是`undefined`
 5. 在事件中，`this`指的是接收事件的元素
 
-# 箭头函数中的this
+## 箭头函数中的this
 
 在es6的箭头函数中的this指向是全局对象（window），也就是说无论在哪个对象中都可以指向全局，但是在es6的类中指向是类的实例对象（因为在类的原型链上）
 
-# 详细区别（type="text/javascript"）
+## 详细区别（type="text/javascript"）
 
 使用this作为当前标签的dom对象传递就不展示了
 
-## 简单使用
+### 简单使用
 
 ```js
 function demo1() {
@@ -39,7 +39,7 @@ const demo2 = () => {
 demo2()
 ```
 
-## 在对象中使用
+### 在对象中使用
 
 ```js
 const obj = {
@@ -55,7 +55,7 @@ obj.demo1()
 obj.demo2()
 ```
 
-## 在类中使用
+### 在类中使用
 
 ```js
 class C1 {
@@ -79,7 +79,7 @@ c2.demo3()
 
 > 可以发现在类中使用哪种方法定义方法对this的指向都没有影响
 
-## 手动严格模式
+### 手动严格模式
 
 ```js
 "use strict";
@@ -96,7 +96,7 @@ function demo1() {
 
 对其他方法没有影响
 
-# 详细区别（type=“text/babel”）
+## 详细区别（type=“text/babel”）
 
 将js代码通过babel转换，先导入
 
@@ -104,7 +104,7 @@ function demo1() {
 <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
 ```
 
-## 简单使用
+### 简单使用
 
 ```js
 function demo1() {
@@ -138,7 +138,7 @@ demo2();
 
 > 转换后，会默认转换为严格模式（对简单定义的普通函数有影响，但是手写严格模式对this没有影响），但是！这里转换后将箭头函数中的this改成了void 0
 
-## 在对象中使用
+### 在对象中使用
 
 ```js
 const obj = {
@@ -154,9 +154,9 @@ obj.demo1()
 obj.demo2()
 ```
 
-## 在类中使用
+### 在类中使用
 
-### 由实例对象调用
+#### 由实例对象调用
 
 ```js
 class C1 {
@@ -176,7 +176,7 @@ c1.demo1()
 c1.demo2()
 ```
 
-### 由其他引用地址调用
+#### 由其他引用地址调用
 
 ```js
 class C1 {
@@ -198,7 +198,7 @@ demo2()
 
 要想让`demo2`中的`this`正确指向类的实例对象，只需要让`demo2`使用箭头函数即可
 
-# 总结
+## 总结
 
 1. 在类中构造器的`this`，一定指向类的实例对象
 2. 类中的方法由实例对象调用，其中的`this`才是实例对象

@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Xin-FAS'Blog
+title: Xin-FAS'blog
 subtitle: ''
-description: ''
+description: '一个人的博客'
 keywords:
 author: Xin-FAS
 language: zh-CN
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -44,13 +44,12 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: false
+  enable: true
   line_number: true
   auto_detect: false
   tab_replace: ''
   wrap: true
   hljs: false
-  
 prismjs:
   enable: false
   preprocess: true

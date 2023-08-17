@@ -7,12 +7,12 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2023/08/17/mEqM5TYLxfpnHiF.png">
+  <link rel="icon" href="https://s2.loli.net/2023/08/17/mEqM5TYLxfpnHiF.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="rgba(242,242,242,.7)">
+  <meta name="theme-color" content="#f2f2f2">
   <meta name="author" content="Xin-FAS">
   <meta name="keywords" content="">
   
@@ -20,17 +20,18 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="React Router 6">
 <meta property="og:url" content="http://example.com/2022/07/31/React-Router-6/index.html">
-<meta property="og:site_name" content="Xin-FAS&#39;Blog">
+<meta property="og:site_name" content="Xin-FAS&#39;blog">
 <meta property="og:description" content="介绍之前记录的react脚手架中，我记录的全是react router 6的用法，这里来统计一下，也详细记录下react-router React Router介绍React Router 以三个不同的报发布到npm上，它们分别为：  react-router：路由的核心库，提供了很多的：组件，钩子 react-router-dom：包含了react-router所有内容，并添加一些专门用于DOM">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-31T07:43:50.000Z">
-<meta property="article:modified_time" content="2023-03-19T12:06:28.624Z">
+<meta property="article:modified_time" content="2023-08-17T14:55:21.012Z">
 <meta property="article:author" content="Xin-FAS">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>React Router 6 - Xin-FAS&#39;Blog</title>
+  
+  <title>React Router 6 - Xin-FAS&#39;blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -65,16 +66,24 @@
 
 
   
-<link rel="stylesheet" href="/css/myCss/index.css">
+<link rel="stylesheet" href="/css/f-index.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 6.3.0"></head>
@@ -110,7 +119,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -122,7 +131,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -134,7 +143,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -146,7 +155,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -158,7 +167,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -170,7 +179,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                友链
+                <span>友链</span>
               </a>
             </li>
           
@@ -178,15 +187,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -226,7 +236,6 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          <!-- compatible with older versions-->
           3.7k 字
         
       </span>
@@ -238,7 +247,6 @@
         
         
         
-          <!-- compatible with older versions-->
           31 分钟
         
       </span>
@@ -276,13 +284,13 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">React Router 6</h1>
+            <h1 id="seo-header">React Router 6</h1>
             
-            <div class="markdown-body">
-              
-              <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>之前记录的react脚手架中，我记录的全是react router 6的用法，这里来统计一下，也详细记录下react-router</p>
-<h2 id="React-Router介绍"><a href="#React-Router介绍" class="headerlink" title="React Router介绍"></a>React Router介绍</h2><p>React Router 以三个不同的报发布到npm上，它们分别为：</p>
+            
+              <div class="markdown-body">
+                
+                <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>之前记录的react脚手架中，我记录的全是react router 6的用法，这里来统计一下，也详细记录下react-router</p>
+<h3 id="React-Router介绍"><a href="#React-Router介绍" class="headerlink" title="React Router介绍"></a>React Router介绍</h3><p>React Router 以三个不同的报发布到npm上，它们分别为：</p>
 <ol>
 <li>react-router：路由的核心库，提供了很多的：组件，钩子</li>
 <li>react-router-dom：包含了react-router所有内容，并添加一些专门用于DOM的组件，例如<code>&lt;BrowserRouter&gt;</code>等</li>
@@ -295,18 +303,18 @@
 <li>新增多个hook：<code>useParams</code>，<code>useNavigate</code>，<code>useMatch</code>等</li>
 <li><strong>官方明确推荐使用函数式组件！！</strong></li>
 </ol>
-<h1 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a>功能点</h1><h2 id="BrowserRouter"><a href="#BrowserRouter" class="headerlink" title="BrowserRouter"></a>BrowserRouter</h2><p>不演示</p>
-<h2 id="HashRouter"><a href="#HashRouter" class="headerlink" title="HashRouter"></a>HashRouter</h2><p>同上</p>
-<h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p>同上</p>
-<h2 id="NavLink"><a href="#NavLink" class="headerlink" title="NavLink"></a>NavLink</h2><p>同上，在5中使用 activeClassName定义当前样式名，6里面想想className和style使用回调函数就能记起来了，建议封装一个方法中，不然太冗余了</p>
+<h2 id="功能点"><a href="#功能点" class="headerlink" title="功能点"></a>功能点</h2><h3 id="BrowserRouter"><a href="#BrowserRouter" class="headerlink" title="BrowserRouter"></a>BrowserRouter</h3><p>不演示</p>
+<h3 id="HashRouter"><a href="#HashRouter" class="headerlink" title="HashRouter"></a>HashRouter</h3><p>同上</p>
+<h3 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h3><p>同上</p>
+<h3 id="NavLink"><a href="#NavLink" class="headerlink" title="NavLink"></a>NavLink</h3><p>同上，在5中使用 activeClassName定义当前样式名，6里面想想className和style使用回调函数就能记起来了，建议封装一个方法中，不然太冗余了</p>
 <p>属性<code>end</code>，默认为false，当有子路由时，使用end属性可以使访问子路由时父路由不高亮</p>
-<h2 id="Routes和Route"><a href="#Routes和Route" class="headerlink" title="Routes和Route"></a>Routes和Route</h2><figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tsx">&lt;<span class="hljs-title class_">Route</span> caseSensitive path=<span class="hljs-string">&quot;/main&quot;</span> element=&#123;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MenuLink</span> /&gt;</span></span>&#125; /&gt;<br></code></pre></td></tr></table></figure>
+<h3 id="Routes和Route"><a href="#Routes和Route" class="headerlink" title="Routes和Route"></a>Routes和Route</h3><figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tsx">&lt;<span class="hljs-title class_">Route</span> caseSensitive path=<span class="hljs-string">&quot;/main&quot;</span> element=&#123;<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MenuLink</span> /&gt;</span></span>&#125; /&gt;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>caseSensitive：是否区分大小写，默认不区分，false</p>
 </blockquote>
 <p>其他不演示了</p>
-<h2 id="Navigate"><a href="#Navigate" class="headerlink" title="Navigate"></a>Navigate</h2><p>只要渲染就跳转，如下：</p>
+<h3 id="Navigate"><a href="#Navigate" class="headerlink" title="Navigate"></a>Navigate</h3><p>只要渲染就跳转，如下：</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> &#123; useState &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span><br><span class="hljs-keyword">import</span> &#123; <span class="hljs-title class_">Navigate</span> &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span><br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">Index</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-keyword">const</span> [sum, setSum] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>)<br>    <span class="hljs-keyword">return</span> (<br>        <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">            当sum值为2时自动跳转到home</span><br><span class="language-xml">            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">&#123;()</span> =&gt;</span> setSum(sum + 1)&#125;&gt;点击增加<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span><br><span class="language-xml">            &#123;sum === 2 ? <span class="hljs-tag">&lt;<span class="hljs-name">Navigate</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/home&quot;</span> /&gt;</span> : <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>当前sum值为：&#123;sum&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/&gt;</span></span><br>    )<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title class_">Index</span><br></code></pre></td></tr></table></figure>
 
 <p>一般用来做路由重定向</p>
@@ -317,7 +325,7 @@
 
 <p>replace为true可以使路由跳转后无法后退</p>
 </blockquote>
-<h2 id="useRoutes（important！）"><a href="#useRoutes（important！）" class="headerlink" title="useRoutes（important！）"></a>useRoutes（important！）</h2><p>使用useRoutes对路由进行对象化，和vue一样</p>
+<h3 id="useRoutes（important！）"><a href="#useRoutes（important！）" class="headerlink" title="useRoutes（important！）"></a>useRoutes（important！）</h3><p>使用useRoutes对路由进行对象化，和vue一样</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">const</span> routes = <span class="hljs-title function_">useRoutes</span>([<br>    &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/&#x27;</span>,<br>        <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Navigate</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/main&quot;</span> /&gt;</span></span><br>    &#125;,<br>    &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/main&#x27;</span>,<br>        <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">MenuLink</span> /&gt;</span></span><br>    &#125;,<br>    &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/my&#x27;</span>,<br>        <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">My</span> /&gt;</span></span><br>    &#125;,<br>    &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/plus&#x27;</span>,<br>        <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ComponentPlus</span> /&gt;</span></span><br>    &#125;,<br>    &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/CP&#x27;</span>,<br>        <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ChildrenAndParent</span> /&gt;</span></span><br>    &#125;,<br>    &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/catch&#x27;</span>,<br>        <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Catch</span> /&gt;</span></span><br>    &#125;,<br>    &#123;<br>        <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/new&#x27;</span>,<br>        <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">RouteNew</span> /&gt;</span></span><br>    &#125;<br>]) <span class="hljs-keyword">as</span> <span class="hljs-title class_">ReactElement</span><br><br>...<br><br><span class="hljs-keyword">return</span> (<br>    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span></span><br><span class="language-xml">        <span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span> <span class="hljs-attr">fallback</span>=<span class="hljs-string">&#123;</span>&lt;<span class="hljs-attr">h1</span>&gt;</span>Loading ...<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>&#125;&gt;</span><br><span class="language-xml">            &#123;routes&#125;</span><br><span class="language-xml">        <span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;/&gt;</span></span><br>)<br></code></pre></td></tr></table></figure>
 
 <blockquote>
@@ -326,32 +334,32 @@
 <p>在子组件上，直接使用children属性，同vue：</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs tsx">&#123;<br>    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/main&#x27;</span>,<br>    <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Main</span> /&gt;</span></span>,<br>    <span class="hljs-attr">children</span>: [<br>        &#123;<br>            <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;goA&#x27;</span>,<br>            <span class="hljs-attr">element</span>: <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">A</span> /&gt;</span></span><br>        &#125;<br>    ]<br>&#125;,<br></code></pre></td></tr></table></figure>
 
-<h2 id="Outlet（important！）"><a href="#Outlet（important！）" class="headerlink" title="Outlet（important！）"></a>Outlet（important！）</h2><p>配合嵌套路由使用，定义渲染位置，同vue中的<code>router-view</code></p>
-<h2 id="useParams"><a href="#useParams" class="headerlink" title="useParams"></a>useParams</h2><p>接收路由中携带的params参数<code>/detail/1/FSAN</code>，注册路由时需要使用<code>:参数名</code></p>
-<h2 id="useMatch"><a href="#useMatch" class="headerlink" title="useMatch"></a>useMatch</h2><p>分析一个地址，如：</p>
+<h3 id="Outlet（important！）"><a href="#Outlet（important！）" class="headerlink" title="Outlet（important！）"></a>Outlet（important！）</h3><p>配合嵌套路由使用，定义渲染位置，同vue中的<code>router-view</code></p>
+<h3 id="useParams"><a href="#useParams" class="headerlink" title="useParams"></a>useParams</h3><p>接收路由中携带的params参数<code>/detail/1/FSAN</code>，注册路由时需要使用<code>:参数名</code></p>
+<h3 id="useMatch"><a href="#useMatch" class="headerlink" title="useMatch"></a>useMatch</h3><p>分析一个地址，如：</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-title function_">useMatch</span>(<span class="hljs-string">&#x27;/home/message/detail/:id/:title&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>使用<code>:参数名</code>支持匹配</p>
 </blockquote>
-<h2 id="useSearchParams"><a href="#useSearchParams" class="headerlink" title="useSearchParams"></a>useSearchParams</h2><p>接收路由中携带的search参数<code>/detail?id=1&amp;title=FSAN</code></p>
+<h3 id="useSearchParams"><a href="#useSearchParams" class="headerlink" title="useSearchParams"></a>useSearchParams</h3><p>接收路由中携带的search参数<code>/detail?id=1&amp;title=FSAN</code></p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">const</span> [search, setSearch] = <span class="hljs-title function_">useSearchParams</span>()<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(search.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;id&#x27;</span>))<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(search.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;title&#x27;</span>))<br><span class="hljs-title function_">setSearch</span>(<span class="hljs-string">&#x27;id=2&amp;title=BSAN&#x27;</span>)<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(search.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;id&#x27;</span>))<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(search.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;title&#x27;</span>))<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>使用urlEncoded格式的字符串修改search参数</p>
 </blockquote>
-<h2 id="useLocaltion（important！）"><a href="#useLocaltion（important！）" class="headerlink" title="useLocaltion（important！）"></a>useLocaltion（important！）</h2><p>分析当前路由，并且可以从中获取到传递的state数据</p>
+<h3 id="useLocaltion（important！）"><a href="#useLocaltion（important！）" class="headerlink" title="useLocaltion（important！）"></a>useLocaltion（important！）</h3><p>分析当前路由，并且可以从中获取到传递的state数据</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">import</span> &#123; useLocation &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">useLocation</span>())<br></code></pre></td></tr></table></figure>
 
 <p>link传递state数据</p>
 <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tsx">&lt;<span class="hljs-title class_">Link</span> to=<span class="hljs-string">&quot;/home&quot;</span> state=&#123;&#123;<br>    <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>,<br>    <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;FSAN&#x27;</span><br>&#125;&#125;<br>/&gt;<br></code></pre></td></tr></table></figure>
 
-<h2 id="useNavigate（important！）"><a href="#useNavigate（important！）" class="headerlink" title="useNavigate（important！）"></a>useNavigate（important！）</h2><figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">const</span> navigate = <span class="hljs-title function_">useNavigate</span>()<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">toPath</span> = (<span class="hljs-params">path:<span class="hljs-built_in">string</span></span>) =&gt; &#123;<br>    <span class="hljs-title function_">navigate</span>(path)<br>    <span class="hljs-comment">// or</span><br>    <span class="hljs-title function_">navigate</span>(path, &#123;<br>        <span class="hljs-attr">replace</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">state</span>: &#123;<br>            <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>,<br>            <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;FSAN&#x27;</span><br>        &#125;<br>    &#125;)<br>    <span class="hljs-comment">// or</span><br>    <span class="hljs-title function_">navigate</span>(-<span class="hljs-number">1</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="useNavigate（important！）"><a href="#useNavigate（important！）" class="headerlink" title="useNavigate（important！）"></a>useNavigate（important！）</h3><figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs tsx"><span class="hljs-keyword">const</span> navigate = <span class="hljs-title function_">useNavigate</span>()<br><span class="hljs-keyword">const</span> <span class="hljs-title function_">toPath</span> = (<span class="hljs-params">path:<span class="hljs-built_in">string</span></span>) =&gt; &#123;<br>    <span class="hljs-title function_">navigate</span>(path)<br>    <span class="hljs-comment">// or</span><br>    <span class="hljs-title function_">navigate</span>(path, &#123;<br>        <span class="hljs-attr">replace</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">state</span>: &#123;<br>            <span class="hljs-attr">id</span>: <span class="hljs-number">1</span>,<br>            <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;FSAN&#x27;</span><br>        &#125;<br>    &#125;)<br>    <span class="hljs-comment">// or</span><br>    <span class="hljs-title function_">navigate</span>(-<span class="hljs-number">1</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>编程式导航，一看就懂了吧</p>
 </blockquote>
-<h2 id="useNavigationType"><a href="#useNavigationType" class="headerlink" title="useNavigationType"></a>useNavigationType</h2><p>返回当前的导航类型（用户是怎么来的）</p>
+<h3 id="useNavigationType"><a href="#useNavigationType" class="headerlink" title="useNavigationType"></a>useNavigationType</h3><p>返回当前的导航类型（用户是怎么来的）</p>
 <table>
 <thead>
 <tr>
@@ -372,11 +380,12 @@
 <td>通过替代当前路由记录进来的（replace）</td>
 </tr>
 </tbody></table>
-<h2 id="useOutlet"><a href="#useOutlet" class="headerlink" title="useOutlet"></a>useOutlet</h2><p>查看当前渲染的路由组件</p>
-<h2 id="useResolvedPath"><a href="#useResolvedPath" class="headerlink" title="useResolvedPath"></a>useResolvedPath</h2><p>给定一个url值，解析其中的path，search，hash值</p>
+<h3 id="useOutlet"><a href="#useOutlet" class="headerlink" title="useOutlet"></a>useOutlet</h3><p>查看当前渲染的路由组件</p>
+<h3 id="useResolvedPath"><a href="#useResolvedPath" class="headerlink" title="useResolvedPath"></a>useResolvedPath</h3><p>给定一个url值，解析其中的path，search，hash值</p>
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -413,7 +422,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/react/">#react</a>
+        <a href="/tags/react/" class="print-no-link">#react</a>
       
     </div>
   
@@ -442,21 +451,23 @@
         </div>
       
       
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
             
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
             
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
+          </div>
         </div>
-      </div>
+      
     </div>
     <div class="license-icon iconfont"></div>
   </div>
@@ -490,34 +501,6 @@
             </div>
 
             
-  <article id="comments" lazyload>
-    
-  <div id="valine"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.18/Valine.min.js', function() {
-        var options = Object.assign(
-          {"appId":"augFsRtouEKVq5HCo9PfSBcR-gzGzoHsz","appKey":"f1dnnlHVg4ldu9okAViDVDnE","path":"window.location.pathname","placeholder":"吐槽","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://augfsrto.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
-          {
-            el: "#valine",
-            path: window.location.pathname
-          }
-        )
-        new Valine(options);
-        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          var imgSelector = '#valine .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
-        })
-      });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
-
-
-  </article>
-
-
           </article>
         </div>
       </div>
@@ -527,7 +510,10 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -566,12 +552,6 @@
 
 
 
-  <!-- Custom -->
-  <div class="col-lg-7 mx-auto nopadding-x-md">
-    <div class="container custom post-custom mx-auto">
-       <p style="font-family: 微软雅黑;text-align: center;font-weight: bold"> 喜欢就点个star吧 </p> 
-    </div>
-  </div>
 
 
     
@@ -613,30 +593,6 @@
     <div class="footer-inner">
   
   
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
-  
   
   
 </div>
@@ -657,7 +613,7 @@
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
@@ -681,8 +637,6 @@
 
 
 
-
-
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -692,100 +646,47 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
     var toc = jQuery('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init({
+    window.tocbot.init(Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
       linkClass       : 'tocbot-link',
       activeLinkClass : 'tocbot-active-link',
       listClass       : 'tocbot-list',
       isCollapsedClass: 'tocbot-is-collapsed',
       collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
       scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
   });
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   
@@ -807,6 +708,21 @@
       window.anchors.options.class = 'anchorjs-link-left';
     }
     window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
   });
 </script>
 
@@ -822,8 +738,6 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

@@ -7,12 +7,12 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2023/08/17/mEqM5TYLxfpnHiF.png">
+  <link rel="icon" href="https://s2.loli.net/2023/08/17/mEqM5TYLxfpnHiF.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-  <meta name="theme-color" content="rgba(242,242,242,.7)">
+  <meta name="theme-color" content="#f2f2f2">
   <meta name="author" content="Xin-FAS">
   <meta name="keywords" content="">
   
@@ -20,17 +20,18 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="spring中@ConfigurationProperties代替@Value">
 <meta property="og:url" content="http://example.com/2022/06/25/spring%E4%B8%AD-ConfigurationProperties%E4%BB%A3%E6%9B%BF-Value/index.html">
-<meta property="og:site_name" content="Xin-FAS&#39;Blog">
+<meta property="og:site_name" content="Xin-FAS&#39;blog">
 <meta property="og:description" content="需求注入application.yml配置文件中的常量 application.yml如下： 123456789101112131415161718192021aboutMe:  name: FSAN  age: 21  height: 172about-you:  name: FSAN  age: 22  height: 174  map:    k1: v1    k2: v2  list:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-25T07:16:33.000Z">
-<meta property="article:modified_time" content="2023-03-19T13:21:02.772Z">
+<meta property="article:modified_time" content="2023-08-17T15:03:03.774Z">
 <meta property="article:author" content="Xin-FAS">
 <meta property="article:tag" content="springboot">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>spring中@ConfigurationProperties代替@Value - Xin-FAS&#39;Blog</title>
+  
+  <title>spring中@ConfigurationProperties代替@Value - Xin-FAS&#39;blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -65,16 +66,24 @@
 
 
   
-<link rel="stylesheet" href="/css/myCss/index.css">
+<link rel="stylesheet" href="/css/f-index.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.14","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+  
+
 
   
 <meta name="generator" content="Hexo 6.3.0"></head>
@@ -110,7 +119,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
-                首页
+                <span>首页</span>
               </a>
             </li>
           
@@ -122,7 +131,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
-                归档
+                <span>归档</span>
               </a>
             </li>
           
@@ -134,7 +143,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
-                分类
+                <span>分类</span>
               </a>
             </li>
           
@@ -146,7 +155,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
-                标签
+                <span>标签</span>
               </a>
             </li>
           
@@ -158,7 +167,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
-                关于
+                <span>关于</span>
               </a>
             </li>
           
@@ -170,7 +179,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/links/">
                 <i class="iconfont icon-link-fill"></i>
-                友链
+                <span>友链</span>
               </a>
             </li>
           
@@ -178,15 +187,16 @@
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
-              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+              <i class="iconfont icon-search"></i>
             </a>
           </li>
           
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
-                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
           </li>
         
       </ul>
@@ -226,7 +236,6 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          <!-- compatible with older versions-->
           1.6k 字
         
       </span>
@@ -238,7 +247,6 @@
         
         
         
-          <!-- compatible with older versions-->
           14 分钟
         
       </span>
@@ -276,41 +284,42 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <!-- SEO header -->
-            <h1 style="display: none">spring中@ConfigurationProperties代替@Value</h1>
+            <h1 id="seo-header">spring中@ConfigurationProperties代替@Value</h1>
             
-            <div class="markdown-body">
-              
-              <h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>注入<code>application.yml</code>配置文件中的常量</p>
+            
+              <div class="markdown-body">
+                
+                <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>注入<code>application.yml</code>配置文件中的常量</p>
 <p><code>application.yml</code>如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">aboutMe:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">FSAN</span><br>  <span class="hljs-attr">age:</span> <span class="hljs-number">21</span><br>  <span class="hljs-attr">height:</span> <span class="hljs-number">172</span><br><br><br><span class="hljs-attr">about-you:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">FSAN</span><br>  <span class="hljs-attr">age:</span> <span class="hljs-number">22</span><br>  <span class="hljs-attr">height:</span> <span class="hljs-number">174</span><br>  <span class="hljs-attr">map:</span><br>    <span class="hljs-attr">k1:</span> <span class="hljs-string">v1</span><br>    <span class="hljs-attr">k2:</span> <span class="hljs-string">v2</span><br>  <span class="hljs-attr">list:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">FSAN</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-string">BSAN</span><br>  <span class="hljs-attr">me:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">BSAN</span><br>    <span class="hljs-attr">age:</span> <span class="hljs-number">21</span><br>    <span class="hljs-attr">height:</span> <span class="hljs-number">173</span><br><br></code></pre></td></tr></table></figure>
 
-<h2 id="使用-Value"><a href="#使用-Value" class="headerlink" title="使用@Value"></a>使用@Value</h2><h3 id="entity-gt-Me-java"><a href="#entity-gt-Me-java" class="headerlink" title="entity &gt; Me.java"></a>entity &gt; Me.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Me</span> &#123;<br>    <span class="hljs-meta">@Value(&quot;$&#123;aboutMe.name&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-meta">@Value(&quot;#&#123;$&#123;aboutMe.age&#125; - 1&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> Integer age;<br>    <span class="hljs-meta">@Value(&quot;$&#123;aboutMe.height&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String height;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="使用-Value"><a href="#使用-Value" class="headerlink" title="使用@Value"></a>使用@Value</h3><h3 id="entity-Me-java"><a href="#entity-Me-java" class="headerlink" title="entity &gt; Me.java"></a>entity &gt; Me.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Me</span> &#123;<br>    <span class="hljs-meta">@Value(&quot;$&#123;aboutMe.name&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-meta">@Value(&quot;#&#123;$&#123;aboutMe.age&#125; - 1&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> Integer age;<br>    <span class="hljs-meta">@Value(&quot;$&#123;aboutMe.height&#125;&quot;)</span><br>    <span class="hljs-keyword">private</span> String height;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>${} 匹配式</p>
 <p>#{} 运算式</p>
 </blockquote>
-<h3 id="测试类中调用测试"><a href="#测试类中调用测试" class="headerlink" title="测试类中调用测试"></a>测试类中调用测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ValueConfigurationApplicationTests</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> Me me;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">contextLoads</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(me);  <span class="hljs-comment">// Me(name=FSAN, age=20, height=172)</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="测试类中调用测试"><a href="#测试类中调用测试" class="headerlink" title="测试类中调用测试"></a>测试类中调用测试</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ValueConfigurationApplicationTests</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> Me me;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">contextLoads</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(me);  <span class="hljs-comment">// Me(name=FSAN, age=20, height=172)</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>使用注入属性之后，也只能通过注入才能显示注入好的值，使用 <code>new Me()</code> 去构造会显示为<code>null</code></p>
 </blockquote>
-<h2 id="使用-ConfigurationProperties"><a href="#使用-ConfigurationProperties" class="headerlink" title="使用@ConfigurationProperties"></a>使用@ConfigurationProperties</h2><h3 id="entity-gt-You-java"><a href="#entity-gt-You-java" class="headerlink" title="entity &gt; You.java"></a>entity &gt; You.java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@ConfigurationProperties(&quot;about-you&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">You</span> &#123;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> Integer age;<br>    <span class="hljs-keyword">private</span> Integer height;<br>    <span class="hljs-keyword">private</span> Map&lt;String, Object&gt; map;<br>    <span class="hljs-keyword">private</span> List&lt;String&gt; list;<br>    <span class="hljs-keyword">private</span> Me me;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="使用-ConfigurationProperties"><a href="#使用-ConfigurationProperties" class="headerlink" title="使用@ConfigurationProperties"></a>使用@ConfigurationProperties</h3><h4 id="entity-You-java"><a href="#entity-You-java" class="headerlink" title="entity &gt; You.java"></a>entity &gt; You.java</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-meta">@NoArgsConstructor</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-meta">@ConfigurationProperties(&quot;about-you&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">You</span> &#123;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> Integer age;<br>    <span class="hljs-keyword">private</span> Integer height;<br>    <span class="hljs-keyword">private</span> Map&lt;String, Object&gt; map;<br>    <span class="hljs-keyword">private</span> List&lt;String&gt; list;<br>    <span class="hljs-keyword">private</span> Me me;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p><code>ConfigurationProperties</code>使用这个注解的时候，注入的名字不能使用下划线和大写</p>
 </blockquote>
-<h3 id="测试类中调用测试-1"><a href="#测试类中调用测试-1" class="headerlink" title="测试类中调用测试"></a>测试类中调用测试</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ValueConfigurationApplicationTests</span> &#123;<br>    <br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> You you;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">contextLoads</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(you); <span class="hljs-comment">// You(name=FSAN, age=22, height=174, map=&#123;k1=v1, k2=v2&#125;, list=[FSAN, BSAN], me=Me(name=BSAN, age=21, height=173))</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h4 id="测试类中调用测试-1"><a href="#测试类中调用测试-1" class="headerlink" title="测试类中调用测试"></a>测试类中调用测试</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@SpringBootTest</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ValueConfigurationApplicationTests</span> &#123;<br>    <br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> You you;<br><br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">contextLoads</span><span class="hljs-params">()</span> &#123;<br>        System.out.println(you); <span class="hljs-comment">// You(name=FSAN, age=22, height=174, map=&#123;k1=v1, k2=v2&#125;, list=[FSAN, BSAN], me=Me(name=BSAN, age=21, height=173))</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1><ol>
+<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ol>
 <li>@Value 只能注入一个属性，@ConfigurationProperties 能匹配多个</li>
 <li>@Value 不支持JSR303数据校验，@ConfigurationProperties  配合@Validated 能对数据做校验</li>
 <li>@Value 不能对复杂对象的直接封装（对象等）</li>
 </ol>
 
-              
-            </div>
+                
+              </div>
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
@@ -347,7 +356,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/springboot/">#springboot</a>
+        <a href="/tags/springboot/" class="print-no-link">#springboot</a>
       
     </div>
   
@@ -360,7 +369,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>spring中@ConfigurationProperties代替@Value</div>
-      <div>http://example.com/2022/06/25/spring%E4%B8%AD-ConfigurationProperties%E4%BB%A3%E6%9B%BF-Value/</div>
+      <div>http://example.com/2022/06/25/spring中-ConfigurationProperties代替-Value/</div>
     </div>
     <div class="license-meta">
       
@@ -376,21 +385,23 @@
         </div>
       
       
-      <div class="license-meta-item">
-        <div>许可协议</div>
-        <div>
-          
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
             
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
             
-              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
-              <span class="hint--top hint--rounded" aria-label="BY - 署名">
-                <i class="iconfont icon-by"></i>
-              </span>
-              </a>
-            
-          
+          </div>
         </div>
-      </div>
+      
     </div>
     <div class="license-icon iconfont"></div>
   </div>
@@ -424,34 +435,6 @@
             </div>
 
             
-  <article id="comments" lazyload>
-    
-  <div id="valine"></div>
-  <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.18/Valine.min.js', function() {
-        var options = Object.assign(
-          {"appId":"augFsRtouEKVq5HCo9PfSBcR-gzGzoHsz","appKey":"f1dnnlHVg4ldu9okAViDVDnE","path":"window.location.pathname","placeholder":"吐槽","avatar":"mp","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":"https://augfsrto.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
-          {
-            el: "#valine",
-            path: window.location.pathname
-          }
-        )
-        new Valine(options);
-        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          var imgSelector = '#valine .vcontent img:not(.vemoji)';
-          Fluid.plugins.imageCaption(imgSelector);
-          Fluid.plugins.fancyBox(imgSelector);
-        })
-      });
-    });
-  </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
-
-
-  </article>
-
-
           </article>
         </div>
       </div>
@@ -461,7 +444,10 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -500,12 +486,6 @@
 
 
 
-  <!-- Custom -->
-  <div class="col-lg-7 mx-auto nopadding-x-md">
-    <div class="container custom post-custom mx-auto">
-       <p style="font-family: 微软雅黑;text-align: center;font-weight: bold"> 喜欢就点个star吧 </p> 
-    </div>
-  </div>
 
 
     
@@ -547,30 +527,6 @@
     <div class="footer-inner">
   
   
-    <div class="statistics">
-  
-  
-
-  
-    
-      <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量 
-        <span id="busuanzi_value_site_pv"></span>
-         次
-      </span>
-    
-    
-      <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数 
-        <span id="busuanzi_value_site_uv"></span>
-         人
-      </span>
-    
-    
-  
-</div>
-
-  
   
   
 </div>
@@ -591,7 +547,7 @@
   </script>
 
 
-<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
@@ -615,8 +571,6 @@
 
 
 
-
-
   
     <script  src="/js/img-lazyload.js" ></script>
   
@@ -626,100 +580,47 @@
 
   
 <script>
-  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
     var toc = jQuery('#toc');
     if (toc.length === 0 || !window.tocbot) { return; }
     var boardCtn = jQuery('#board-ctn');
     var boardTop = boardCtn.offset().top;
 
-    window.tocbot.init({
+    window.tocbot.init(Object.assign({
       tocSelector     : '#toc-body',
       contentSelector : '.markdown-body',
-      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
       linkClass       : 'tocbot-link',
       activeLinkClass : 'tocbot-active-link',
       listClass       : 'tocbot-list',
       isCollapsedClass: 'tocbot-is-collapsed',
       collapsibleClass: 'tocbot-is-collapsible',
-      collapseDepth   : CONFIG.toc.collapseDepth || 0,
       scrollSmooth    : true,
-      headingsOffset  : -boardTop
-    });
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
     if (toc.find('.toc-list-item').length > 0) {
       toc.css('visibility', 'visible');
     }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
   });
 </script>
 
 
-  <script>
-  (function() {
-    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
-    var enableCopy = CONFIG.copy_btn;
-    if (!enableLang && !enableCopy) {
-      return;
-    }
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
-    function getBgClass(ele) {
-      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
-    }
-
-    var copyTmpl = '';
-    copyTmpl += '<div class="code-widget">';
-    copyTmpl += 'LANG';
-    copyTmpl += '</div>';
-    jQuery('.markdown-body pre').each(function() {
-      var $pre = jQuery(this);
-      if ($pre.find('code.mermaid').length > 0) {
-        return;
-      }
-      if ($pre.find('span.line').length > 0) {
-        return;
-      }
-
-      var lang = '';
-
-      if (enableLang) {
-        lang = CONFIG.code_language.default;
-        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
-          lang = $pre[0].children[0].classList[1];
-        } else if ($pre[0].getAttribute('data-language')) {
-          lang = $pre[0].getAttribute('data-language');
-        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
-          lang = $pre[0].children[0].classList[1];
-          $pre.parent().addClass('code-wrapper');
-        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
-          $pre.wrap('<div class="code-wrapper"></div>');
-        }
-        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
-      }
-      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
-        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
-
-      if (enableCopy) {
-        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
-          var clipboard = new window.ClipboardJS('.copy-btn', {
-            target: function(trigger) {
-              var nodes = trigger.parentNode.childNodes;
-              for (var i = 0; i < nodes.length; i++) {
-                if (nodes[i].tagName === 'CODE') {
-                  return nodes[i];
-                }
-              }
-            }
-          });
-          clipboard.on('success', function(e) {
-            e.clearSelection();
-            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
-            setTimeout(function() {
-              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
-            }, 2000);
-          });
-        });
-      }
-    });
-  })();
-</script>
+  <script>Fluid.plugins.codeWidget();</script>
 
 
   
@@ -741,6 +642,21 @@
       window.anchors.options.class = 'anchorjs-link-left';
     }
     window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
   });
 </script>
 
@@ -756,8 +672,6 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 

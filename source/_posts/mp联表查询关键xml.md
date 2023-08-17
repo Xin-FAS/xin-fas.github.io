@@ -5,7 +5,7 @@ tags: [mybatis-plus]
 categories: [后端,java]
 ---
 
-# 一对一
+## 一对一
 
 ```xml
 <resultMap id="getUserMap" type="User" autoMapping="true">
@@ -17,7 +17,7 @@ categories: [后端,java]
 </resultMap>
 ```
 
-# 一对多
+## 一对多
 
 ```xml
 <resultMap id="UserDtoMap" type="UserDto" autoMapping="true">

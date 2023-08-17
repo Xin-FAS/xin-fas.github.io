@@ -4,12 +4,12 @@ date: 2022-05-17 19:48:35
 tags: [springboot]
 categories: [[后端,java]]
 ---
-# 准备工作
+## 准备工作
 
 1. 导入依赖
 2. 配置邮箱服务器
 
-## 导入依赖
+### 导入依赖
 
 ```xml
 <dependency>
@@ -19,7 +19,7 @@ categories: [[后端,java]]
 </dependency>
 ```
 
-## 配置邮箱服务器
+### 配置邮箱服务器
 
 ```yaml
 spring:
@@ -41,7 +41,7 @@ mail:
 >
 > `password`：邮箱密码，如是qq邮箱，必须要在qq邮箱中设置开启SMTP（电子邮件传输协议），并使用提供的唯一密码
 
-# 发送简易邮箱
+## 发送简易邮箱
 
 使用`SimpleMailMessage`对象即可
 
@@ -93,7 +93,7 @@ void easySend() {
 }
 ```
 
-# 发送HTML邮箱
+## 发送HTML邮箱
 
 1. 获取message
 2. 添加发送内容
@@ -144,7 +144,7 @@ void htmlSend() {
 }
 ```
 
-# 发送图片邮箱
+## 发送图片邮箱
 
 1. 建立message
 2. 添加发送对象

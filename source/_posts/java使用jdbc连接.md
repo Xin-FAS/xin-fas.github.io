@@ -5,7 +5,7 @@ tags: [java,jdbc]
 categories: [后端,java]
 ---
 
-# 准备操作
+## 准备操作
 
 下载 jar 包：`mysql-connector-java`
 
@@ -18,7 +18,7 @@ categories: [后端,java]
 3. 获取conn对象，并使用`prepareStatement`装入`sql`语句
 4. 使用pre对应方法执行
 
-# 封装连接工具类
+## 封装连接工具类
 
 ```java
 public class getConn {
@@ -45,9 +45,9 @@ public class getConn {
 }
 ```
 
-# CRUD 操作
+## CRUD 操作
 
-## 添加数据
+### 添加数据
 
 ```java
     public String addData(loginUser loginUser) {
@@ -67,7 +67,7 @@ public class getConn {
     }
 ```
 
-## 修改数据
+### 修改数据
 
 ```java
 public String editData(loginUser loginUser) {
@@ -89,7 +89,7 @@ public String editData(loginUser loginUser) {
 }
 ```
 
-## 删除操作
+### 删除操作
 
 ```java
     public String delDataById(int id) {
@@ -105,7 +105,7 @@ public String editData(loginUser loginUser) {
     }
 ```
 
-## 查询操作
+### 查询操作
 
 ```java
 public ArrayList<loginUser> getAllData() {
@@ -122,7 +122,7 @@ public ArrayList<loginUser> getAllData() {
     }
 ```
 
-# 完整DB
+## 完整DB
 
 ```java
 public class JDBCAbout {
