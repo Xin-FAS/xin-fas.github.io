@@ -2,7 +2,7 @@
 title: python使用socket控制div移动
 date: 2021-09-23 23:55:02
 tags: []
-categories: [曾经的自己,python小玩意]
+categories: [曾经,python小玩意]
 ---
 
 

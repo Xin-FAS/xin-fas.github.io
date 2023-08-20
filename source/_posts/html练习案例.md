@@ -2,7 +2,7 @@
 title: html练习案例
 date: 2021-08-19 16:07:16
 tags: []
-categories: [曾经的自己,H5案例]
+categories: [曾经,H5案例]
 ---
 
 ## 小标题案例（text-indent  文字缩进）
