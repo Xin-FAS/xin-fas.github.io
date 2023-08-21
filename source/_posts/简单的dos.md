@@ -1,5 +1,5 @@
 ---
-title: 简单的dos
+title: dos（python极简版）
 date: 2021-09-19 13:44:17
 tags: [多线程请求,python]
 categories: [后端,python]
