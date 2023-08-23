@@ -112,7 +112,7 @@ export default {
 </style>
 ```
 
-{% note warning %}
+{% note secondary %}
 
 需要注意的点：
 
@@ -121,7 +121,7 @@ export default {
 3. 当使用`垂直滚动`功能时，一定要让父元素添加高度
 4. `template`中的元素并不会默认撑满，为默认大小
 
-<% endnote %>
+{% endnote %}
 
 ## 实际使用举例
 
