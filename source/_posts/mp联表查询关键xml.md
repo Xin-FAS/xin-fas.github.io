@@ -1,8 +1,8 @@
 ---
 title: mp联表查询关键xml
 date: 2022-04-18 20:53:59
-tags: [mybatis-plus]
-categories: [后端,java]
+tags: [MyBatisPlus,MyBatis]
+categories: [后端,Java]
 ---
 
 ## 一对一

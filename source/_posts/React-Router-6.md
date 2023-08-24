@@ -1,8 +1,8 @@
 ---
 title: React Router 6
 date: 2022-07-31 15:43:50
-tags: [react]
-categories: [前端,react]
+tags: [React]
+categories: [前端,React]
 ---
 
 ## 介绍

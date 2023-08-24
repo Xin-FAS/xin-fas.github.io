@@ -1,8 +1,8 @@
 ---
 title: SpringBootController接收参数的几种方式
 date: 2021-08-19 15:44:26
-tags: [springboot]
-categories: [后端,java]
+tags: [SpringBoot]
+categories: [后端,Java]
 ---
 
 Controller接收参数的常用方法总体可以分为三类

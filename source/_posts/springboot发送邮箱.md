@@ -1,8 +1,8 @@
 ---
 title: springboot发送邮箱
 date: 2022-05-17 19:48:35
-tags: [springboot]
-categories: [[后端,java]]
+tags: [SpringBoot]
+categories: [[后端,Java]]
 ---
 ## 准备工作
 

@@ -1,8 +1,8 @@
 ---
 title: SpringSecurity
 date: 2022-03-22 23:45:33
-tags: [java,security框架]
-categories: [[后端,java]]
+tags: [SpringBoot,Spring Security]
+categories: [[后端,Java]]
 ---
 
 ## SpringSecurity介绍

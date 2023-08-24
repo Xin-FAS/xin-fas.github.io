@@ -1,8 +1,8 @@
 ---
 title: react16.x学习
 date: 2022-07-08 17:00:45
-tags: [react]
-categories: [前端,react]
+tags: [React]
+categories: [前端,React]
 ---
 ## 初识React
 

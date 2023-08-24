@@ -1,8 +1,8 @@
 ---
 title: 面向切面spring aop
 date: 2022-05-16 20:22:28
-tags: [java,aop]
-categories: [[后端,java]]
+tags: [SpringBoot,Spring AOP]
+categories: [[后端,Java]]
 ---
 ## 介绍
 AOP （Aspect Orient Programming）,直译过来就是 面向切面编程。AOP 是一种编程思想，是面向对象编程（OOP）的一种补充。面向对象编程将程序抽象成各个层次的对象，而面向切面编程是将程序抽象成各个切面。

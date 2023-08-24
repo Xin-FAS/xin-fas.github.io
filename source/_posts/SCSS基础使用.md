@@ -1,8 +1,8 @@
 ---
 title: SCSS基础使用
 date: 2022-03-24 00:48:27
-tags: [scss]
-categories: [前端]
+tags: [Scss]
+categories: [前端,前端其他]
 ---
 
 ## SCSS 介绍

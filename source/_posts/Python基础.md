@@ -1,8 +1,8 @@
 ---
 title: Python基础
 date: 2021-08-15 19:20:43
-tags: [python]
-categories: [后端,python]
+tags: [Python]
+categories: [后端,Python]
 ---
 ---
 ## Pyhon准备工作

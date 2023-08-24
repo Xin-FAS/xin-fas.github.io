@@ -1,8 +1,8 @@
 ---
 title: SpringBoot整合MyBatis
 date: 2021-08-15 13:15:26
-tags: [mybatis,java]
-categories: [后端,java]
+tags: [MyBatis,SpringBoot]
+categories: [后端,Java]
 ---
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: docker部署redis
 date: 2022-01-20 02:13:30
-tags: [docker,redis]
-categories: [服务器]
+tags: [Docker,Redis]
+categories: [后端,服务器]
 ---
 
 ### 拉取镜像

@@ -1,8 +1,8 @@
 ---
 title: 使用微PE重装系统
 date: 2023-08-14 22:24:16
-tags: []
-categories: [教程文档]
+tags: [其他]
+categories: [教程]
 ---
 
 ## WinPE介绍

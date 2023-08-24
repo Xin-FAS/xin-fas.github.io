@@ -1,8 +1,8 @@
 ---
 title: Flask框架
 date: 2021-09-13 23:07:47
-tags: [python,flask]
-categories: [后端,python]
+tags: [Python,Flask]
+categories: [后端,Python]
 ---
 
 

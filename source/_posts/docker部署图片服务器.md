@@ -1,8 +1,8 @@
 ---
 title: docker部署图片服务器
 date: 2022-01-19 20:41:59
-tags: [docker,nginx]
-categories: [服务器]
+tags: [Docker,Nginx]
+categories: [后端,服务器]
 ---
 
 ## 介绍

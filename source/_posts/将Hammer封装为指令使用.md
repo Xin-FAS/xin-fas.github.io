@@ -2,7 +2,7 @@
 title: 将Hammer封装为指令使用
 date: 2023-08-18 22:33:23
 tags: [Vue2, Vue3, JavaScript, TypeScript]
-categories: [前端]
+categories: [前端,Vue]
 ---
 
 ## Hammer.js

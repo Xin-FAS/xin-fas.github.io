@@ -1,7 +1,8 @@
 ---
 title: python简单爬虫
 date: 2022-08-16 22:29:32
-tags: [python,爬虫]
+tags: [Python]
+categories: [后端,Python]
 ---
 
 ## 通用头部参数

@@ -1,8 +1,8 @@
 ---
 title: springboot中Redis使用fastjson序列化
 date: 2022-02-19 00:10:27
-tags: [springboot,redis]
-categories: [[后端,java]]
+tags: [SpringBoot,Redis]
+categories: [[后端,Java]]
 ---
 
 

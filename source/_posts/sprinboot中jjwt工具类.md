@@ -1,8 +1,8 @@
 ---
 title: sprinboot中jjwt工具类
 date: 2022-02-19 19:32:10
-tags: [jwt,springboot]
-categories: [后端,java]
+tags: [JWT,SpringBoot]
+categories: [后端,Java]
 ---
 
 ## 导入jwt的依赖库

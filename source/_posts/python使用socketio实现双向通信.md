@@ -1,8 +1,8 @@
 ---
 title: python使用socketio实现双向通信
 date: 2021-09-22 20:37:10
-tags: [socket,python]
-categories: [后端,python]
+tags: [WebSocket,Python]
+categories: [后端,Python]
 ---
 
 ## H5 建立socket连接

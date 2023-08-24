@@ -1,8 +1,8 @@
 ---
 title: 移动端布局说明
 date: 2022-08-10 16:18:35
-tags: [html,布局方案]
-categories: [前端]
+tags: [HTML5]
+categories: [前端,前端其他]
 ---
 ## 浏览器现状
 

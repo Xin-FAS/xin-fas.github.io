@@ -1,8 +1,8 @@
 ---
 title: 轮播组件（carousel）
 date: 2023-08-17 08:58:44
-tags: [vue2.7]
-categories: [自用组件]
+tags: [Vue2, Vue3, JavaScript]
+categories: [前端,Vue]
 ---
 
 ## 需求

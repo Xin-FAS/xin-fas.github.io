@@ -1,8 +1,8 @@
 ---
 title: java函数式编程
 date: 2022-05-22 12:19:05
-tags: [java,lambda,stream]
-categories: [[后端,java]]
+tags: [SpringBoot,Lambda,Stream]
+categories: [[后端,Java]]
 ---
 ## 函数式编程思想
 ### 概念

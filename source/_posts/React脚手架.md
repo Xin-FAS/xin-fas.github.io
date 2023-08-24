@@ -1,8 +1,8 @@
 ---
 title: React脚手架
 date: 2022-07-17 16:44:32
-tags: [react]
-categories: [前端,react]
+tags: [React]
+categories: [前端,React]
 ---
 
 ## 搭建react项目

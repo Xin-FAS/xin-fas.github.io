@@ -1,8 +1,8 @@
 ---
 title: spring中@ConfigurationProperties代替@Value
 date: 2022-06-25 15:16:33
-tags: [springboot]
-categories: [[后端,java]]
+tags: [SpringBoot]
+categories: [[后端,Java]]
 ---
 
 ## 需求

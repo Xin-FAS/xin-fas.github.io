@@ -1,8 +1,8 @@
 ---
 title: Fetch请求
 date: 2022-07-22 12:44:48
-tags: [fetch,http请求]
-categories: [前端]
+tags: [JavaScript]
+categories: [前端,前端其他]
 ---
 
 ## Fetch介绍

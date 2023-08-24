@@ -1,8 +1,8 @@
 ---
 title: React16.8+扩展
 date: 2022-07-29 22:33:01
-tags: [react]
-categories: [前端,react]
+tags: [React]
+categories: [前端,React]
 ---
 
 ## setState（状态更新）

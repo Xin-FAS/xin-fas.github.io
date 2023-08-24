@@ -1,8 +1,8 @@
 ---
 title: SpringBoot使用JSR303校验
 date: 2022-6-23 13:49:14
-tags: [springboot,jsr303]
-categories: [后端,java]
+tags: [SpringBoot,JSR303]
+categories: [后端,Java]
 ---
 
 ## 关于JSR303

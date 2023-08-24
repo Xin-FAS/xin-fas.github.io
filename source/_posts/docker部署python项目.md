@@ -1,8 +1,8 @@
 ---
 title: docker部署python项目
 date: 2022-02-20 19:48:47
-tags: [nginx,python]
-categories: [服务器]
+tags: [Docker,Python]
+categories: [后端,服务器]
 ---
 
 ## 流程介绍

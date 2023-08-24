@@ -1,8 +1,8 @@
 ---
 title: js中深入了解this指向
 date: 2022-07-12 14:08:27
-tags: [js, this指向]
-categories: [前端]
+tags: [JavaScript]
+categories: [前端,前端其他]
 ---
 ## 普通函数中的this
 

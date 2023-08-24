@@ -1,8 +1,8 @@
 ---
 title: 原生ajax
 date: 2021-07-13 02:26:40
-tags: [js,ajax]
-categories: [前端]
+tags: [JavaScript,Ajax]
+categories: [前端,前端其他]
 ---
 
 ## ajax简介

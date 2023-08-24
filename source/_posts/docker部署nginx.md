@@ -1,8 +1,8 @@
 ---
 title: docker部署nginx
 date: 2022-02-08 18:37:02
-tags: [docker,nginx]
-categories: [服务器]
+tags: [Docker,Nginx]
+categories: [后端,服务器]
 ---
 
 ## 准备配置文件

@@ -1,8 +1,8 @@
 ---
 title: springboot保存图片
 date: 2022-08-19 20:38:53
-tags: [springboot,上传图片]
-categories: [后端,java]
+tags: [SpringBoot]
+categories: [后端,Java]
 ---
 
 ## 关键代码

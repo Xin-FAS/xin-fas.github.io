@@ -1,7 +1,7 @@
 ---
 title: git基础命令
 date: 2021-07-15 02:51:43
-tags: [git命令]
+tags: [Git]
 categories: [其他]
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: Less使用
 date: 2022-08-13 10:55:26
-tags: [css,less]
-categories: [前端]
+tags: [Less]
+categories: [前端,前端其他]
 ---
 
 ## 介绍

@@ -1,8 +1,8 @@
 ---
 title: windows使用nvm
 date: 2023-08-16 22:22:00
-tags: []
-categories: [教程文档]
+tags: [其他]
+categories: [教程]
 ---
 
 ## 介绍

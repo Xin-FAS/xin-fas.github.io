@@ -1,8 +1,8 @@
 ---
 title: Redis学习
 date: 2021-09-12 11:20:21
-tags: [redis]
-categories: [服务器]
+tags: [Redis]
+categories: [后端,后端其他]
 ---
 
 ## Redis 简介

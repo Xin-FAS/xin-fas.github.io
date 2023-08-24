@@ -1,8 +1,8 @@
 ---
 title: SpringBoot使用WebSocket
 date: 2022-05-19 16:02:15
-tags: [java,websocket]
-categories: [后端,java]
+tags: [SpringBoot,WebSocket]
+categories: [后端,Java]
 ---
 
 ## 导入依赖

@@ -1,8 +1,8 @@
 ---
 title: java使用jdbc连接
 date: 2022-03-18 20:35:15
-tags: [java,jdbc]
-categories: [后端,java]
+tags: [JDBC]
+categories: [后端,Java]
 ---
 
 ## 准备操作

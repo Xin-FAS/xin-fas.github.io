@@ -15,6 +15,8 @@
       
       <category>前端</category>
       
+      <category>Vue</category>
+      
     </categories>
     
     
@@ -44,6 +46,8 @@
       
       <category>前端</category>
       
+      <category>Vue</category>
+      
     </categories>
     
     
@@ -71,14 +75,16 @@
     
     <categories>
       
-      <category>其他</category>
+      <category>前端</category>
+      
+      <category>前端其他</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>工具网站</tag>
+      <tag>其他</tag>
       
     </tags>
     
@@ -97,6 +103,8 @@
     <categories>
       
       <category>前端</category>
+      
+      <category>Vue</category>
       
     </categories>
     
@@ -129,6 +137,8 @@
       
       <category>前端</category>
       
+      <category>前端其他</category>
+      
     </categories>
     
     
@@ -147,21 +157,21 @@
     <link href="/2023/08/17/%E6%90%AD%E5%BB%BA%E4%B8%80%E6%A0%B7%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
     <url>/2023/08/17/%E6%90%AD%E5%BB%BA%E4%B8%80%E6%A0%B7%E7%9A%84%E5%8D%9A%E5%AE%A2/</url>
     
-    <content type="html"><![CDATA[<h2 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h2><p>官网：<a href="https://hexo.io/zh-cn/index.html">https://hexo.io/zh-cn/index.html</a></p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cmd"># 全局安装hexo<br>npm install hexo-cli -g<br># 创建一个叫做init-blog的文件夹（名字任意）并初始化<br>hexo init init-blog<br># 进入文件夹后启动<br><span class="hljs-built_in">cd</span> init-blog<br>npm install<br>hexo s<br></code></pre></td></tr></table></figure><p>这里个人博客就搭建好了，下面使用主题</p><h2 id="使用fluid主题"><a href="#使用fluid主题" class="headerlink" title="使用fluid主题"></a>使用fluid主题</h2><h3 id="github下载源码并放入"><a href="#github下载源码并放入" class="headerlink" title="github下载源码并放入"></a>github下载源码并放入</h3><p>地址：<a href="https://github.com/fluid-dev/hexo-theme-fluid/releases">https://github.com/fluid-dev/hexo-theme-fluid/releases</a></p><p>下载完成后解压，修改名称为<code>fluid</code>放入博客目录的<code>theme</code>文件夹下，然后复制主题的<code>_config.yml</code>到博客目录，并改名为<code>_config.fluid.yml</code></p><h3 id="指定主题"><a href="#指定主题" class="headerlink" title="指定主题"></a>指定主题</h3><p>找到并修改博客目录中的<code>_config.yml</code></p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">theme:</span> <span class="hljs-string">fluid</span>  <span class="hljs-comment"># 指定主题</span><br><br><span class="hljs-attr">language:</span> <span class="hljs-string">zh-CN</span>  <span class="hljs-comment"># 指定语言，会影响主题显示的语言，按需修改</span><br></code></pre></td></tr></table></figure><blockquote><p>tips：注意是修改不是添加</p></blockquote><h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><p>以下配置都在<code>博客目录/_config.fluid.yml</code>中进行</p><h3 id="基础页面配置"><a href="#基础页面配置" class="headerlink" title="基础页面配置"></a>基础页面配置</h3><ol><li>配置关于页：<a href="https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E5%85%B3%E4%BA%8E%E9%A1%B5">https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E5%85%B3%E4%BA%8E%E9%A1%B5</a></li><li>配置友链页：<a href="https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5">https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5</a></li></ol><h3 id="评论功能"><a href="#评论功能" class="headerlink" title="评论功能"></a>评论功能</h3><p>详情见：<a href="https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E8%AF%84%E8%AE%BA">https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E8%AF%84%E8%AE%BA</a></p><p>个人使用<code>valine</code>，官网：<a href="https://valine.js.org/">https://valine.js.org/</a></p><p>使用流程：</p><ol><li>登录&#x2F;注册<a href="https://console.leancloud.app/">LeanCloud国际版</a>，创建应用</li><li>进入设置，记录下应用的appid，appkey</li><li>进入配置文件，将appid和appkey填入<code>valine</code>中，其他跟着<code>fluid</code>文档配置就可以了</li></ol><h3 id="设置页面顶部大图"><a href="#设置页面顶部大图" class="headerlink" title="设置页面顶部大图"></a>设置页面顶部大图</h3><p>详见：<a href="https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E9%A1%B5%E9%9D%A2%E9%A1%B6%E9%83%A8%E5%A4%A7%E5%9B%BE">https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E9%A1%B5%E9%9D%A2%E9%A1%B6%E9%83%A8%E5%A4%A7%E5%9B%BE</a></p><h3 id="设置副标题"><a href="#设置副标题" class="headerlink" title="设置副标题"></a>设置副标题</h3><p>搜索<code>slogan:</code>，修改<code>text</code></p><h3 id="设置导航左侧标题"><a href="#设置导航左侧标题" class="headerlink" title="设置导航左侧标题"></a>设置导航左侧标题</h3><p>搜索<code>navbar:</code>，修改<code>blog_title</code></p><h3 id="修改页脚"><a href="#修改页脚" class="headerlink" title="修改页脚"></a>修改页脚</h3><p>搜索<code>footer:</code>，修改<code>content</code></p><h3 id="添加自定义css文件路径"><a href="#添加自定义css文件路径" class="headerlink" title="添加自定义css文件路径"></a>添加自定义css文件路径</h3><p>搜索<code>custom_css:</code>，添加一个博客目录下的<code>source</code>的路径，如</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">custom_css:</span> <span class="hljs-string">css/f-index.css</span><br></code></pre></td></tr></table></figure><p>这里用的就是<code>博客目录/source/css/f-index.css</code></p><h3 id="文章默认封面"><a href="#文章默认封面" class="headerlink" title="文章默认封面"></a>文章默认封面</h3><p>配置<code>default_index_img:</code></p><h3 id="配置代码高亮"><a href="#配置代码高亮" class="headerlink" title="配置代码高亮"></a>配置代码高亮</h3><p>搜索<code>highlightjs:</code></p><h2 id="更多个性配置（个人）"><a href="#更多个性配置（个人）" class="headerlink" title="更多个性配置（个人）"></a>更多个性配置（个人）</h2><p>前置说明：</p><ul><li>博客配置：_config.yml</li><li>主题配置：_config.fluid.yml</li></ul><h3 id="修改文章末尾地址"><a href="#修改文章末尾地址" class="headerlink" title="修改文章末尾地址"></a>修改文章末尾地址</h3><p>在博客配置中找到<code>permalink:</code>，修改它的上一个，也就是<code>url</code>，如</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">url:</span> <span class="hljs-string">https://xin-fas.github.io</span><br></code></pre></td></tr></table></figure><h3 id="网站基础信息"><a href="#网站基础信息" class="headerlink" title="网站基础信息"></a>网站基础信息</h3><p>在博客配置中修改<code># Site</code>区域</p><p>详情见：<a href="https://hexo.io/zh-cn/docs/configuration.html#%E7%BD%91%E7%AB%99">https://hexo.io/zh-cn/docs/configuration.html#%E7%BD%91%E7%AB%99</a></p><h3 id="顶部菜单背景色"><a href="#顶部菜单背景色" class="headerlink" title="顶部菜单背景色"></a>顶部菜单背景色</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">navbar_bg_color:</span> <span class="hljs-comment">#f2f2f2</span><br><span class="hljs-attr">navbar_bg_color_dark:</span> <span class="hljs-comment">#323232</span><br></code></pre></td></tr></table></figure><h3 id="顶部菜单不透明度"><a href="#顶部菜单不透明度" class="headerlink" title="顶部菜单不透明度"></a>顶部菜单不透明度</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">navbar:</span><br><span class="hljs-attr">alpha:</span> <span class="hljs-number">.9</span><br></code></pre></td></tr></table></figure><h3 id="亮色主题下拉导航栏文字颜色"><a href="#亮色主题下拉导航栏文字颜色" class="headerlink" title="亮色主题下拉导航栏文字颜色"></a>亮色主题下拉导航栏文字颜色</h3><p>在之前配置过的自定义css文件中，写入：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 配置亮色模式下滑时导航栏文字颜色 */</span><br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;light&quot;</span>]</span> <span class="hljs-selector-class">.top-nav-collapse</span> <span class="hljs-selector-pseudo">:is</span>(<span class="hljs-selector-class">.nav-link</span>, <span class="hljs-selector-tag">strong</span>) &#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#222</span> <span class="hljs-meta">!important</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="代码块使用mac边框"><a href="#代码块使用mac边框" class="headerlink" title="代码块使用mac边框"></a>代码块使用mac边框</h3><p>自定义css文件中：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* mac代码样式 */</span><br><span class="hljs-selector-tag">figure</span><span class="hljs-selector-class">.highlight</span> &#123;<br>    <span class="hljs-attribute">transition</span>: background .<span class="hljs-number">2s</span> ease-in-out;<br>    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">var</span>(--highlight-bg-color);<br>    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;<br>    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">4px</span> <span class="hljs-number">7px</span> <span class="hljs-number">0</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, .<span class="hljs-number">4</span>);<br>    <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">30px</span><br>&#125;<br><span class="hljs-selector-tag">figure</span><span class="hljs-selector-class">.highlight</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27; &#x27;</span>;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">12px</span>;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">9px</span>;<br>    <span class="hljs-attribute">background</span>: <span class="hljs-number">#fc625d</span>;<br>    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">20px</span> <span class="hljs-number">0</span> <span class="hljs-number">#fdbc40</span>, <span class="hljs-number">40px</span> <span class="hljs-number">0</span> <span class="hljs-number">#35cd4b</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">12px</span>;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">12px</span>;<br>&#125;<br><span class="hljs-selector-tag">figure</span><span class="hljs-selector-class">.highlight</span> &gt; <span class="hljs-selector-tag">table</span> &#123;<br>    <span class="hljs-attribute">border-top-style</span>: solid;<br>    <span class="hljs-attribute">border-top-width</span>: <span class="hljs-number">1px</span>;<br>    <span class="hljs-attribute">transition</span>: border-top-color .<span class="hljs-number">3s</span>;<br>&#125;<br><span class="hljs-comment">/* 亮色 */</span><br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;light&quot;</span>]</span> <span class="hljs-selector-tag">figure</span><span class="hljs-selector-class">.highlight</span> &gt; <span class="hljs-selector-tag">table</span> &#123;<br>    <span class="hljs-attribute">border-top-color</span>: <span class="hljs-number">#eee</span>;<br>&#125;<br><span class="hljs-comment">/* 暗色 */</span><br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;dark&quot;</span>]</span> <span class="hljs-selector-tag">figure</span><span class="hljs-selector-class">.highlight</span> &gt; <span class="hljs-selector-tag">table</span> &#123;<br>    <span class="hljs-attribute">border-top-color</span>: <span class="hljs-number">#444</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="超链接背景色"><a href="#超链接背景色" class="headerlink" title="超链接背景色"></a>超链接背景色</h3><p>主题配置文件中：</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">post_link_color:</span> <span class="hljs-string">&quot;#42b983&quot;</span><br><span class="hljs-attr">post_link_color_dark:</span> <span class="hljs-string">&quot;#3eaf7c&quot;</span><br><br><span class="hljs-attr">link_hover_color:</span> <span class="hljs-string">&quot;#42b983d9&quot;</span><br><span class="hljs-attr">link_hover_color_dark:</span> <span class="hljs-string">&quot;#3eaf7cd9&quot;</span><br></code></pre></td></tr></table></figure><h3 id="文字块的颜色配置"><a href="#文字块的颜色配置" class="headerlink" title="文字块的颜色配置"></a>文字块的颜色配置</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* `` 的样式配置 */</span><br><span class="hljs-comment">/* 亮色 */</span><br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;light&quot;</span>]</span> &#123;<br>    <span class="hljs-attr">--inlinecode-bg-color</span>: <span class="hljs-number">#fef0f0</span><br>&#125;<br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;light&quot;</span>]</span> <span class="hljs-selector-class">.markdown-body</span> <span class="hljs-selector-tag">p</span> <span class="hljs-selector-tag">code</span>, <span class="hljs-selector-tag">li</span> <span class="hljs-selector-tag">code</span>&#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#c7254e</span>;<br>&#125;<br><span class="hljs-comment">/* 暗色 */</span><br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;dark&quot;</span>]</span> &#123;<br>    <span class="hljs-attr">--inlinecode-bg-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">254</span>, <span class="hljs-number">240</span>, <span class="hljs-number">240</span>, <span class="hljs-number">0.1</span>);<br>&#125;<br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;dark&quot;</span>]</span> <span class="hljs-selector-class">.markdown-body</span> <span class="hljs-selector-tag">p</span> <span class="hljs-selector-tag">code</span>, <span class="hljs-selector-tag">li</span> <span class="hljs-selector-tag">code</span>&#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#f3b37f</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="修改编译时控制台输出字符"><a href="#修改编译时控制台输出字符" class="headerlink" title="修改编译时控制台输出字符"></a>修改编译时控制台输出字符</h3><p>在线制作字符码：<a href="http://patorjk.com/software/taag">http://patorjk.com/software/taag</a></p><p>全局搜索<code>hexo.log.info</code>，修改输出内容，如：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">    hexo.<span class="hljs-property">log</span>.<span class="hljs-title function_">info</span>(<span class="hljs-string">`</span><br><span class="hljs-string">   _  __   _               ____   ___    ____</span><br><span class="hljs-string">  | |/_/  (_)  ___  ____  / __/  / _ |  / __/</span><br><span class="hljs-string"> _&gt;  &lt;   / /  / _ \\/___/ / _/   / __ | _\\ \\</span><br><span class="hljs-string">/_/|_|  /_/  /_//_/     /_/    /_/ |_|/___/</span><br><span class="hljs-string">    `</span>);<br>  &#125;<br></code></pre></td></tr></table></figure><h3 id="修改运行时控制台输出"><a href="#修改运行时控制台输出" class="headerlink" title="修改运行时控制台输出"></a>修改运行时控制台输出</h3><p>全局搜索<code>billboard:</code>，修改<code>console.log</code></p><h3 id="修改浏览器图标"><a href="#修改浏览器图标" class="headerlink" title="修改浏览器图标"></a>修改浏览器图标</h3><p>主题配置中修改<code>favicon:</code>和<code>apple_touch_icon:</code></p><h3 id="修改首页和归档中一页显示数"><a href="#修改首页和归档中一页显示数" class="headerlink" title="修改首页和归档中一页显示数"></a>修改首页和归档中一页显示数</h3><p>博客配置中搜索<code>per_page:</code>，前面为<code>index</code>就是首页展示数，建议首页显示15，归档页面显示20</p><h3 id="显示更新日期"><a href="#显示更新日期" class="headerlink" title="显示更新日期"></a>显示更新日期</h3><ol><li>文章头部显示，主题配置中搜索<code>updated:</code>，开启<code>enable</code>，并将下方标签类型改为<code>success</code></li><li>文章底部显示，主题配置中搜索<code>update_date:</code>，开启<code>enable</code></li></ol><h3 id="关闭图片显示标题"><a href="#关闭图片显示标题" class="headerlink" title="关闭图片显示标题"></a>关闭图片显示标题</h3><p>主题配置中搜索<code>image_caption:</code>，关闭</p><h3 id="开启三级标题以上不折叠"><a href="#开启三级标题以上不折叠" class="headerlink" title="开启三级标题以上不折叠"></a>开启三级标题以上不折叠</h3><p>主题配置中搜索<code>collapseDepth:</code>，修改为3</p><h3 id="关闭阅读时长"><a href="#关闭阅读时长" class="headerlink" title="关闭阅读时长"></a>关闭阅读时长</h3><p>主题配置中搜索<code>min2read:</code></p><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>至此，你就已经建成了一个和我一模一样的博客系统，快去更新吧，添加友链可以发邮件到<a href="mailto:&#120;&#105;&#x6e;&#x2e;&#x66;&#x61;&#x73;&#64;&#x6f;&#117;&#x74;&#x6c;&#111;&#111;&#107;&#46;&#99;&#111;&#109;">&#120;&#105;&#x6e;&#x2e;&#x66;&#x61;&#x73;&#64;&#x6f;&#117;&#x74;&#x6c;&#111;&#111;&#107;&#46;&#99;&#111;&#109;</a>中，内容请包含一个昵称，博客地址，简介和头像，后续博客有更多自定义修改会同步到这篇文章中</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="初始化Hexo"><a href="#初始化Hexo" class="headerlink" title="初始化Hexo"></a>初始化Hexo</h2><p>官网：<a href="https://hexo.io/zh-cn/index.html">https://hexo.io/zh-cn/index.html</a></p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cmd"># 全局安装hexo<br>npm install hexo-cli -g<br># 创建一个叫做init-blog的文件夹（名字任意）并初始化<br>hexo init init-blog<br># 进入文件夹后启动<br><span class="hljs-built_in">cd</span> init-blog<br>npm install<br>hexo s<br></code></pre></td></tr></table></figure><p>这里个人博客就搭建好了，下面使用主题</p><h2 id="使用fluid主题"><a href="#使用fluid主题" class="headerlink" title="使用fluid主题"></a>使用fluid主题</h2><h3 id="github下载源码并放入"><a href="#github下载源码并放入" class="headerlink" title="github下载源码并放入"></a>github下载源码并放入</h3><p>地址：<a href="https://github.com/fluid-dev/hexo-theme-fluid/releases">https://github.com/fluid-dev/hexo-theme-fluid/releases</a></p><p>下载完成后解压，修改名称为<code>fluid</code>放入博客目录的<code>theme</code>文件夹下，然后复制主题的<code>_config.yml</code>到博客目录，并改名为<code>_config.fluid.yml</code></p><h3 id="指定主题"><a href="#指定主题" class="headerlink" title="指定主题"></a>指定主题</h3><p>找到并修改博客目录中的<code>_config.yml</code></p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">theme:</span> <span class="hljs-string">fluid</span>  <span class="hljs-comment"># 指定主题</span><br><br><span class="hljs-attr">language:</span> <span class="hljs-string">zh-CN</span>  <span class="hljs-comment"># 指定语言，会影响主题显示的语言，按需修改</span><br></code></pre></td></tr></table></figure><blockquote><p>tips：注意是修改不是添加</p></blockquote><h2 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h2><p>以下配置都在<code>博客目录/_config.fluid.yml</code>中进行</p><h3 id="基础页面配置"><a href="#基础页面配置" class="headerlink" title="基础页面配置"></a>基础页面配置</h3><ol><li>配置关于页：<a href="https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E5%85%B3%E4%BA%8E%E9%A1%B5">https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E5%85%B3%E4%BA%8E%E9%A1%B5</a></li><li>配置友链页：<a href="https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5">https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5%E9%A1%B5</a></li></ol><h3 id="评论功能"><a href="#评论功能" class="headerlink" title="评论功能"></a>评论功能</h3><p>详情见：<a href="https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E8%AF%84%E8%AE%BA">https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E8%AF%84%E8%AE%BA</a></p><p>个人使用<code>valine</code>，官网：<a href="https://valine.js.org/">https://valine.js.org/</a></p><p>使用流程：</p><ol><li>登录&#x2F;注册<a href="https://console.leancloud.app/">LeanCloud国际版</a>，创建应用</li><li>进入设置，记录下应用的appid，appkey</li><li>进入配置文件，将appid和appkey填入<code>valine</code>中，其他跟着<code>fluid</code>文档配置就可以了</li></ol><h3 id="设置页面顶部大图"><a href="#设置页面顶部大图" class="headerlink" title="设置页面顶部大图"></a>设置页面顶部大图</h3><p>详见：<a href="https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E9%A1%B5%E9%9D%A2%E9%A1%B6%E9%83%A8%E5%A4%A7%E5%9B%BE">https://fluid-dev.github.io/hexo-fluid-docs/guide/#%E9%A1%B5%E9%9D%A2%E9%A1%B6%E9%83%A8%E5%A4%A7%E5%9B%BE</a></p><h3 id="设置副标题"><a href="#设置副标题" class="headerlink" title="设置副标题"></a>设置副标题</h3><p>搜索<code>slogan:</code>，修改<code>text</code></p><h3 id="设置导航左侧标题"><a href="#设置导航左侧标题" class="headerlink" title="设置导航左侧标题"></a>设置导航左侧标题</h3><p>搜索<code>navbar:</code>，修改<code>blog_title</code></p><h3 id="修改页脚"><a href="#修改页脚" class="headerlink" title="修改页脚"></a>修改页脚</h3><p>搜索<code>footer:</code>，修改<code>content</code></p><h3 id="添加自定义css文件路径"><a href="#添加自定义css文件路径" class="headerlink" title="添加自定义css文件路径"></a>添加自定义css文件路径</h3><p>搜索<code>custom_css:</code>，添加一个博客目录下的<code>source</code>的路径，如</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">custom_css:</span> <span class="hljs-string">css/f-index.css</span><br></code></pre></td></tr></table></figure><p>这里用的就是<code>博客目录/source/css/f-index.css</code></p><h3 id="文章默认封面"><a href="#文章默认封面" class="headerlink" title="文章默认封面"></a>文章默认封面</h3><p>配置<code>default_index_img:</code></p><h3 id="配置代码高亮"><a href="#配置代码高亮" class="headerlink" title="配置代码高亮"></a>配置代码高亮</h3><p>搜索<code>highlightjs:</code></p><h2 id="更多个性配置（个人）"><a href="#更多个性配置（个人）" class="headerlink" title="更多个性配置（个人）"></a>更多个性配置（个人）</h2><p>前置说明：</p><ul><li>博客配置：_config.yml</li><li>主题配置：_config.fluid.yml</li></ul><h3 id="修改文章末尾地址"><a href="#修改文章末尾地址" class="headerlink" title="修改文章末尾地址"></a>修改文章末尾地址</h3><p>在博客配置中找到<code>permalink:</code>，修改它的上一个，也就是<code>url</code>，如</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">url:</span> <span class="hljs-string">https://xin-fas.github.io</span><br></code></pre></td></tr></table></figure><h3 id="网站基础信息"><a href="#网站基础信息" class="headerlink" title="网站基础信息"></a>网站基础信息</h3><p>在博客配置中修改<code># Site</code>区域</p><p>详情见：<a href="https://hexo.io/zh-cn/docs/configuration.html#%E7%BD%91%E7%AB%99">https://hexo.io/zh-cn/docs/configuration.html#%E7%BD%91%E7%AB%99</a></p><h3 id="顶部菜单背景色"><a href="#顶部菜单背景色" class="headerlink" title="顶部菜单背景色"></a>顶部菜单背景色</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">navbar_bg_color:</span> <span class="hljs-comment">#f2f2f2</span><br><span class="hljs-attr">navbar_bg_color_dark:</span> <span class="hljs-comment">#323232</span><br></code></pre></td></tr></table></figure><h3 id="顶部菜单不透明度"><a href="#顶部菜单不透明度" class="headerlink" title="顶部菜单不透明度"></a>顶部菜单不透明度</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">navbar:</span><br><span class="hljs-attr">alpha:</span> <span class="hljs-number">.9</span><br></code></pre></td></tr></table></figure><h3 id="亮色主题下拉导航栏文字颜色"><a href="#亮色主题下拉导航栏文字颜色" class="headerlink" title="亮色主题下拉导航栏文字颜色"></a>亮色主题下拉导航栏文字颜色</h3><p>在之前配置过的自定义css文件中，写入：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 配置亮色模式下滑时导航栏文字颜色 */</span><br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;light&quot;</span>]</span> <span class="hljs-selector-class">.top-nav-collapse</span> <span class="hljs-selector-pseudo">:is</span>(<span class="hljs-selector-class">.nav-link</span>, <span class="hljs-selector-tag">strong</span>) &#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#222</span> <span class="hljs-meta">!important</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="代码块使用mac边框"><a href="#代码块使用mac边框" class="headerlink" title="代码块使用mac边框"></a>代码块使用mac边框</h3><p>自定义css文件中：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* mac代码样式 */</span><br><span class="hljs-selector-tag">figure</span><span class="hljs-selector-class">.highlight</span> &#123;<br>    <span class="hljs-attribute">transition</span>: background .<span class="hljs-number">2s</span> ease-in-out;<br>    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">var</span>(--highlight-bg-color);<br>    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;<br>    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">4px</span> <span class="hljs-number">7px</span> <span class="hljs-number">0</span> <span class="hljs-built_in">rgba</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, .<span class="hljs-number">4</span>);<br>    <span class="hljs-attribute">padding-top</span>: <span class="hljs-number">30px</span><br>&#125;<br><span class="hljs-selector-tag">figure</span><span class="hljs-selector-class">.highlight</span><span class="hljs-selector-pseudo">::before</span> &#123;<br>    <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27; &#x27;</span>;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">12px</span>;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">9px</span>;<br>    <span class="hljs-attribute">background</span>: <span class="hljs-number">#fc625d</span>;<br>    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">20px</span> <span class="hljs-number">0</span> <span class="hljs-number">#fdbc40</span>, <span class="hljs-number">40px</span> <span class="hljs-number">0</span> <span class="hljs-number">#35cd4b</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">12px</span>;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">12px</span>;<br>&#125;<br><span class="hljs-selector-tag">figure</span><span class="hljs-selector-class">.highlight</span> &gt; <span class="hljs-selector-tag">table</span> &#123;<br>    <span class="hljs-attribute">border-top-style</span>: solid;<br>    <span class="hljs-attribute">border-top-width</span>: <span class="hljs-number">1px</span>;<br>    <span class="hljs-attribute">transition</span>: border-top-color .<span class="hljs-number">3s</span>;<br>&#125;<br><span class="hljs-comment">/* 亮色 */</span><br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;light&quot;</span>]</span> <span class="hljs-selector-tag">figure</span><span class="hljs-selector-class">.highlight</span> &gt; <span class="hljs-selector-tag">table</span> &#123;<br>    <span class="hljs-attribute">border-top-color</span>: <span class="hljs-number">#eee</span>;<br>&#125;<br><span class="hljs-comment">/* 暗色 */</span><br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;dark&quot;</span>]</span> <span class="hljs-selector-tag">figure</span><span class="hljs-selector-class">.highlight</span> &gt; <span class="hljs-selector-tag">table</span> &#123;<br>    <span class="hljs-attribute">border-top-color</span>: <span class="hljs-number">#444</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="超链接背景色"><a href="#超链接背景色" class="headerlink" title="超链接背景色"></a>超链接背景色</h3><p>主题配置文件中：</p><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">post_link_color:</span> <span class="hljs-string">&quot;#42b983&quot;</span><br><span class="hljs-attr">post_link_color_dark:</span> <span class="hljs-string">&quot;#3eaf7c&quot;</span><br><br><span class="hljs-attr">link_hover_color:</span> <span class="hljs-string">&quot;#42b983d9&quot;</span><br><span class="hljs-attr">link_hover_color_dark:</span> <span class="hljs-string">&quot;#3eaf7cd9&quot;</span><br></code></pre></td></tr></table></figure><h3 id="文字块的颜色配置"><a href="#文字块的颜色配置" class="headerlink" title="文字块的颜色配置"></a>文字块的颜色配置</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* `` 的样式配置 */</span><br><span class="hljs-comment">/* 亮色 */</span><br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;light&quot;</span>]</span> &#123;<br>    <span class="hljs-attr">--inlinecode-bg-color</span>: <span class="hljs-number">#fef0f0</span><br>&#125;<br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;light&quot;</span>]</span> <span class="hljs-selector-class">.markdown-body</span> <span class="hljs-selector-tag">p</span> <span class="hljs-selector-tag">code</span>, <span class="hljs-selector-tag">li</span> <span class="hljs-selector-tag">code</span>&#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#c7254e</span>;<br>&#125;<br><span class="hljs-comment">/* 暗色 */</span><br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;dark&quot;</span>]</span> &#123;<br>    <span class="hljs-attr">--inlinecode-bg-color</span>: <span class="hljs-built_in">rgba</span>(<span class="hljs-number">254</span>, <span class="hljs-number">240</span>, <span class="hljs-number">240</span>, <span class="hljs-number">0.1</span>);<br>&#125;<br><span class="hljs-selector-tag">html</span><span class="hljs-selector-attr">[data-user-color-scheme=<span class="hljs-string">&quot;dark&quot;</span>]</span> <span class="hljs-selector-class">.markdown-body</span> <span class="hljs-selector-tag">p</span> <span class="hljs-selector-tag">code</span>, <span class="hljs-selector-tag">li</span> <span class="hljs-selector-tag">code</span>&#123;<br>    <span class="hljs-attribute">color</span>: <span class="hljs-number">#f3b37f</span>;<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="修改编译时控制台输出字符"><a href="#修改编译时控制台输出字符" class="headerlink" title="修改编译时控制台输出字符"></a>修改编译时控制台输出字符</h3><p>在线制作字符码：<a href="http://patorjk.com/software/taag">http://patorjk.com/software/taag</a></p><p>全局搜索<code>hexo.log.info</code>，修改输出内容，如：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">    hexo.<span class="hljs-property">log</span>.<span class="hljs-title function_">info</span>(<span class="hljs-string">`</span><br><span class="hljs-string">   _  __   _               ____   ___    ____</span><br><span class="hljs-string">  | |/_/  (_)  ___  ____  / __/  / _ |  / __/</span><br><span class="hljs-string"> _&gt;  &lt;   / /  / _ \\/___/ / _/   / __ | _\\ \\</span><br><span class="hljs-string">/_/|_|  /_/  /_//_/     /_/    /_/ |_|/___/</span><br><span class="hljs-string">    `</span>);<br>  &#125;<br></code></pre></td></tr></table></figure><h3 id="修改运行时控制台输出"><a href="#修改运行时控制台输出" class="headerlink" title="修改运行时控制台输出"></a>修改运行时控制台输出</h3><p>全局搜索<code>billboard:</code>，修改<code>console.log</code></p><h3 id="修改浏览器图标"><a href="#修改浏览器图标" class="headerlink" title="修改浏览器图标"></a>修改浏览器图标</h3><p>主题配置中修改<code>favicon:</code>和<code>apple_touch_icon:</code></p><h3 id="修改首页和归档中一页显示数"><a href="#修改首页和归档中一页显示数" class="headerlink" title="修改首页和归档中一页显示数"></a>修改首页和归档中一页显示数</h3><p>博客配置中搜索<code>per_page:</code>，前面为<code>index</code>就是首页展示数，建议首页显示15，归档页面显示20</p><h3 id="显示更新日期"><a href="#显示更新日期" class="headerlink" title="显示更新日期"></a>显示更新日期</h3><ol><li>文章头部显示，主题配置中搜索<code>updated:</code>，开启<code>enable</code>，并将下方标签类型改为<code>success</code></li><li>文章底部显示，主题配置中搜索<code>update_date:</code>，开启<code>enable</code></li></ol><h3 id="关闭图片显示标题"><a href="#关闭图片显示标题" class="headerlink" title="关闭图片显示标题"></a>关闭图片显示标题</h3><p>主题配置中搜索<code>image_caption:</code>，关闭</p><h3 id="开启三级标题以上不折叠"><a href="#开启三级标题以上不折叠" class="headerlink" title="开启三级标题以上不折叠"></a>开启三级标题以上不折叠</h3><p>主题配置中搜索<code>collapseDepth:</code>，修改为3</p><h3 id="关闭阅读时长"><a href="#关闭阅读时长" class="headerlink" title="关闭阅读时长"></a>关闭阅读时长</h3><p>主题配置中搜索<code>min2read:</code></p><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>至此，你就已经建成了一个和我一模一样的博客系统，快去更新吧，添加友链可以发邮件到<a href="mailto:&#120;&#105;&#x6e;&#46;&#x66;&#97;&#x73;&#64;&#x6f;&#x75;&#x74;&#x6c;&#111;&#111;&#x6b;&#46;&#x63;&#111;&#109;">&#120;&#105;&#x6e;&#46;&#x66;&#97;&#x73;&#64;&#x6f;&#x75;&#x74;&#x6c;&#111;&#111;&#x6b;&#46;&#x63;&#111;&#109;</a>中，内容请包含一个昵称，博客地址，简介和头像，后续博客有更多自定义修改会同步到这篇文章中</p>]]></content>
     
     
     <categories>
       
-      <category>教程文档</category>
+      <category>教程</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>hexo</tag>
+      <tag>Hexo</tag>
       
-      <tag>fluid</tag>
+      <tag>Fluid</tag>
       
     </tags>
     
@@ -179,14 +189,20 @@
     
     <categories>
       
-      <category>自用组件</category>
+      <category>前端</category>
+      
+      <category>Vue</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>vue2.7</tag>
+      <tag>Vue2</tag>
+      
+      <tag>Vue3</tag>
+      
+      <tag>JavaScript</tag>
       
     </tags>
     
@@ -204,10 +220,16 @@
     
     <categories>
       
-      <category>教程文档</category>
+      <category>教程</category>
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>其他</tag>
+      
+    </tags>
     
   </entry>
   
@@ -223,10 +245,16 @@
     
     <categories>
       
-      <category>教程文档</category>
+      <category>教程</category>
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>其他</tag>
+      
+    </tags>
     
   </entry>
   
@@ -244,8 +272,16 @@
       
       <category>前端</category>
       
+      <category>其他</category>
+      
     </categories>
     
+    
+    <tags>
+      
+      <tag>JavaScript</tag>
+      
+    </tags>
     
   </entry>
   
@@ -261,10 +297,16 @@
     
     <categories>
       
-      <category>教程文档</category>
+      <category>教程</category>
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>其他</tag>
+      
+    </tags>
     
   </entry>
   
@@ -282,16 +324,14 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>springboot</tag>
-      
-      <tag>上传图片</tag>
+      <tag>SpringBoot</tag>
       
     </tags>
     
@@ -307,12 +347,18 @@
     <content type="html"><![CDATA[<h2 id="通用头部参数"><a href="#通用头部参数" class="headerlink" title="通用头部参数"></a>通用头部参数</h2><table><thead><tr><th>名称</th><th>说明</th></tr></thead><tbody><tr><td>Cookie</td><td>用户信息，在headers部分，包含登录校验、签名认证才可能需要cookie</td></tr><tr><td>User-Agent</td><td>UA是最基本的headers之一，是浏览器类型，其中包含windows系统信息，html版本和浏览器版本和内核信息</td></tr><tr><td>Referer</td><td>Referer也是最基本的headers之一——防盗链接，它用来验证你的来源，需要告诉请求地址，是从哪里来的</td></tr><tr><td>Origin</td><td>域名，带http协议的是域名</td></tr><tr><td>Host</td><td>主机名称</td></tr><tr><td>Content-Type</td><td>请求内容的类型</td></tr><tr><td>Content-Length</td><td>内容的长度</td></tr><tr><td>Connection</td><td>链接方式，TCP的长 短链接</td></tr><tr><td>Accept-Language</td><td>语言</td></tr><tr><td>Accept-Encoding</td><td>编码</td></tr><tr><td>Accept</td><td>获取数据的类型</td></tr></tbody></table><blockquote><p>问题一：如何知道cookie有无加密？</p><p>通过set-cookie属性判断</p></blockquote><h2 id="私有头部参数"><a href="#私有头部参数" class="headerlink" title="私有头部参数"></a>私有头部参数</h2><p>对于私有的头部参数，可能是时间戳或加密的信息，需要在发起程序中搜索对应名称寻找是如何生成的</p><table><thead><tr><th>名称</th><th>说明</th></tr></thead><tbody><tr><td>sign</td><td>签名，需要解密</td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></tbody></table><h2 id="断点找请求信息"><a href="#断点找请求信息" class="headerlink" title="断点找请求信息"></a>断点找请求信息</h2><ol><li>复制请求地址（不含网站名，如 <code>/front/search</code>）添加到源代码中的xhr断点中，刷新请求</li><li>点击下一步或快捷键F9，调试到出现需要的路径（<code>cacheURL</code>）</li><li>找到请求头（<code>request</code>），里面所需的字段名就是前端校验的字段名，都需要模拟填充</li><li>再看到请求配置项（<code>options</code>）【这步也可以直接在控制台输入<code>options</code>查看】，复制data替换</li><li>调试完成后删除所有断点</li></ol><h2 id="关于接口数据搜索为空"><a href="#关于接口数据搜索为空" class="headerlink" title="关于接口数据搜索为空"></a>关于接口数据搜索为空</h2><h3 id="判断原因"><a href="#判断原因" class="headerlink" title="判断原因"></a>判断原因</h3><p>先确定是静态数据还是动态数据，静态数据和动态数据搜索失败有以下问题：</p><p><strong>静态数据：</strong></p><ol><li>字体加密问题</li></ol><p><strong>动态数据：</strong></p><ol><li>Unicode编码中文问题</li><li>数据加密问题</li></ol><p><strong>判断是否为静态数据：</strong></p><p>直接去源代码的静态代码中查找所要的数据，没有就说明数据是动态加载的</p><p><strong>判断是否为编码问题：</strong></p><p>使用数字去搜索，没有找到数据地址，说明数据经过加密</p><h2 id="跟栈调试"><a href="#跟栈调试" class="headerlink" title="跟栈调试"></a>跟栈调试</h2><p>跟栈调试主要是为了寻找js的加密函数</p><p><strong>具体步骤：</strong></p><p>找到请求资源中的发起程序，找到js源代码，对应行打上断点（点击行号），然后刷新浏览器或点击相同获取资源的地址，在渲染出静态页面后，开始通过跳过函数的形式找数据（就是之前看到很长的字符串），看到数据后，放慢速度找解析后的明文数据（找到后可以直接在控制台输入属性名获取值），然后进入源码解析部分打上断点（这里可取消之前的断点），详细查看找到解析函数的本地地址的源代码复制到自己的js中，再次刷新，选择单步调试（F9），查看传入函数的参数信息，配合上下文可找到其中的变量参数</p><h2 id="寻找加密函数"><a href="#寻找加密函数" class="headerlink" title="寻找加密函数"></a>寻找加密函数</h2><p>加密后的数据data不是为一个正常对象，而是一大串的字符串</p><blockquote><p>要知道的原理：</p><p>加密数据要正常在浏览器上显示，肯定在浏览器的js中有解密的操作</p><p>加密的数据无法通过xhr断点调试来找到数据</p></blockquote><h3 id="方式一（较为麻烦）："><a href="#方式一（较为麻烦）：" class="headerlink" title="方式一（较为麻烦）："></a>方式一（较为麻烦）：</h3><p>找到最大的数据源，利用发起程序从源代码中一步步找（具体看上面跟栈调试）</p><h3 id="方式二（简单）："><a href="#方式二（简单）：" class="headerlink" title="方式二（简单）："></a>方式二（简单）：</h3><p>利用异步请求为JSON交互的原理，先寻找调用过数据接口的js，然后寻找到<code>JSON.parse</code>后面的数据函数即是加密函数，断点后可进入查看</p><h2 id="解密操作"><a href="#解密操作" class="headerlink" title="解密操作"></a>解密操作</h2><p>找到加密函数后，利用变量参数声明一个环境变量，在加密函数中分析加密算法，如<code>AES</code></p><blockquote><p>跟栈调试过程中可能会卡住，将调试窗口弹出可缓解</p><p>声明环境变量如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">window = <span class="hljs-keyword">global</span><br>window.c = <span class="hljs-string">&quot;3sd&amp;d2&quot;</span><br>window.r = <span class="hljs-string">&quot;4h@$udD2s&quot;</span><br>window.a = <span class="hljs-string">&quot;*&quot;</span><br></code></pre></td></tr></table></figure></blockquote><p>此时的js如下：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-variable language_">window</span> = <span class="hljs-variable language_">global</span><br><span class="hljs-variable language_">window</span>.<span class="hljs-property">c</span> = <span class="hljs-string">&quot;3sd&amp;d2&quot;</span><br><span class="hljs-variable language_">window</span>.<span class="hljs-property">r</span> = <span class="hljs-string">&quot;4h@$udD2s&quot;</span><br><span class="hljs-variable language_">window</span>.<span class="hljs-property">a</span> = <span class="hljs-string">&quot;*&quot;</span><br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">decode</span> = (<span class="hljs-params">n, e</span>) =&gt; &#123;<br>    e = e || <span class="hljs-string">&quot;&quot;</span>.<span class="hljs-title function_">concat</span>(c).<span class="hljs-title function_">concat</span>(r).<span class="hljs-title function_">concat</span>(a);<br>    <span class="hljs-keyword">var</span> t = o.<span class="hljs-property">a</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(e)<br>        , i = o.<span class="hljs-property">a</span>.<span class="hljs-property">AES</span>.<span class="hljs-title function_">decrypt</span>(n, t, &#123;<br>        <span class="hljs-attr">mode</span>: o.<span class="hljs-property">a</span>.<span class="hljs-property">mode</span>.<span class="hljs-property">ECB</span>,<br>        <span class="hljs-attr">padding</span>: o.<span class="hljs-property">a</span>.<span class="hljs-property">pad</span>.<span class="hljs-property">Pkcs7</span><br>    &#125;);<br>    <span class="hljs-keyword">return</span> o.<span class="hljs-property">a</span>.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">stringify</span>(i).<span class="hljs-title function_">toString</span>()<br>&#125;<br></code></pre></td></tr></table></figure><blockquote><p>decrypt 解密的意思，所以这里看到是AES加密算法</p><p>安装crypto-js（前端加密常用）包用与AES解密</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i crypto-js<br></code></pre></td></tr></table></figure></blockquote><p>导入crypto-js这个包</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> cryptoJs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;crypto-js&#x27;</span>)<br></code></pre></td></tr></table></figure><p>分析加密函数可得，<code>o.a</code> 即是AES解密库<code>cryptoJs</code>，所以替换即可，最后将获取的加密数据放入即可</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> key = <span class="hljs-string">&quot;GX/x7w1X1XbC/GMS/...&quot;</span><br><br><span class="hljs-keyword">const</span> cryptoJs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;crypto-js&#x27;</span>)<br><br><span class="hljs-variable language_">window</span> = <span class="hljs-variable language_">global</span><br><span class="hljs-variable language_">window</span>.<span class="hljs-property">c</span> = <span class="hljs-string">&quot;3sd&amp;d2&quot;</span><br><span class="hljs-variable language_">window</span>.<span class="hljs-property">r</span> = <span class="hljs-string">&quot;4h@$udD2s&quot;</span><br><span class="hljs-variable language_">window</span>.<span class="hljs-property">a</span> = <span class="hljs-string">&quot;*&quot;</span><br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">decode</span> = (<span class="hljs-params">n, e</span>) =&gt; &#123;<br>    e = e || <span class="hljs-string">&quot;&quot;</span>.<span class="hljs-title function_">concat</span>(c).<span class="hljs-title function_">concat</span>(r).<span class="hljs-title function_">concat</span>(a);<br>    <span class="hljs-keyword">var</span> t = cryptoJs.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(e)<br>        , i = cryptoJs.<span class="hljs-property">AES</span>.<span class="hljs-title function_">decrypt</span>(n, t, &#123;<br>        <span class="hljs-attr">mode</span>: cryptoJs.<span class="hljs-property">mode</span>.<span class="hljs-property">ECB</span>,<br>        <span class="hljs-attr">padding</span>: cryptoJs.<span class="hljs-property">pad</span>.<span class="hljs-property">Pkcs7</span><br>    &#125;);<br>    <span class="hljs-keyword">return</span> cryptoJs.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">stringify</span>(i).<span class="hljs-title function_">toString</span>()<br>&#125;<br><br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">decode</span>(key));<br></code></pre></td></tr></table></figure><blockquote><p>这里的e通过跟栈调试发现为空值，所以不用管</p></blockquote><p>以上就是逆向解密，但是上面的加密数据不够完善，大型网站也不止是abs加密</p><h2 id="使用python执行js代码"><a href="#使用python执行js代码" class="headerlink" title="使用python执行js代码"></a>使用python执行js代码</h2><p>现有解密函数如下：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">h</span>(<span class="hljs-params">t</span>) &#123;<br>    <span class="hljs-keyword">const</span> cryptoJS = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./crypto-js/crypto-js&#x27;</span>),<br>        f = cryptoJS.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-string">&quot;jo8j9wGw%6HbxfFn&quot;</span>),<br>        m = cryptoJS.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-string">&quot;0123456789ABCDEF&quot;</span>),<br>        e = cryptoJS.<span class="hljs-property">enc</span>.<span class="hljs-property">Hex</span>.<span class="hljs-title function_">parse</span>(t),<br>        n = cryptoJS.<span class="hljs-property">enc</span>.<span class="hljs-property">Base64</span>.<span class="hljs-title function_">stringify</span>(e),<br>        a = cryptoJS.<span class="hljs-property">AES</span>.<span class="hljs-title function_">decrypt</span>(n, f, &#123;<br>            <span class="hljs-attr">iv</span>: m,<br>            <span class="hljs-attr">mode</span>: cryptoJS.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span>,<br>            <span class="hljs-attr">padding</span>: cryptoJS.<span class="hljs-property">pad</span>.<span class="hljs-property">Pkcs7</span><br>        &#125;),<br>        r = a.<span class="hljs-title function_">toString</span>(cryptoJS.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(r)<br>&#125;<br></code></pre></td></tr></table></figure><p>要在python中使用，完成整体流程，就要使用到<code>PyExecJS</code>这个包下的<code>execjs</code></p><p>安装：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install PyExecJS<br></code></pre></td></tr></table></figure><p>引入使用：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> execjs <span class="hljs-keyword">import</span> <span class="hljs-built_in">compile</span><br>setName = <span class="hljs-built_in">compile</span>(<span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    function setName (name) &#123;</span><br><span class="hljs-string">        return &#x27;hello &#x27; + name</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span>).call(<span class="hljs-string">&#x27;setName&#x27;</span>, <span class="hljs-string">&#x27;FSAN&#x27;</span>)<br><span class="hljs-built_in">print</span>(setName) <span class="hljs-comment"># hello FSAN</span><br></code></pre></td></tr></table></figure><ol><li>先使用compile创建一个js的文件环境</li><li>然后使用call去执行里面的函数名，传递参数</li><li>返回值就是js函数的返回值</li></ol><blockquote><p>如果返回的内容有中文的话，会出现乱码问题，进入报错的文件将encoding修改为’utf8’即可</p></blockquote><h2 id="完整爬取流程（简单aes加密）"><a href="#完整爬取流程（简单aes加密）" class="headerlink" title="完整爬取流程（简单aes加密）"></a>完整爬取流程（简单aes加密）</h2><p>main.py</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><br><span class="hljs-keyword">from</span> requests <span class="hljs-keyword">import</span> get<br><span class="hljs-keyword">from</span> json <span class="hljs-keyword">import</span> loads<br><span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> sleep<br><span class="hljs-keyword">from</span> random <span class="hljs-keyword">import</span> random, randint<br><span class="hljs-keyword">from</span> execjs <span class="hljs-keyword">import</span> <span class="hljs-built_in">compile</span><br><br><span class="hljs-comment"># 请求头</span><br>headers = &#123;<br>    <span class="hljs-string">&#x27;Referer&#x27;</span>: <span class="hljs-string">&#x27;https://jzsc.mohurd.gov.cn/data/company&#x27;</span>,<br>    <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36&#x27;</span><br>&#125;<br><br><span class="hljs-comment"># 获取本地js解密函数</span><br><span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;./main.js&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf8&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>    decryptFn = <span class="hljs-built_in">compile</span>(file.read())<br><br><br><span class="hljs-comment"># 请求加密数据</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_data</span>(<span class="hljs-params">page</span>):<br>    url = <span class="hljs-string">f&#x27;https://jzsc.mohurd.gov.cn/api/webApi/dataservice/query/comp/list?pg=<span class="hljs-subst">&#123;page&#125;</span>&amp;pgsz=15&amp;total=0&#x27;</span><br>    sleep(random() + randint(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>))<br>    <span class="hljs-keyword">return</span> get(url=url, headers=headers).text<br><br><br><span class="hljs-comment"># 获取分页数据</span><br><span class="hljs-keyword">for</span> page <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">30</span>):<br>    <span class="hljs-comment"># 解密后写入本地</span><br>    decryptData = decryptFn.call(<span class="hljs-string">&#x27;h&#x27;</span>, get_data(page))<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">f&#x27;./jsonData/decryptDataForPage<span class="hljs-subst">&#123;page&#125;</span>.json&#x27;</span>, <span class="hljs-string">&#x27;w+&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf8&#x27;</span>) <span class="hljs-keyword">as</span> file:<br>        file.write(loads(decryptData))<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;第<span class="hljs-subst">&#123;page&#125;</span>页数据已保存&#x27;</span>)<br></code></pre></td></tr></table></figure><p>main.js（解密函数）</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">h</span>(<span class="hljs-params">t</span>) &#123;<br>    <span class="hljs-keyword">const</span> cryptoJS = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./crypto-js/crypto-js&#x27;</span>),<br>        f = cryptoJS.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-string">&quot;jo8j9wGw%6HbxfFn&quot;</span>),<br>        m = cryptoJS.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>.<span class="hljs-title function_">parse</span>(<span class="hljs-string">&quot;0123456789ABCDEF&quot;</span>),<br>        e = cryptoJS.<span class="hljs-property">enc</span>.<span class="hljs-property">Hex</span>.<span class="hljs-title function_">parse</span>(t),<br>        n = cryptoJS.<span class="hljs-property">enc</span>.<span class="hljs-property">Base64</span>.<span class="hljs-title function_">stringify</span>(e),<br>        a = cryptoJS.<span class="hljs-property">AES</span>.<span class="hljs-title function_">decrypt</span>(n, f, &#123;<br>            <span class="hljs-attr">iv</span>: m,<br>            <span class="hljs-attr">mode</span>: cryptoJS.<span class="hljs-property">mode</span>.<span class="hljs-property">CBC</span>,<br>            <span class="hljs-attr">padding</span>: cryptoJS.<span class="hljs-property">pad</span>.<span class="hljs-property">Pkcs7</span><br>        &#125;),<br>        r = a.<span class="hljs-title function_">toString</span>(cryptoJS.<span class="hljs-property">enc</span>.<span class="hljs-property">Utf8</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(r)<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="常见加密算法"><a href="#常见加密算法" class="headerlink" title="常见加密算法"></a>常见加密算法</h2><p>掌握web逆向技术，需要掌握的加密算法有：</p><ol><li>MD5</li><li>AES</li><li>DES</li><li>RSA</li><li>HASH</li><li>ECC</li><li>SHA</li></ol><h3 id="MD5加密特征"><a href="#MD5加密特征" class="headerlink" title="MD5加密特征"></a>MD5加密特征</h3><p>如下：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js">t = <span class="hljs-title function_">h</span>(t, u, v, w, x[o + <span class="hljs-number">0</span>], y, <span class="hljs-number">3614090360</span>),<br>w = <span class="hljs-title function_">h</span>(w, t, u, v, x[o + <span class="hljs-number">1</span>], z, <span class="hljs-number">3905402710</span>),<br>v = <span class="hljs-title function_">h</span>(v, w, t, u, x[o + <span class="hljs-number">2</span>], A, <span class="hljs-number">606105819</span>),<br>u = <span class="hljs-title function_">h</span>(u, v, w, t, x[o + <span class="hljs-number">3</span>], B, <span class="hljs-number">3250441966</span>),<br>t = <span class="hljs-title function_">h</span>(t, u, v, w, x[o + <span class="hljs-number">4</span>], y, <span class="hljs-number">4118548399</span>),<br>w = <span class="hljs-title function_">h</span>(w, t, u, v, x[o + <span class="hljs-number">5</span>], z, <span class="hljs-number">1200080426</span>),<br>v = <span class="hljs-title function_">h</span>(v, w, t, u, x[o + <span class="hljs-number">6</span>], A, <span class="hljs-number">2821735955</span>),<br>u = <span class="hljs-title function_">h</span>(u, v, w, t, x[o + <span class="hljs-number">7</span>], B, <span class="hljs-number">4249261313</span>),<br>t = <span class="hljs-title function_">h</span>(t, u, v, w, x[o + <span class="hljs-number">8</span>], y, <span class="hljs-number">1770035416</span>),<br>w = <span class="hljs-title function_">h</span>(w, t, u, v, x[o + <span class="hljs-number">9</span>], z, <span class="hljs-number">2336552879</span>),<br>v = <span class="hljs-title function_">h</span>(v, w, t, u, x[o + <span class="hljs-number">10</span>], A, <span class="hljs-number">4294925233</span>),<br>u = <span class="hljs-title function_">h</span>(u, v, w, t, x[o + <span class="hljs-number">11</span>], B, <span class="hljs-number">2304563134</span>),<br>t = <span class="hljs-title function_">h</span>(t, u, v, w, x[o + <span class="hljs-number">12</span>], y, <span class="hljs-number">1804603682</span>),<br></code></pre></td></tr></table></figure><p>用数字做混淆的就是MD5加密</p><h2 id="响应数据为纯json渲染"><a href="#响应数据为纯json渲染" class="headerlink" title="响应数据为纯json渲染"></a>响应数据为纯json渲染</h2><p>与ajax数据相比：纯json数据在前面会有数据名，如：<code>mtopjson2(&#123;api: ...&#125;)</code></p><p>而ajax前面是没有这个字符串的</p><h2 id="某案例中的sign解密"><a href="#某案例中的sign解密" class="headerlink" title="某案例中的sign解密"></a>某案例中的sign解密</h2><p>在数据源的发起程序中搜索sign，寻找到如下代码段：</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> f = <span class="hljs-string">&quot;//&quot;</span> + (d.<span class="hljs-property">prefix</span> ? d.<span class="hljs-property">prefix</span> + <span class="hljs-string">&quot;.&quot;</span> : <span class="hljs-string">&quot;&quot;</span>) + (d.<span class="hljs-property">subDomain</span> ? d.<span class="hljs-property">subDomain</span> + <span class="hljs-string">&quot;.&quot;</span> : <span class="hljs-string">&quot;&quot;</span>) + d.<span class="hljs-property">mainDomain</span> + <span class="hljs-string">&quot;/h5/&quot;</span> + c.<span class="hljs-property">api</span>.<span class="hljs-title function_">toLowerCase</span>() + <span class="hljs-string">&quot;/&quot;</span> + c.<span class="hljs-property">v</span>.<span class="hljs-title function_">toLowerCase</span>() + <span class="hljs-string">&quot;/&quot;</span><br>              , g = c.<span class="hljs-property">appKey</span> || (<span class="hljs-string">&quot;waptest&quot;</span> === d.<span class="hljs-property">subDomain</span> ? <span class="hljs-string">&quot;4272&quot;</span> : <span class="hljs-string">&quot;12574478&quot;</span>)<br>              , i = (<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>).<span class="hljs-title function_">getTime</span>()<br>              , j = <span class="hljs-title function_">h</span>(d.<span class="hljs-property">token</span> + <span class="hljs-string">&quot;&amp;&quot;</span> + i + <span class="hljs-string">&quot;&amp;&quot;</span> + g + <span class="hljs-string">&quot;&amp;&quot;</span> + c.<span class="hljs-property">data</span>)<br>              , k = &#123;<br>                <span class="hljs-attr">jsv</span>: w,<br>                <span class="hljs-attr">appKey</span>: g,<br>                <span class="hljs-attr">t</span>: i,<br>                <span class="hljs-attr">sign</span>: j<br>            &#125;<br>              , l = &#123;<br>                <span class="hljs-attr">data</span>: c.<span class="hljs-property">data</span>,<br>                <span class="hljs-attr">ua</span>: c.<span class="hljs-property">ua</span><br>            &#125;;<br></code></pre></td></tr></table></figure><p>从这里就可以发现sign这个签名是 <code>h(d.token + &quot;&amp;&quot; + i + &quot;&amp;&quot; + g + &quot;&amp;&quot; + c.data)</code>这段生成的</p><p>分析：数据主体加密函数是h，打断点后查看直接获取token的值，扣代码到js，先不管是否是动态数据</p><p>看到<code>c.data</code>就要和请求体中的data比较，因为可能不止一个加密，可跳过再次比较，对上之后，在控制台中输入<code>c.data</code>可直接获取</p><blockquote><p>为什么不直接复制，要先在控制台打印再复制：</p><p>直接复制会导致其中的引号出现问题，控制台打印出来cv就能用</p></blockquote><p>之后进入h源码中，扣下整个函数后执行代码得到sign值</p><p>获取sign值后还需要验证：打断点后获取到i的值（时间戳，看页面上sign值是否和本地得到的sign值相同），相同则解密函数正确</p><h2 id="其他小知识"><a href="#其他小知识" class="headerlink" title="其他小知识"></a>其他小知识</h2><h3 id="有提示加密的响应数据"><a href="#有提示加密的响应数据" class="headerlink" title="有提示加密的响应数据"></a>有提示加密的响应数据</h3><p>比如在预览数据中，有一个<code>isEncrypt</code>属性，那么就可以直接使用这个属性去搜索加密函数</p><h3 id="iv属性判断"><a href="#iv属性判断" class="headerlink" title="iv属性判断"></a>iv属性判断</h3><p>在加密过程中发现iv属性设置，就是AES加密模型</p>]]></content>
     
     
+    <categories>
+      
+      <category>后端</category>
+      
+      <category>Python</category>
+      
+    </categories>
+    
     
     <tags>
       
-      <tag>python</tag>
-      
-      <tag>爬虫</tag>
+      <tag>Python</tag>
       
     </tags>
     
@@ -332,14 +378,14 @@
       
       <category>前端</category>
       
+      <category>前端其他</category>
+      
     </categories>
     
     
     <tags>
       
-      <tag>css</tag>
-      
-      <tag>less</tag>
+      <tag>Less</tag>
       
     </tags>
     
@@ -359,14 +405,14 @@
       
       <category>前端</category>
       
+      <category>前端其他</category>
+      
     </categories>
     
     
     <tags>
       
-      <tag>html</tag>
-      
-      <tag>布局方案</tag>
+      <tag>HTML5</tag>
       
     </tags>
     
@@ -386,14 +432,14 @@
       
       <category>前端</category>
       
-      <category>react</category>
+      <category>React</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>react</tag>
+      <tag>React</tag>
       
     </tags>
     
@@ -413,14 +459,14 @@
       
       <category>前端</category>
       
-      <category>react</category>
+      <category>React</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>react</tag>
+      <tag>React</tag>
       
     </tags>
     
@@ -440,14 +486,20 @@
       
       <category>前端</category>
       
+      <category>React</category>
+      
     </categories>
     
     
     <tags>
       
-      <tag>react</tag>
+      <tag>JavaScript</tag>
       
-      <tag>redux</tag>
+      <tag>React</tag>
+      
+      <tag>React Redux</tag>
+      
+      <tag>Redux</tag>
       
     </tags>
     
@@ -467,14 +519,14 @@
       
       <category>前端</category>
       
+      <category>前端其他</category>
+      
     </categories>
     
     
     <tags>
       
-      <tag>fetch</tag>
-      
-      <tag>http请求</tag>
+      <tag>JavaScript</tag>
       
     </tags>
     
@@ -494,14 +546,14 @@
       
       <category>前端</category>
       
-      <category>react</category>
+      <category>React</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>react</tag>
+      <tag>React</tag>
       
     </tags>
     
@@ -521,14 +573,14 @@
       
       <category>前端</category>
       
+      <category>前端其他</category>
+      
     </categories>
     
     
     <tags>
       
-      <tag>js</tag>
-      
-      <tag>this指向</tag>
+      <tag>JavaScript</tag>
       
     </tags>
     
@@ -548,14 +600,14 @@
       
       <category>前端</category>
       
-      <category>react</category>
+      <category>React</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>react</tag>
+      <tag>React</tag>
       
     </tags>
     
@@ -575,14 +627,14 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>springboot</tag>
+      <tag>SpringBoot</tag>
       
     </tags>
     
@@ -602,16 +654,16 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>springboot</tag>
+      <tag>SpringBoot</tag>
       
-      <tag>jsr303</tag>
+      <tag>JSR303</tag>
       
     </tags>
     
@@ -631,18 +683,18 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>java</tag>
+      <tag>SpringBoot</tag>
       
-      <tag>lambda</tag>
+      <tag>Lambda</tag>
       
-      <tag>stream</tag>
+      <tag>Stream</tag>
       
     </tags>
     
@@ -662,16 +714,16 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>java</tag>
+      <tag>SpringBoot</tag>
       
-      <tag>websocket</tag>
+      <tag>WebSocket</tag>
       
     </tags>
     
@@ -691,14 +743,14 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>springboot</tag>
+      <tag>SpringBoot</tag>
       
     </tags>
     
@@ -718,16 +770,16 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>java</tag>
+      <tag>SpringBoot</tag>
       
-      <tag>aop</tag>
+      <tag>Spring AOP</tag>
       
     </tags>
     
@@ -747,14 +799,14 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>优雅</tag>
+      <tag>SpringBoot</tag>
       
     </tags>
     
@@ -774,14 +826,14 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>优雅</tag>
+      <tag>SpringBoot</tag>
       
     </tags>
     
@@ -801,14 +853,16 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>mybatis-plus</tag>
+      <tag>MyBatis</tag>
+      
+      <tag>MyBatisPlus</tag>
       
     </tags>
     
@@ -826,6 +880,8 @@
     
     <categories>
       
+      <category>后端</category>
+      
       <category>服务器</category>
       
     </categories>
@@ -833,7 +889,7 @@
     
     <tags>
       
-      <tag>mysql</tag>
+      <tag>MySQL</tag>
       
     </tags>
     
@@ -853,12 +909,14 @@
       
       <category>前端</category>
       
+      <category>前端其他</category>
+      
     </categories>
     
     
     <tags>
       
-      <tag>scss</tag>
+      <tag>Scss</tag>
       
     </tags>
     
@@ -878,16 +936,16 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>java</tag>
+      <tag>SpringBoot</tag>
       
-      <tag>security框架</tag>
+      <tag>Spring Security</tag>
       
     </tags>
     
@@ -907,16 +965,14 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>java</tag>
-      
-      <tag>jdbc</tag>
+      <tag>JDBC</tag>
       
     </tags>
     
@@ -934,6 +990,8 @@
     
     <categories>
       
+      <category>后端</category>
+      
       <category>服务器</category>
       
     </categories>
@@ -941,9 +999,9 @@
     
     <tags>
       
-      <tag>python</tag>
+      <tag>Python</tag>
       
-      <tag>nginx</tag>
+      <tag>Docker</tag>
       
     </tags>
     
@@ -963,16 +1021,16 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>springboot</tag>
+      <tag>SpringBoot</tag>
       
-      <tag>jwt</tag>
+      <tag>JWT</tag>
       
     </tags>
     
@@ -992,16 +1050,16 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>redis</tag>
+      <tag>Redis</tag>
       
-      <tag>springboot</tag>
+      <tag>SpringBoot</tag>
       
     </tags>
     
@@ -1019,6 +1077,8 @@
     
     <categories>
       
+      <category>后端</category>
+      
       <category>服务器</category>
       
     </categories>
@@ -1026,9 +1086,9 @@
     
     <tags>
       
-      <tag>docker</tag>
+      <tag>Docker</tag>
       
-      <tag>nginx</tag>
+      <tag>Nginx</tag>
       
     </tags>
     
@@ -1048,16 +1108,14 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>java</tag>
-      
-      <tag>短信服务</tag>
+      <tag>SpringBoot</tag>
       
     </tags>
     
@@ -1075,6 +1133,8 @@
     
     <categories>
       
+      <category>后端</category>
+      
       <category>服务器</category>
       
     </categories>
@@ -1082,9 +1142,9 @@
     
     <tags>
       
-      <tag>redis</tag>
+      <tag>Redis</tag>
       
-      <tag>docker</tag>
+      <tag>Docker</tag>
       
     </tags>
     
@@ -1102,6 +1162,8 @@
     
     <categories>
       
+      <category>后端</category>
+      
       <category>服务器</category>
       
     </categories>
@@ -1109,9 +1171,9 @@
     
     <tags>
       
-      <tag>docker</tag>
+      <tag>Docker</tag>
       
-      <tag>nginx</tag>
+      <tag>Nginx</tag>
       
     </tags>
     
@@ -1129,16 +1191,16 @@
     
     <categories>
       
-      <category>曾经</category>
+      <category>前端</category>
       
-      <category>日记</category>
+      <category>前端其他</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>自律</tag>
+      <tag>学习记录</tag>
       
     </tags>
     
@@ -1156,12 +1218,20 @@
     
     <categories>
       
-      <category>曾经</category>
+      <category>前端</category>
       
-      <category>python小玩意</category>
+      <category>前端其他</category>
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>Python</tag>
+      
+      <tag>HTML5</tag>
+      
+    </tags>
     
   </entry>
   
@@ -1179,16 +1249,16 @@
       
       <category>后端</category>
       
-      <category>python</category>
+      <category>Python</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>python</tag>
+      <tag>Python</tag>
       
-      <tag>socket</tag>
+      <tag>WebSocket</tag>
       
     </tags>
     
@@ -1208,16 +1278,14 @@
       
       <category>后端</category>
       
-      <category>python</category>
+      <category>Python</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>python</tag>
-      
-      <tag>多线程请求</tag>
+      <tag>Python</tag>
       
     </tags>
     
@@ -1237,16 +1305,16 @@
       
       <category>后端</category>
       
-      <category>python</category>
+      <category>Python</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>python</tag>
+      <tag>Python</tag>
       
-      <tag>flask</tag>
+      <tag>Flask</tag>
       
     </tags>
     
@@ -1264,14 +1332,16 @@
     
     <categories>
       
-      <category>服务器</category>
+      <category>后端</category>
+      
+      <category>后端其他</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>redis</tag>
+      <tag>Redis</tag>
       
     </tags>
     
@@ -1289,12 +1359,18 @@
     
     <categories>
       
-      <category>曾经</category>
+      <category>前端</category>
       
-      <category>H5案例</category>
+      <category>前端其他</category>
       
     </categories>
     
+    
+    <tags>
+      
+      <tag>学习记录</tag>
+      
+    </tags>
     
   </entry>
   
@@ -1312,14 +1388,14 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>springboot</tag>
+      <tag>SpringBoot</tag>
       
     </tags>
     
@@ -1339,14 +1415,14 @@
       
       <category>后端</category>
       
-      <category>python</category>
+      <category>Python</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>python</tag>
+      <tag>Python</tag>
       
     </tags>
     
@@ -1366,16 +1442,16 @@
       
       <category>后端</category>
       
-      <category>java</category>
+      <category>Java</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>mybatis</tag>
+      <tag>SpringBoot</tag>
       
-      <tag>java</tag>
+      <tag>MyBatis</tag>
       
     </tags>
     
@@ -1400,7 +1476,7 @@
     
     <tags>
       
-      <tag>git命令</tag>
+      <tag>Git</tag>
       
     </tags>
     
@@ -1420,14 +1496,16 @@
       
       <category>前端</category>
       
+      <category>前端其他</category>
+      
     </categories>
     
     
     <tags>
       
-      <tag>js</tag>
+      <tag>JavaScript</tag>
       
-      <tag>ajax</tag>
+      <tag>Ajax</tag>
       
     </tags>
     

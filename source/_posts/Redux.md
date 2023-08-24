@@ -1,8 +1,8 @@
 ---
 title: Redux
 date: 2022-07-27 09:16:08
-tags: [redux,react]
-categories: [[前端]]
+tags: [React,React Redux,Redux,JavaScript]
+categories: [[前端,React]]
 ---
 
 ## Redux介绍
