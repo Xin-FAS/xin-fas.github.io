@@ -24,7 +24,7 @@
 <meta property="og:description" content="使用先引入涟漪样式，建议在App.vue中全局引入： 12345678910111213141516171819202122232425.ripple &amp;#123;    position: absolute;    left: 0;    top: 0;    display: none;    transform: translate3d(-50%, -50%, 0) scale(0);">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-24T12:49:02.000Z">
-<meta property="article:modified_time" content="2023-08-24T14:01:11.819Z">
+<meta property="article:modified_time" content="2023-08-25T01:18:55.452Z">
 <meta property="article:author" content="Xin-FAS">
 <meta property="article:tag" content="Vue2">
 <meta property="article:tag" content="Vue3">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          3k 字
         
       </span>
     
@@ -282,7 +282,7 @@
               <p class="note note-success">
                 
                   
-                    本文最后更新于：2023年8月24日 晚上
+                    本文最后更新于：2023年8月25日 上午
                   
                 
               </p>
@@ -293,8 +293,10 @@
                 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>先引入涟漪样式，建议在<code>App.vue</code>中全局引入：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.ripple</span> &#123;<br>    <span class="hljs-attribute">position</span>: absolute;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">display</span>: none;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate3d</span>(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>, <span class="hljs-number">0</span>) <span class="hljs-built_in">scale</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">pointer-events</span>: none;<br>    <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">animation</span>: rippleRound .<span class="hljs-number">6s</span> ease-in-out;<br>&#125;<br><br><span class="hljs-keyword">@keyframes</span> rippleRound &#123;<br>    <span class="hljs-number">0%</span> &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate3d</span>(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>, <span class="hljs-number">0</span>) <span class="hljs-built_in">scale</span>(<span class="hljs-number">0</span>);<br>        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;<br>    &#125;<br>    <span class="hljs-number">50%</span> &#123;<br>        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0.5</span>;<br>    &#125;<br>    <span class="hljs-number">100%</span> &#123;<br>        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translate3d</span>(-<span class="hljs-number">50%</span>, -<span class="hljs-number">50%</span>, <span class="hljs-number">0</span>) <span class="hljs-built_in">scale</span>(<span class="hljs-number">1</span>);<br>        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>正式使用：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn position-abs&quot;</span> <span class="hljs-attr">v-write.abs</span>=<span class="hljs-string">&quot;&#x27;white&#x27;&quot;</span>&gt;</span>涟漪效果<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>	    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn&quot;</span> <span class="hljs-attr">v-write</span>=<span class="hljs-string">&quot;&#x27;rgba(0, 0, 0, .3)&#x27;&quot;</span>&gt;</span>涟漪效果<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.btn</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">&#125;</span><br><span class="language-css"><span class="hljs-selector-class">.position-abs</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">position</span>: absolute;</span><br><span class="language-css">    <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">    <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+<p>注册后正式使用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Vue</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><span class="hljs-keyword">import</span> ripple <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./ripple&quot;</span><br><br><span class="hljs-title class_">Vue</span>.<span class="hljs-title function_">directive</span>(<span class="hljs-string">&#x27;ripple&#x27;</span>, ripple)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn position-abs&quot;</span> <span class="hljs-attr">v-ripple.abs</span>=<span class="hljs-string">&quot;&#x27;white&#x27;&quot;</span>&gt;</span>涟漪效果<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>	    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn&quot;</span> <span class="hljs-attr">v-ripple</span>=<span class="hljs-string">&quot;&#x27;rgba(0, 0, 0, .3)&#x27;&quot;</span>&gt;</span>涟漪效果<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.btn</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">&#125;</span><br><span class="language-css"><span class="hljs-selector-class">.position-abs</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">position</span>: absolute;</span><br><span class="language-css">    <span class="hljs-attribute">left</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">    <span class="hljs-attribute">top</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
 
 <p>说明：</p>
 <p>当使用的元素自身存在定位时，需要添加<code>abs</code>修饰，指令的值可以是任何表示颜色的字符</p>
@@ -378,7 +380,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年8月24日</div>
+          <div>2023年8月25日</div>
         </div>
       
       
@@ -408,6 +410,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/08/25/%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%81%E8%A3%85rAF/" title="优雅的封装rAF">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">优雅的封装rAF</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

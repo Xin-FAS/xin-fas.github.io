@@ -2,7 +2,7 @@
 title: js数字转中文数字
 date: 2023-08-14 18:58:04
 tags: [JavaScript]
-categories: [前端, 其他]
+categories: [前端,前端其他]
 ---
 
 ## 介绍
