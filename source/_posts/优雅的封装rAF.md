@@ -2,7 +2,7 @@
 title: 优雅的封装rAF
 date: 2023-08-25 22:23:28
 tags: [JavaScript]
-categories: [前端,其他]
+categories: [前端,前端其他]
 ---
 
 ## 封装需求
