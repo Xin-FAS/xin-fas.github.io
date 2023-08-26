@@ -16,15 +16,15 @@
   <meta name="author" content="Xin-FAS">
   <meta name="keywords" content="">
   
-    <meta name="description" content="封装需求 支持控制每秒刷新帧数（FPS），节省性能消耗 支持持续时间控制 支持进度显示 支持暂停和继续  使用1234567891011121314import rAFWithFPS from &quot;.&#x2F;rAFWithFPS&quot;const &amp;#123; pause, next &amp;#125; &#x3D; rAFWithFPS(progress &#x3D;&gt; &amp;#123;    console.l">
+    <meta name="description" content="封装需求 支持控制每秒刷新帧数（FPS），节省性能消耗 支持控制持续时间 支持获取实时进度 支持暂停和继续  使用  1234567891011121314151617import rAFWithFPS from &quot;.&#x2F;rAFWithFPS&quot;const &amp;#123; pause, next &amp;#125; &#x3D; rAFWithFPS(progress &#x3D;&gt; &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="优雅的封装rAF">
 <meta property="og:url" content="https://xin-fas.github.io/2023/08/25/%E4%BC%98%E9%9B%85%E7%9A%84%E5%B0%81%E8%A3%85rAF/index.html">
 <meta property="og:site_name" content="Xin-FAS&#39;blog">
-<meta property="og:description" content="封装需求 支持控制每秒刷新帧数（FPS），节省性能消耗 支持持续时间控制 支持进度显示 支持暂停和继续  使用1234567891011121314import rAFWithFPS from &quot;.&#x2F;rAFWithFPS&quot;const &amp;#123; pause, next &amp;#125; &#x3D; rAFWithFPS(progress &#x3D;&gt; &amp;#123;    console.l">
+<meta property="og:description" content="封装需求 支持控制每秒刷新帧数（FPS），节省性能消耗 支持控制持续时间 支持获取实时进度 支持暂停和继续  使用  1234567891011121314151617import rAFWithFPS from &quot;.&#x2F;rAFWithFPS&quot;const &amp;#123; pause, next &amp;#125; &#x3D; rAFWithFPS(progress &#x3D;&gt; &amp;#123;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-25T14:23:28.000Z">
-<meta property="article:modified_time" content="2023-08-25T15:54:02.215Z">
+<meta property="article:modified_time" content="2023-08-26T15:56:37.785Z">
 <meta property="article:author" content="Xin-FAS">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -236,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          2.8k 字
         
       </span>
     
@@ -280,7 +280,7 @@
               <p class="note note-success">
                 
                   
-                    本文最后更新于：2023年8月25日 晚上
+                    本文最后更新于：2023年8月26日 晚上
                   
                 
               </p>
@@ -290,11 +290,13 @@
                 
                 <h2 id="封装需求"><a href="#封装需求" class="headerlink" title="封装需求"></a>封装需求</h2><ol>
 <li>支持控制每秒刷新帧数（FPS），节省性能消耗</li>
-<li>支持持续时间控制</li>
-<li>支持进度显示</li>
+<li>支持控制持续时间</li>
+<li>支持获取实时进度</li>
 <li>支持暂停和继续</li>
 </ol>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> rAFWithFPS <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./rAFWithFPS&quot;</span><br><br><span class="hljs-keyword">const</span> &#123; pause, next &#125; = <span class="hljs-title function_">rAFWithFPS</span>(<span class="hljs-function"><span class="hljs-params">progress</span> =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;执行进度：&#x27;</span>, progress)<br>&#125;, <span class="hljs-number">2000</span>, <span class="hljs-number">60</span>)<br><br><span class="hljs-comment">// 500毫秒后暂停</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-title function_">pause</span>()<br>    <span class="hljs-comment">// 暂停1000毫秒后继续</span><br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-title function_">next</span>()<br>    &#125;, <span class="hljs-number">1000</span>)<br>&#125;, <span class="hljs-number">500</span>)<br></code></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><iframe src="/iframe/rAF封装函数演示.html" width='100%'></iframe>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> rAFWithFPS <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;./rAFWithFPS&quot;</span><br><br><span class="hljs-keyword">const</span> &#123; pause, next &#125; = <span class="hljs-title function_">rAFWithFPS</span>(<span class="hljs-function"><span class="hljs-params">progress</span> =&gt;</span> &#123;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">group</span>(<span class="hljs-string">&#x27;执行统计&#x27;</span>)<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">count</span>(<span class="hljs-string">&#x27;执行次数：&#x27;</span>)<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;执行进度：&#x27;</span>, progress)<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">groupEnd</span>(<span class="hljs-string">&#x27;执行统计&#x27;</span>)<br>&#125;, <span class="hljs-number">2000</span>, <span class="hljs-number">60</span>)<br><br><span class="hljs-comment">// 500毫秒后暂停</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-title function_">pause</span>()<br>    <span class="hljs-comment">// 暂停1000毫秒后继续</span><br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-title function_">next</span>()<br>    &#125;, <span class="hljs-number">1000</span>)<br>&#125;, <span class="hljs-number">500</span>)<br></code></pre></td></tr></table></figure>
 
 <p>使用<code>rAFWithFPS</code>后可以传递三个参数</p>
 <ol>
@@ -303,14 +305,18 @@
 <li>参数二：rAF对象，可使用<code>cancelAnimationFrame</code>手动结束</li>
 </ol>
 </li>
-<li>执行时间（毫秒），可传递<code>-1</code>表示无限时间</li>
-<li>每秒刷新帧数（FPS）</li>
+<li>执行时间（毫秒），可传递 -1 表示无限时间，默认 -1</li>
+<li>每秒刷新帧数（FPS），默认 30</li>
 </ol>
 <p>如上，就是共执行<code>120（2 * 60）</code>次回调，执行<code>30次</code>后暂停，一秒后继续执行<code>90次</code></p>
 <h2 id="rAFWithFPS-js"><a href="#rAFWithFPS-js" class="headerlink" title="rAFWithFPS.js"></a>rAFWithFPS.js</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> <span class="hljs-variable">Xin</span>-FAS</span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 以指定的fps执行函数，执行n毫秒后停止，或手动停止</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> callback 每次执行的回调，回调值为进度和实例，可以手动停止</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> duration 执行时间，默认-1，即无限</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@param</span> fps 指定fps，默认一秒三十次</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">rAFWithFPS</span> = (<span class="hljs-params">callback, duration = -<span class="hljs-number">1</span>, fps = <span class="hljs-number">30</span></span>) =&gt; &#123;<br>    <span class="hljs-comment">// 动画实例</span><br>    <span class="hljs-keyword">let</span> rAFInstance,<br>        <span class="hljs-comment">// 上一次执行时间</span><br>        then = performance.<span class="hljs-title function_">now</span>(),<br>        <span class="hljs-comment">// 当次执行时间差</span><br>        diff,<br>        <span class="hljs-comment">// 当前时间</span><br>        now,<br>        <span class="hljs-comment">// 已执行时间</span><br>        runDuration = <span class="hljs-number">0</span>,<br>        <span class="hljs-comment">// 暂停时间差</span><br>        pauseDiff,<br>        <span class="hljs-comment">// 执行初始时间</span><br>        runDurationStart = performance.<span class="hljs-title function_">now</span>()<br>    <span class="hljs-comment">// fps 对应的刷新毫秒</span><br>    <span class="hljs-keyword">const</span> fpsInterval = <span class="hljs-number">1000</span> / fps<br><br>    <span class="hljs-comment">// 运行</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">run</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>        <span class="hljs-comment">// 异步执行，不用担心位置</span><br>        rAFInstance = <span class="hljs-title function_">requestAnimationFrame</span>(run)<br>        <span class="hljs-comment">// 当前时间</span><br>        now = performance.<span class="hljs-title function_">now</span>()<br>        <span class="hljs-comment">// 获取执行的时间差</span><br>        diff = now - then<br>        <span class="hljs-comment">// 根据执行插值计算已执行时间</span><br>        runDuration += (now - runDurationStart)<br>        <span class="hljs-comment">// 获取完执行时间后立马刷新执行初始时间</span><br>        runDurationStart = performance.<span class="hljs-title function_">now</span>()<br>        <span class="hljs-comment">// 当执行时间大于fps的间隔时间，刷新初始时间</span><br>        <span class="hljs-keyword">if</span> (diff &gt; fpsInterval) &#123;<br>            <span class="hljs-comment">// 也可以简单使用start = now，以下是对起始值优化</span><br>            then = now - (diff % fpsInterval)<br>            <span class="hljs-comment">// min 防止最后一次超出</span><br>            <span class="hljs-title function_">callback</span>(duration === -<span class="hljs-number">1</span> ? <span class="hljs-number">0</span> : <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">min</span>(runDuration / duration, <span class="hljs-number">1</span>), rAFInstance)<br>        &#125;<br>        <span class="hljs-comment">// 判断结束时间差，时间到了就结束raf</span><br>        <span class="hljs-keyword">if</span> (runDuration &gt; duration &amp;&amp; duration !== -<span class="hljs-number">1</span>) <span class="hljs-title function_">cancelAnimationFrame</span>(rAFInstance)<br>    &#125;<br>    <span class="hljs-comment">// 暂停，记录时间差</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">pause</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>        pauseDiff = performance.<span class="hljs-title function_">now</span>() - then<br>        rAFInstance = (<span class="hljs-title function_">cancelAnimationFrame</span>(rAFInstance), <span class="hljs-literal">undefined</span>)<br>    &#125;<br>    <span class="hljs-comment">// 继续</span><br>    <span class="hljs-keyword">const</span> <span class="hljs-title function_">next</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>        <span class="hljs-comment">// 如果当前不处于暂停状态</span><br>        <span class="hljs-keyword">if</span> (rAFInstance) <span class="hljs-keyword">return</span><br>        <span class="hljs-comment">// 刷新上一次执行时间和初始时间</span><br>        <span class="hljs-keyword">const</span> pauseWithNow = performance.<span class="hljs-title function_">now</span>() - pauseDiff<br>        then = pauseWithNow<br>        runDurationStart = pauseWithNow<br>        <span class="hljs-title function_">run</span>()<br>    &#125;<br>    <span class="hljs-title function_">run</span>()<br>    <span class="hljs-keyword">return</span> &#123;<br>        pause,<br>        next<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> rAFWithFPS<br></code></pre></td></tr></table></figure>
 
 <div class="note note-info">
             <p>tips：</p><ol><li><p>使用<code>performance.now()</code>代替<code>Date.now()</code>能获取精度高达微秒的浮点数，更多介绍MDN：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/now">https://developer.mozilla.org/en-US/docs/Web/API/Performance/now</a></p></li><li><p>使用<code>now - (diff % fpsInterval)</code>代替<code>start = now</code>，外国友人详细的回答：</p><blockquote><p>All you can control is when you’re going to skip a frame. A 60 fps monitor always draws at 16ms intervals. For example if you want your game to run at 50fps, you want to skip every 6th frame. You check if 20ms (1000&#x2F;50) has elapsed, and it hasn’t (only 16ms has elapsed) so you skip a frame, then the next frame 32ms has elapsed since you drew, so you draw and reset. But then you’ll skip half the frames and run at 30fps. So when you reset you remember you waited 12ms too long last time. So next frame another 16ms passes but you count it as 16+12&#x3D;28ms so you draw again and you waited 8ms too long</p></blockquote></li></ol>
+          </div>
+
+<div class="note note-warning">
+            <p>未知原因：暂停后执行概率出现少执行一次问题，如最后进度在<code>0.99</code>，执行次数例子中为<code>119</code>次的情况</p>
           </div>
 
                 
@@ -383,7 +389,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年8月25日</div>
+          <div>2023年8月26日</div>
         </div>
       
       
@@ -413,6 +419,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/08/26/%E7%94%A8%E4%BA%8E%E6%BB%9A%E5%8A%A8%E6%95%B0%E5%AD%97%E7%9A%84%E6%8C%87%E4%BB%A4%EF%BC%88%E8%B6%85%E7%BA%A7%E8%AF%A6%E7%BB%86%EF%BC%89/" title="用于滚动数字的指令（超级详细）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">用于滚动数字的指令（超级详细）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

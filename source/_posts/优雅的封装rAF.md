@@ -8,17 +8,22 @@ categories: [前端,前端其他]
 ## 封装需求
 
 1. 支持控制每秒刷新帧数（FPS），节省性能消耗
-2. 支持持续时间控制
-3. 支持进度显示
+2. 支持控制持续时间
+3. 支持获取实时进度
 4. 支持暂停和继续
 
 ## 使用
+
+<iframe src="/iframe/rAF封装函数演示.html" width='100%'></iframe>
 
 ```js
 import rAFWithFPS from "./rAFWithFPS"
 
 const { pause, next } = rAFWithFPS(progress => {
+    console.group('执行统计')
+    console.count('执行次数：')
     console.log('执行进度：', progress)
+    console.groupEnd('执行统计')
 }, 2000, 60)
 
 // 500毫秒后暂停
@@ -36,8 +41,8 @@ setTimeout(() => {
 1. 执行的回调函数
    1. 参数一：进度，范围 `0 - 1`
    2. 参数二：rAF对象，可使用`cancelAnimationFrame`手动结束
-2. 执行时间（毫秒），可传递`-1`表示无限时间
-3. 每秒刷新帧数（FPS）
+2. 执行时间（毫秒），可传递 -1 表示无限时间，默认 -1
+3. 每秒刷新帧数（FPS），默认 30
 
 如上，就是共执行`120（2 * 60）`次回调，执行`30次`后暂停，一秒后继续执行`90次`
 
@@ -128,5 +133,11 @@ tips：
 2. 使用`now - (diff % fpsInterval)`代替`start = now`，外国友人详细的回答：
 
    > All you can control is when you're going to skip a frame. A 60 fps monitor always draws at 16ms intervals. For example if you want your game to run at 50fps, you want to skip every 6th frame. You check if 20ms (1000/50) has elapsed, and it hasn't (only 16ms has elapsed) so you skip a frame, then the next frame 32ms has elapsed since you drew, so you draw and reset. But then you'll skip half the frames and run at 30fps. So when you reset you remember you waited 12ms too long last time. So next frame another 16ms passes but you count it as 16+12=28ms so you draw again and you waited 8ms too long
+
+{% endnote %}
+
+{% note warning %}
+
+未知原因：暂停后执行概率出现少执行一次问题，如最后进度在`0.99`，执行次数例子中为`119`次的情况
 
 {% endnote %}
