@@ -14,7 +14,7 @@ categories: [前端,前端其他]
 
 ## 使用
 
-<iframe src="/iframe/rAF封装函数演示.html" width='100%'></iframe>
+<iframe src="/iframe/rAF封装函数演示.html" width='100%' height='40px'></iframe>
 
 ```js
 import rAFWithFPS from "./rAFWithFPS"

@@ -53,3 +53,9 @@ html[data-user-color-scheme="dark"] .markdown-body p code,
 html[data-user-color-scheme="dark"] li code{
     color: #f3b37f;
 }
+
+/* 加入iframe默认样式 */
+iframe {
+    border: none;
+    background-color: white;
+}
