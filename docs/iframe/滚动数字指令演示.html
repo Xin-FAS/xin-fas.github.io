@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <link href="./iframe-base.css" rel="stylesheet" type="text/css"/>
+    <style>
+         * {
+             margin: 0;
+             padding: 0;
+         }
+         .demo {
+             font: 20px "Fira Sans";
+         }
+         .light-num {
+             color: red;
+         }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <div v-scroll-num="{
+                lightClass: 'light-num',
+                duration: 1000
+            }" class="demo">
+                正常数字1002，这是非数字1001.1.1，这是浮点数1.233444
+            </div>
+            <!-- 对比组 -->
+            <div class="demo">
+                正常数字1002，这是非数字1001.1.1，这是浮点数1.233444
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    /**
+     * @author Xin-FAS
+     */
+
+    /**
+     * 以指定的fps执行函数，执行n毫秒后停止，或手动停止
+     * @param callback 每次执行的回调，回调值为进度和实例，可以手动停止
+     * @param duration 执行时间，默认-1，即无限
+     * @param fps 指定fps，默认一秒三十次
+     */
+    const rAFWithFPS = (callback, duration = -1, fps = 30) => {
+        // 动画实例
+        let rAFInstance,
+            // 上一次执行时间
+            then = performance.now(),
+            // 当次执行时间差
+            diff,
+            // 当前时间
+            now,
+            // 已执行时间
+            runDuration = 0,
+            // 暂停时间差
+            pauseDiff,
+            // 执行初始时间
+            runDurationStart = performance.now()
+        // fps 对应的刷新毫秒
+        const fpsInterval = 1000 / fps
+
+        // 运行
+        const run = () => {
+            // 异步执行，不用担心位置
+            rAFInstance = requestAnimationFrame(run)
+            // 当前时间
+            now = performance.now()
+            // 获取执行的时间差
+            diff = now - then
+            // 根据执行插值计算已执行时间
+            runDuration += (now - runDurationStart)
+            // 获取完执行时间后立马刷新执行初始时间
+            runDurationStart = performance.now()
+            // 当执行时间大于fps的间隔时间，刷新初始时间
+            if (diff > fpsInterval) {
+                // 也可以简单使用start = now，以下是对起始值优化
+                then = now - (diff % fpsInterval)
+                // min 防止最后一次超出
+                callback(duration === -1 ? 0 : Math.min(runDuration / duration, 1), rAFInstance)
+            }
+            // 判断结束时间差，时间到了就结束raf
+            if (runDuration > duration && duration !== -1) cancelAnimationFrame(rAFInstance)
+        }
+        // 暂停，记录时间差
+        const pause = () => {
+            pauseDiff = performance.now() - then
+            rAFInstance = (cancelAnimationFrame(rAFInstance), undefined)
+        }
+        // 继续
+        const next = () => {
+            // 如果当前不处于暂停状态
+            if (rAFInstance) return
+            // 刷新上一次执行时间和初始时间
+            const pauseWithNow = performance.now() - pauseDiff
+            then = pauseWithNow
+            runDurationStart = pauseWithNow
+            run()
+        }
+        run()
+        return {
+            pause,
+            next
+        }
+    }
+
+    // 利用画布获取文字的渲染宽度
+    const getRenderWidthOfText = (text, font = '') => {
+        // 创建一个画布元素
+        const canvas = document.createElement('canvas')
+        // 获取渲染上下文对象
+        const ctx = canvas.getContext('2d')
+        // 设置文字属性
+        ctx.font = font
+        // 获取测量文本数据中的宽度
+        return ctx.measureText(text).width
+    }
+
+    // 利用曲线缓动元素的值同时控制刷新率
+    const runAttr = ({ targetNode, scrollNum, duration, easing }) => {
+        let fixed = 0
+        const strNum = scrollNum + ''
+        // 获取数字的小数位下标
+        const val = strNum.lastIndexOf('.')
+        if (val !== -1) fixed = strNum.length - (val + 1)
+        // 利用曲线累加
+        rAFWithFPS(progress => {
+            targetNode.innerHTML = (easing(progress) * scrollNum).toFixed(fixed)
+        }, duration)
+    }
+
+    new Vue({
+        el: '#app',
+        directives: {
+            'scroll-num': {
+                bind (el, {
+                    value: {
+                        lightClass = '',
+                        easing = x => Math.sin((x * Math.PI) / 2),
+                        duration = 500
+                    } = {}
+                }, vNode) {
+                    // 替换后的span默认样式
+                    const defaultStyle = {
+                        display: 'inline-block',
+                        'text-align': 'center',
+                        'box-sizing': 'content-box'
+                    }
+                    // 渲染完成后计算
+                    vNode.context.$nextTick(() => {
+                        // 获取文字大小和字体
+                        const font = getComputedStyle(el).font
+                        // 先匹配由数字组成的字符
+                        const replaceStr = el.innerText.replaceAll(/[\d\.]+/g, $1 => {
+                            // 转换为数字失败就返回
+                            if (isNaN(+$1)) return $1
+                            // 获取渲染宽度
+                            const spanWidth = Math.floor(getRenderWidthOfText($1.trim(), font))
+                            // style对象转为对象字符串，不然渲染不出来
+                            const style = {
+                                ...defaultStyle,
+                                // font: `${ font.replaceAll(/["]/g, '') }`,
+                                width: `${ spanWidth }px`
+                            }
+                            let styleStr = Object
+                                .entries(style)
+                                .reduce((result, [ key, value ]) => result + `${ key }:${ value };`, '')
+                            // 将正常数字替换为span标签，这里必须不留换行，不然span会出现空隙
+                            return `<span
+                            scroll-num="${ $1 }"
+                            class="${ lightClass }"
+                            style="${ styleStr }">
+                        </span>`
+                        })
+                        el.innerHTML = replaceStr || '&nbsp;'
+                        // 获取所有span
+                        const allLightNode = el.querySelectorAll('span[scroll-num]')
+                        for (const node of allLightNode) {
+                            const scrollNum = +node.getAttribute('scroll-num')
+                            runAttr({
+                                targetNode: node,
+                                scrollNum,
+                                easing,
+                                duration,
+                            })
+                        }
+                    })
+                }
+            }
+        }
+    })
+</script>
+</html>
