@@ -148,18 +148,10 @@ const initLog = ({
         if (map.has(key)) newCount = map.get(key) + 1
         map.set(key, newCount)
         // 打印出map中统计好的数据
-        for (const [key, count] of map) {
-            // 从key中获取title和value
-            const { title, value } = JSON.parse(key)
-            printTemplate(title, value, count)
-        }
+        printTemplate(title, value, newCount)
         // 定时重置，为 -1 则不重置
-        if (delay === -1) return 
-        time && clearTimeout(time)
-        time = setTimeout(() => {
-            time = undefined
-            map.clear()
-        }, delay)
+        if (delay === -1) return
+        setTimeout(() => map.delete(key), delay)
     }
 }
 
