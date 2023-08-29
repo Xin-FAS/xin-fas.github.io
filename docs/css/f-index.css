@@ -59,3 +59,8 @@ iframe {
     border: none;
     background-color: white;
 }
+
+/* 修改note中的超链接样式 */
+.note a {
+    color: var(--link-hover-color);
+}
