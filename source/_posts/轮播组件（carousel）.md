@@ -1,5 +1,5 @@
 ---
-title: 轮播组件（carousel）
+title: 轮播列表组件（carousel）
 date: 2023-08-17 08:58:44
 tags: [Vue2, Vue3, JavaScript]
 categories: [前端,Vue]
@@ -7,14 +7,16 @@ categories: [前端,Vue]
 
 ## 需求
 
-1. 能实现左右上下切换
+1. 支持水平垂直滚动
 2. 支持动态添加数据项
 3. 可自定义的左右切换箭头
-4. 可无缝循环
+4. 三种模式可选（无限滚动，循环滚动，按需滚动）
 
 ## 使用
 
-以Vue2为例，最简结构：
+以Vue2为例
+
+<iframe src="/iframe/FCarouselList/index.html#/" height="700px"></iframe>
 
 ```html
 <script>
@@ -42,20 +44,36 @@ export default {
             }))
         },
         getDemoData () {
-            const random = Math.round(Math.random() * 1000)
+            const random = (Math.random() * 1000).toFixed(5) + ''
             return {
-                key: random + '',
+                key: random,
                 label: '随机数据' + random
             }
         },
-        loadPrev () {
-            this.carouseDataLoad.unshift(this.getDemoData())
+        toUnshift (val) {
+            this[val].unshift(this.getDemoData())
         },
-        loadNext () {
-            this.carouseDataLoad.push(this.getDemoData())
+        toPush (val) {
+            this[val].push(this.getDemoData())
+        },
+        allUnshift () {
+            this.toUnshift('carouseDataLoad')
+            this.toUnshift('carouseDataLoop')
+            this.toUnshift('carouseDataInfinite')
+        },
+        allPush () {
+            this.toPush('carouseDataLoad')
+            this.toPush('carouseDataLoop')
+            this.toPush('carouseDataInfinite')
+        },
+        execEvent (name) {
+            this.$refs.fCarouselListLoad[name]()
+            this.$refs.fCarouselListInfinite[name]()
+            this.$refs.fCarouselListLoop[name]()
         }
     },
     mounted () {
+        // 异步加载
         setTimeout(() => {
             this.carouseDataLoad = this.getInitData('load')
             this.carouseDataLoop = this.getInitData('loop')
@@ -67,41 +85,58 @@ export default {
 
 <template>
     <div>
+        <h3>功能展示</h3>
+        <button @click="allUnshift">向前添加一项</button>
+        <button @click="allPush">向后添加一项</button>
+        <button @click="execEvent('scrollToPrev')">向前滚动</button>
+        <button @click="execEvent('scrollToNext')">向后滚动</button>
+        <button @click="execEvent('scrollToLast')">滚动至最后</button>
+        <button @click="execEvent('scrollToFirst')">滚动至第一个</button>
         <h3>三种模式展示，鼠标放置显示箭头:</h3>
-        无限加载模式
+        无限加载模式，长度：{{ carouseDataLoad.length }}
         <div class="carouse-list__demo-box">
             <FCarouselList
                 :data='carouseDataLoad'
                 v-model='carouseKeyLoad'
+                ref="fCarouselListLoad"
                 type="load"
-                @loadPrev="loadPrev"
-                @loadNext="loadNext"
+                @loadPrev="toUnshift('carouseDataLoad')"
+                @loadNext="toPush('carouseDataLoad')"
             >
                 <template #default='{ label }'>
-                    {{ label }}
+                    <div class="carouse-list__demo-item">
+                        {{ label }}
+                    </div>
                 </template>
             </FCarouselList>
         </div>
-        循环模式
+        循环模式，长度：{{ carouseDataLoop.length }}
         <div class="carouse-list__demo-box">
             <FCarouselList
                 :data='carouseDataLoop'
                 v-model='carouseKeyLoop'
                 type="loop"
+                ref="fCarouselListLoop"
             >
                 <template #default='{ label }'>
-                    {{ label }}
+                    <div class="carouse-list__demo-item">
+                        {{ label }}
+                    </div>
                 </template>
             </FCarouselList>
         </div>
-        无限滚动模式（默认）
+        无限滚动模式（默认），垂直滚动，长度：{{ carouseDataInfinite.length }}
         <div class="carouse-list__demo-box">
             <FCarouselList
                 :data='carouseDataInfinite'
                 v-model='carouseKeyInfinite'
+                ref="fCarouselListInfinite"
+                vertical
             >
                 <template #default='{ label }'>
-                    {{ label }}
+                    <div class="carouse-list__demo-item">
+                        {{ label }}
+                    </div>
                 </template>
             </FCarouselList>
         </div>
@@ -113,18 +148,26 @@ export default {
     height: 100px;
     border: 1px solid #ccc;
     margin: 20px 0;
+
+    .carouse-list__demo-item {
+        background: #AEC3AE;
+        line-height: 100px;
+        font-size: 30px;
+        text-align: center;
+        color: white;
+    }
 }
 </style>
+
 ```
 
-{% note secondary %}
+{% note warning %}
 
-需要注意的点：（8/29待改）
+需要注意的点：
 
-1. `key`的类型一定要是字符串
-2. `添加数据后立即切换`操作，当不使用内置方法自己修改绑定值时，需要添加`setTimeout`
-3. 当使用`垂直滚动`功能时，一定要让父元素添加高度
-4. `template`中的元素并不会默认撑满，为默认大小
+1. 轮播的插槽`default`必须有一个根标签，并且只能有一个
+2. 当使用`垂直滚动`功能时，父元素一定要存在高度
+3. 一定要指定绑定的key，为空时不会显示当前项目（8/29，待优化）
 
 {% endnote %}
 
@@ -140,7 +183,6 @@ export default {
 
 ```html
 <script>
-let lock
 export default {
     props: {
         // 双向绑定
@@ -178,7 +220,8 @@ export default {
         return {
             renderData: [],
             // 当前这次是否为平滑（为了区分从after或before的矫正）
-            isSmooth: true
+            isSmooth: true,
+            lock: void 0
         }
     },
     watch: {
@@ -193,9 +236,7 @@ export default {
         '$props.data': {
             handler (after) {
                 if (!after?.length) return
-                // 异步赋值，且绑定为空，默认使用当前第一个key
                 this.renderData = JSON.parse(JSON.stringify(after))
-
             },
             deep: true,
             immediate: true
@@ -206,7 +247,7 @@ export default {
         startScroll (isSmooth = false) {
             this.$nextTick(() => {
                 const smooth = isSmooth && this.isSmooth
-                const duration = 300
+                const duration = 400
                 const carouseList = this.$refs.carouseList
                 if (smooth) carouseList.style.transitionDuration = `${ duration }ms`
                 // 垂直计算高度，水平计算宽度
@@ -220,8 +261,8 @@ export default {
                 ), 0, 0)`
                 // 监听结束后关闭时间，开启矫正
                 if (!smooth) return this.scrollend()
-                lock && clearTimeout(lock)
-                lock = setTimeout(() => {
+                this.lock && clearTimeout(this.lock)
+                this.lock = setTimeout(() => {
                     carouseList.style.transitionDuration = '0ms'
                     this.scrollend()
                 }, duration)
@@ -237,11 +278,10 @@ export default {
             this.isSmooth = true
             // 如果为load模式，判断加载数据
             if (this.$props.type === 'load') {
-                console.log(this.activeIndex, this.firstIndex, this.lastIndex, '!')
                 // 到达最后一个数据
-                if (this.activeIndex === this.firstIndex) setTimeout(() => {this.$emit('loadPrev')})
+                if (this.activeIndex === this.firstIndex) this.$emit('loadPrev')
                 // 到达第一个数据
-                if (this.activeIndex === this.lastIndex) setTimeout(() => {this.$emit('loadNext')})
+                if (this.activeIndex === this.lastIndex) this.$emit('loadNext')
             }
             if (this.$props.type === 'infinite') {
                 requestAnimationFrame(() => {
@@ -258,10 +298,12 @@ export default {
          */
         // 滚动至下一个
         scrollToNext () {
+            this.$emit('change', 'next')
             this.$emit('input', this.getKeyByIndex(this.nextIndex))
         },
         // 滚动至上一个
         scrollToPrev () {
+            this.$emit('change', 'prev')
             this.$emit('input', this.getKeyByIndex(this.prevIndex))
         },
         // 滚动到首个
@@ -344,13 +386,11 @@ export default {
         <div
             class='carouse-list__scroll'
             ref='carouseList'>
-            <div class='carouse-list__item' v-for='item of activeData' :key='item[keyName]'>
-                <slot v-bind='item'>
-                    <div class='carouse-list__item-default'>
-                        数据：{{ item }}
-                    </div>
-                </slot>
-            </div>
+            <slot v-bind='item' v-for='item of activeData'>
+                <div class='carouse-list__item-default'>
+                    数据：{{ item }}
+                </div>
+            </slot>
         </div>
         <div
             class='carousel__arrow_prev carousel__arrow'

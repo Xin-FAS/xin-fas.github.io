@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>* {
+        margin: 0;
+        padding: 0
+    }</style>
+</head>
+<body>
+<div id="app">
+    <template>
+        <div>
+            <button @click="text='你还是你吗'">改变文字</button>
+            <p v-write:200.2000.400="text" />
+            <p v-write:150.1000="'这是一段超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级长的文字'" />
+        </div>
+    </template>
+</div>
+</body>
+<script>
+    // 让一个元素初始闪烁（模拟打字效果）
+    const useFlicker = (el, val = '_') => {
+        // 控制闪烁和还原文字
+        let interval, timeout
+        let text = []
+        const setHitStatus = () => el.innerHTML = text.join('') + val
+        // 当字符为空时，使用空格占位
+        const setTextStatus = () => el.innerHTML = text.length ? text.join('') : '&nbsp;'
+        // 初始化
+        el.innerHTML = ''
+        // 开始
+        const startFlicker = () => {
+            el.style.opacity = '1'
+            const handler = () => timeout = (setHitStatus(), setTimeout(setTextStatus, 400))
+            // 第一次开始时先触发一次
+            interval = (handler(), setInterval(handler, 1000))
+        }
+        // 关闭打字效果
+        const closeFlicker = () => {
+            interval = (clearInterval(interval), undefined)
+            timeout = (clearTimeout(timeout), undefined)
+            setTextStatus()
+        }
+        /**
+         * 添加文字，支持回调形式，返回值用于替换文字数组
+         * @param val 添加文字
+         */
+        const addFlickerText = val => {
+            const typeofVal = typeof val
+            if (typeofVal === 'function') text = val(text)
+            if (typeofVal === 'string' || typeofVal === 'number') text.push(val)
+            // 更新显示值 + 打字状态
+            setHitStatus()
+        }
+        return {
+            startFlicker,
+            closeFlicker,
+            addFlickerText
+        }
+    }
+
+    /**
+     * @author Xin-FAS
+     */
+
+    // 存储同时存在的打字效果
+    const mapStore = new Map()
+    const write = {
+        // 操作文字打字效果，存储在这个位置主要是给全部生命周期使用
+        async bind (el, { arg, modifiers, value = '' }) {
+            // 累加等待值
+            const delay = Object
+                .entries(modifiers).map(v => +v[0])
+                .reduce((count, num) => count + num, 0)
+            // 这里一定要判断undefined，否则arg=0会赋值150，ES11的??可以解决
+            const duration = (arg === undefined) ? 150 : +arg
+            // 初始打字化效果，并开始闪烁
+            const flickerHandler = useFlicker(el)
+            flickerHandler.startFlicker()
+            let delayTime
+            // 开始等待
+            await new Promise(res => delayTime = setTimeout(res, delay))
+            // 定时器开始打字
+            const innerHTMLArr = value.trim().split('')
+            const lastIndex = innerHTMLArr.length - 1
+            let activeIndex = 0
+            const textInterval = setInterval(() => {
+                flickerHandler.addFlickerText(innerHTMLArr[activeIndex++])
+                if (activeIndex <= lastIndex) return
+                // 关闭打字和打字效果
+                clearInterval(textInterval)
+                flickerHandler.closeFlicker()
+            }, duration)
+            // 存入全局函数
+            const handlerEvent = {
+                flickerHandler,
+                textInterval,
+                delayTime
+            }
+            // 创建仓库key并存入
+            const mapKey = 'map-key' + Math.round(Math.random() * 10000)
+            mapStore.set(mapKey, handlerEvent)
+            el.setAttribute('map-key', mapKey)
+        },
+        update (el, binding) {
+            const { value, oldValue } = binding
+            // 防止其他地方的刷新
+            if (value === oldValue) return
+            // 结束
+            write.unbind(el)
+            // 重新开始
+            write.bind(el, binding)
+        },
+        unbind (el) {
+            // 获取元素上的操作函数
+            const mapKey = el.getAttribute('map-key')
+            const handlerEvent = mapStore.get(mapKey)
+            // 清空当前元素上的所有定时器和效果
+            handlerEvent.flickerHandler.closeFlicker()
+            clearInterval(handlerEvent.textInterval)
+            clearTimeout(handlerEvent.delayTime)
+            // 开始清空
+            mapStore.delete(mapKey)
+            el.removeAttribute('map-key')
+        }
+    }
+
+    new Vue({
+        el: '#app',
+        data () {
+            return {
+                text: '我还是我'
+            }
+        },
+        directives: {
+            write
+        }
+    })
+</script>
+</html>
