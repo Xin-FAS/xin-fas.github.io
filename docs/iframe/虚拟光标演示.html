@@ -10,19 +10,24 @@
 </head>
 <body>
 <div id="app">
-    <template>
-        <div>
-            <button @click="text='你还是你吗'">改变文字</button>
-            <p v-write:200.2000.400="text" />
-            <p v-write:150.1000="'这是一段超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级超级长的文字'" />
-        </div>
-    </template>
+    <input type="text" v-model="value" placeholder="添加文字" />
+    <input type="number" v-model="valueDuration" placeholder="添加时长（毫秒，默认0）" />
+    <div>
+        <button @click="flickerInstance.pushText(value, valueDuration || 0)">添加文字</button>
+        <button @click="flickerInstance.popText()">移除一个文字</button>
+        <button @click="flickerInstance.startFlicker()">开始闪烁效果</button>
+        <button @click="flickerInstance.closeFlicker()">关闭闪烁效果</button>
+        <button @click="flickerInstance.clearText()">清空文字</button>
+    </div>
+    <div>
+        <span ref="target">这里会被清空</span>
+        <span>占位文本</span>
+        <p>占位文本</p>
+    </div>
 </div>
 </body>
 <script>
     const useFlicker = (el, val = '_') => {
-        // 存储文字
-        const text = []
         // 闪烁元素，文字元素，闪烁定时器，取消闪烁定时器，打字定时器，初始还原定时器
         let flickerNode,
             textNode,
@@ -90,6 +95,7 @@
             duration = 0,
             easing = x => x
         ) => {
+            if (!val) return
             const valCount = val.length
             // 一个递归实现根据函数间隔打字
             const runTimeout = (active = 0, beforeTime = 0) => {
@@ -116,82 +122,17 @@
         }
     }
 
-    /**
-     * @author Xin-FAS
-     */
-
-    // 存储同时存在的打字效果
-    const mapStore = new Map()
-    const write = {
-        // 操作文字打字效果，存储在这个位置主要是给全部生命周期使用
-        async bind (el, { arg, modifiers, value }) {
-            if (!value) return
-            // 累加等待值
-            const delay = Object
-                .entries(modifiers).map(v => +v[0])
-                .reduce((count, num) => count + num, 0)
-            // 这里一定要判断undefined，否则arg=0会赋值150，ES11的??可以解决
-            const duration = (arg === undefined) ? 150 : +arg
-            // 初始打字化效果，并开始闪烁
-            const flickerHandler = useFlicker(el)
-            flickerHandler.startFlicker()
-            let delayTime
-            // 开始等待
-            await new Promise(res => delayTime = setTimeout(res, delay))
-            // 定时器开始打字
-            const innerHTMLArr = value.trim().split('')
-            const lastIndex = innerHTMLArr.length - 1
-            let activeIndex = 0
-            const textInterval = setInterval(() => {
-                flickerHandler.pushText(innerHTMLArr[activeIndex++])
-                if (activeIndex <= lastIndex) return
-                // 关闭打字和打字效果
-                clearInterval(textInterval)
-                flickerHandler.closeFlicker()
-            }, duration)
-            // 存入全局函数
-            const handlerEvent = {
-                flickerHandler,
-                textInterval,
-                delayTime
-            }
-            // 创建仓库key并存入，随机防止重复
-            const mapKey = 'map-key' + (Math.random() * 1000).toFixed(5)
-            mapStore.set(mapKey, handlerEvent)
-            el.setAttribute('map-key', mapKey)
-        },
-        update (el, binding) {
-            const { value, oldValue } = binding
-            // 防止其他地方的刷新
-            if (value === oldValue) return
-            // 结束
-            write.unbind(el)
-            // 重新开始
-            write.bind(el, binding)
-        },
-        unbind (el) {
-            // 获取元素上的操作函数
-            const mapKey = el.getAttribute('map-key')
-            const handlerEvent = mapStore.get(mapKey)
-            // 清空当前元素上的所有定时器和效果
-            handlerEvent.flickerHandler.closeFlicker()
-            clearInterval(handlerEvent.textInterval)
-            clearTimeout(handlerEvent.delayTime)
-            // 开始清空
-            mapStore.delete(mapKey)
-            el.removeAttribute('map-key')
-        }
-    }
-
     new Vue({
         el: '#app',
         data () {
             return {
-                text: '我还是我'
+                value: '',
+                flickerInstance: '',
+                valueDuration: void 0
             }
         },
-        directives: {
-            write
+        mounted () {
+            this.flickerInstance = useFlicker(this.$refs.target)
         }
     })
 </script>

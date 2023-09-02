@@ -20,44 +20,99 @@
 </div>
 </body>
 <script>
-    // 让一个元素初始闪烁（模拟打字效果）
     const useFlicker = (el, val = '_') => {
-        // 控制闪烁和还原文字
-        let interval, timeout
-        let text = []
-        const setHitStatus = () => el.innerHTML = text.join('') + val
-        // 当字符为空时，使用空格占位
-        const setTextStatus = () => el.innerHTML = text.length ? text.join('') : '&nbsp;'
+        // 存储文字
+        const text = []
+        // 闪烁元素，文字元素，闪烁定时器，取消闪烁定时器，打字定时器，初始还原定时器
+        let flickerNode,
+            textNode,
+            intervalInstance,
+            timeoutInstance,
+            typingInstance,
+            initStateInstance
+
         // 初始化
-        el.innerHTML = ''
-        // 开始
+        const initFlicker = () => {
+            // 清空元素
+            el.innerHTML = ''
+            // 添加闪烁元素
+            flickerNode = document.createElement('span')
+            flickerNode.innerHTML = val
+            flickerNode.style.opacity = '0'
+            flickerNode.style.transition = 'opacity 300ms'
+            flickerNode.style.willChange = 'opacity'
+            // 添加文字元素
+            textNode = document.createElement('span')
+            // 添加一层span，防止布局被破坏
+            const span = document.createElement('span')
+            span.appendChild(textNode)
+            span.appendChild(flickerNode)
+            el.appendChild(span)
+        }
+        initFlicker()
+        // 普通状态
+        const setInitialState = () => flickerNode.style.opacity = '0'
+        // 闪烁状态
+        const setFlickerState = () => flickerNode.style.opacity = '1'
+        // 开始闪烁效果
         const startFlicker = () => {
-            el.style.opacity = '1'
-            const handler = () => timeout = (setHitStatus(), setTimeout(setTextStatus, 400))
-            // 第一次开始时先触发一次
-            interval = (handler(), setInterval(handler, 1000))
+            clearFlickerTime()
+            initStateInstance = setTimeout(setInitialState, 400)
+            intervalInstance = setInterval(() =>
+                    timeoutInstance = (setFlickerState(), setTimeout(setInitialState, 400))
+                , 1100)
         }
-        // 关闭打字效果
+        // 清空闪烁定时器
+        const clearFlickerTime = () => {
+            clearTimeout(initStateInstance)
+            clearTimeout(timeoutInstance)
+            clearInterval(intervalInstance)
+        }
+        // 关闭闪烁效果，setTimeout创建最后一个宏任务，保证最后一个文字打印完成后关闭
         const closeFlicker = () => {
-            interval = (clearInterval(interval), undefined)
-            timeout = (clearTimeout(timeout), undefined)
-            setTextStatus()
+            setTimeout(() => {
+                clearFlickerTime()
+                setInitialState()
+            })
         }
-        /**
-         * 添加文字，支持回调形式，返回值用于替换文字数组
-         * @param val 添加文字
-         */
-        const addFlickerText = val => {
-            const typeofVal = typeof val
-            if (typeofVal === 'function') text = val(text)
-            if (typeofVal === 'string' || typeofVal === 'number') text.push(val)
-            // 更新显示值 + 打字状态
-            setHitStatus()
+        // 清空文字
+        const clearText = () => typingHandler(() => textNode.innerText = '')
+        // 在打字状态做一些事情
+        const typingHandler = fn => {
+            closeFlicker()
+            fn()
+            setFlickerState()
+            startFlicker()
         }
+        // 添加文字
+        const pushText = (
+            val,
+            duration = 0,
+            easing = x => x
+        ) => {
+            const valCount = val.length
+            // 一个递归实现根据函数间隔打字
+            const runTimeout = (active = 0, beforeTime = 0) => {
+                active = ++active
+                if (active > valCount) return
+                const delay = easing(active / valCount) * duration - beforeTime
+                typingInstance = setTimeout(() => {
+                    // 添加文字
+                    typingHandler(() => textNode.innerText += val[active - 1])
+                    runTimeout(active, beforeTime + delay)
+                }, delay)
+            }
+            runTimeout()
+        }
+        // 移除一个文字
+        const popText = () => typingHandler(() => textNode.innerText = textNode.innerText.slice(0, -1))
+
         return {
             startFlicker,
             closeFlicker,
-            addFlickerText
+            clearText,
+            pushText,
+            popText
         }
     }
 
@@ -69,7 +124,8 @@
     const mapStore = new Map()
     const write = {
         // 操作文字打字效果，存储在这个位置主要是给全部生命周期使用
-        async bind (el, { arg, modifiers, value = '' }) {
+        async bind (el, { arg, modifiers, value }) {
+            if (!value) return
             // 累加等待值
             const delay = Object
                 .entries(modifiers).map(v => +v[0])
@@ -87,7 +143,7 @@
             const lastIndex = innerHTMLArr.length - 1
             let activeIndex = 0
             const textInterval = setInterval(() => {
-                flickerHandler.addFlickerText(innerHTMLArr[activeIndex++])
+                flickerHandler.pushText(innerHTMLArr[activeIndex++])
                 if (activeIndex <= lastIndex) return
                 // 关闭打字和打字效果
                 clearInterval(textInterval)
@@ -99,8 +155,8 @@
                 textInterval,
                 delayTime
             }
-            // 创建仓库key并存入
-            const mapKey = 'map-key' + Math.round(Math.random() * 10000)
+            // 创建仓库key并存入，随机防止重复
+            const mapKey = 'map-key' + (Math.random() * 1000).toFixed(5)
             mapStore.set(mapKey, handlerEvent)
             el.setAttribute('map-key', mapKey)
         },
