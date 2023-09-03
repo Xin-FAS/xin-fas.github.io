@@ -16,15 +16,15 @@
   <meta name="author" content="Xin-FAS">
   <meta name="keywords" content="">
   
-    <meta name="description" content="* {         margin: 0;         padding: 0     }                           添加文字         移除一个文字         开始闪烁效果         关闭闪烁效果         清空文字                   这里会被清空         占位文本">
+    <meta name="description" content="* {             margin: 0;             padding: 0;         }                            操作后继续闪烁          操作后结束闪烁              添加文字         移除一个文字         清空文字         开始闪烁效果">
 <meta property="og:type" content="website">
 <meta property="og:title" content="page.title">
 <meta property="og:url" content="https://xin-fas.github.io/html/%E8%99%9A%E6%8B%9F%E5%85%89%E6%A0%87%E6%BC%94%E7%A4%BA.html">
 <meta property="og:site_name" content="Xin-FAS&#39;blog">
-<meta property="og:description" content="* {         margin: 0;         padding: 0     }                           添加文字         移除一个文字         开始闪烁效果         关闭闪烁效果         清空文字                   这里会被清空         占位文本">
+<meta property="og:description" content="* {             margin: 0;             padding: 0;         }                            操作后继续闪烁          操作后结束闪烁              添加文字         移除一个文字         清空文字         开始闪烁效果">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-02T15:41:04.719Z">
-<meta property="article:modified_time" content="2023-09-02T15:41:04.719Z">
+<meta property="article:published_time" content="2023-09-03T14:43:01.654Z">
+<meta property="article:modified_time" content="2023-09-03T14:43:01.654Z">
 <meta property="article:author" content="Xin-FAS">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -239,27 +239,33 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <style>* {
-        margin: 0;
-        padding: 0
-    }</style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
 <div id="app">
     <input type="text" v-model="value" placeholder="添加文字" />
-    <input type="number" v-model="valueDuration" placeholder="添加时长（毫秒，默认0）" />
+    <input type="number" v-model="duration" placeholder="添加时长（毫秒，默认0）" />
+    <input type="radio" id="select1" :value="true" v-model="next" />
+    <label for="select1">操作后继续闪烁</label>
+    <input type="radio" id="select2" :value="false" v-model="next" />
+    <label for="select2">操作后结束闪烁</label>
     <div>
-        <button @click="flickerInstance.pushText(value, valueDuration || 0)">添加文字</button>
-        <button @click="flickerInstance.popText()">移除一个文字</button>
+        <button @click="flickerInstance.pushText({ value, duration, next })">添加文字</button>
+        <button @click="flickerInstance.popText(next)">移除一个文字</button>
+        <button @click="flickerInstance.clearText(next)">清空文字</button>
         <button @click="flickerInstance.startFlicker()">开始闪烁效果</button>
         <button @click="flickerInstance.closeFlicker()">关闭闪烁效果</button>
-        <button @click="flickerInstance.clearText()">清空文字</button>
     </div>
-    <div>
+    <div style="display: flex">
         <span ref="target">这里会被清空</span>
         <span>占位文本</span>
-        <p>占位文本</p>
     </div>
+    <div>占位文本</div>
 </div>
 </body>
 <script>
@@ -278,7 +284,6 @@
             el.innerHTML = ''
             // 添加闪烁元素
             flickerNode = document.createElement('span')
-            flickerNode.innerHTML = val
             flickerNode.style.opacity = '0'
             flickerNode.style.transition = 'opacity 300ms'
             flickerNode.style.willChange = 'opacity'
@@ -295,59 +300,63 @@
         const setInitialState = () => flickerNode.style.opacity = '0'
         // 闪烁状态
         const setFlickerState = () => flickerNode.style.opacity = '1'
+        // 在打字状态做一些事情
+        const typingHandler = (fn, next = true) => {
+            // 关闭闪烁定时器
+            clearInterval(intervalInstance)
+            // 执行
+            fn()
+            // 设置为闪烁状态
+            setFlickerState()
+            // 打字结束后还原
+            clearTimeout(initStateInstance)
+            initStateInstance = setTimeout(setInitialState, 400)
+            // 是否继续闪烁，继续则不清空闪烁内容
+            if (next) startFlicker()
+            else flickerNode.innerHTML = ''
+        }
         // 开始闪烁效果
         const startFlicker = () => {
-            clearFlickerTime()
-            initStateInstance = setTimeout(setInitialState, 400)
+            // 保证只存在一个闪烁定时器
+            clearTimeout(timeoutInstance)
+            clearInterval(intervalInstance)
+            flickerNode.innerHTML = val
             intervalInstance = setInterval(() =>
                     timeoutInstance = (setFlickerState(), setTimeout(setInitialState, 400))
                 , 1100)
         }
-        // 清空闪烁定时器
-        const clearFlickerTime = () => {
-            clearTimeout(initStateInstance)
-            clearTimeout(timeoutInstance)
-            clearInterval(intervalInstance)
-        }
-        // 关闭闪烁效果，setTimeout创建最后一个宏任务，保证最后一个文字打印完成后关闭
+        // 关闭闪烁效果
         const closeFlicker = () => {
-            setTimeout(() => {
-                clearFlickerTime()
-                setInitialState()
-            })
+            clearInterval(intervalInstance)
+            // 清空内容
+            flickerNode.innerHTML = ''
         }
-        // 清空文字
-        const clearText = () => typingHandler(() => textNode.innerText = '')
-        // 在打字状态做一些事情
-        const typingHandler = fn => {
-            closeFlicker()
-            fn()
-            setFlickerState()
-            startFlicker()
-        }
+        // 清空文字，next：清空后是否继续闪烁
+        const clearText = next => typingHandler(() => textNode.innerText = '', next)
         // 添加文字
-        const pushText = (
-            val,
+        const pushText = ({
+            value,
             duration = 0,
-            easing = x => x
-        ) => {
-            if (!val) return
-            const valCount = val.length
+            easing = x => x,
+            next
+        }) => {
+            if (!value) return
+            const valCount = value.length
             // 一个递归实现根据函数间隔打字
             const runTimeout = (active = 0, beforeTime = 0) => {
                 active = ++active
                 if (active > valCount) return
                 const delay = easing(active / valCount) * duration - beforeTime
                 typingInstance = setTimeout(() => {
-                    // 添加文字
-                    typingHandler(() => textNode.innerText += val[active - 1])
+                    // 添加文字，只在最后一位时决定next
+                    typingHandler(() => textNode.innerText += value[active - 1], active < valCount || next)
                     runTimeout(active, beforeTime + delay)
                 }, delay)
             }
             runTimeout()
         }
-        // 移除一个文字
-        const popText = () => typingHandler(() => textNode.innerText = textNode.innerText.slice(0, -1))
+        // 移除一个文字，next：在移除后是否继续闪烁
+        const popText = next => typingHandler(() => textNode.innerText = textNode.innerText.slice(0, -1), next)
 
         return {
             startFlicker,
@@ -364,7 +373,8 @@
             return {
                 value: '',
                 flickerInstance: '',
-                valueDuration: void 0
+                duration: void 0,
+                next: true
             }
         },
         mounted () {
