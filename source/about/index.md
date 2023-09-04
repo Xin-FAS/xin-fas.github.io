@@ -8,6 +8,15 @@ layout: about
 
 {% note info %}
 
+九月三：
+
+1. 添加`vue2.7`组合式（setup语法糖）中使用router3。[查看](/2023/09/04/Vue2-7组合式中使用router3/)
+2. 添加`vue2.7`组合式（setup语法糖）中像`vue2`一样使用`this`。[查看](/2023/09/04/Vue2-7组合式中使用this/)
+
+{% endnote %}
+
+{% note info %}
+
 九月二：
 
 1. 完善封装虚拟光标闪烁效果（`useFlicker.js`），添加在线演示。[查看](/2023/09/02/封装虚拟光标闪烁效果/)
