@@ -1,0 +1,667 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://s2.loli.net/2023/08/17/mEqM5TYLxfpnHiF.png">
+  <link rel="icon" href="https://s2.loli.net/2023/08/17/mEqM5TYLxfpnHiF.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#f2f2f2">
+  <meta name="author" content="Xin-FAS">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="效果  纯HTML12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910">
+<meta property="og:type" content="article">
+<meta property="og:title" content="吃豆人加载动画">
+<meta property="og:url" content="https://xin-fas.github.io/2023/09/05/%E5%90%83%E8%B1%86%E4%BA%BA%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/index.html">
+<meta property="og:site_name" content="Xin-FAS&#39;blog">
+<meta property="og:description" content="效果  纯HTML12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394959697989910">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-05T13:40:34.000Z">
+<meta property="article:modified_time" content="2023-09-05T13:58:16.227Z">
+<meta property="article:author" content="Xin-FAS">
+<meta property="article:tag" content="HTML">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>吃豆人加载动画 - Xin-FAS&#39;blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/f-index.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xin-fas.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":3},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Xin-FAS</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://s2.loli.net/2023/09/05/LB9w7Xf2OYKR6uV.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="吃豆人加载动画"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-05 21:40" pubdate>
+          2023年9月5日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.5k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">吃豆人加载动画</h1>
+            
+              <p class="note note-success">
+                
+                  
+                    本文最后更新于：2023年9月5日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><iframe src="/iframe/吃豆人动画演示.html" height="80px"></iframe>
+
+<h2 id="纯HTML"><a href="#纯HTML" class="headerlink" title="纯HTML"></a>纯HTML</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css">        <span class="hljs-selector-class">.loading</span> &#123;</span><br><span class="language-css">            <span class="hljs-attribute">display</span>: flex;</span><br><span class="language-css">            <span class="hljs-attribute">align-items</span>: center;</span><br><span class="language-css">            <span class="hljs-attribute">justify-content</span>: space-around;</span><br><span class="language-css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">perspective</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">transform-style</span>: preserve-<span class="hljs-number">3</span>d;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-selector-class">.loading</span> <span class="hljs-selector-class">.player</span> &#123;</span><br><span class="language-css">            <span class="hljs-attribute">position</span>: absolute;</span><br><span class="language-css">            <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">30px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">animation</span>: playerMove linear <span class="hljs-number">4s</span> infinite;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-selector-class">.loading</span> <span class="hljs-selector-class">.player</span> <span class="hljs-selector-class">.top-mouth</span>,</span><br><span class="language-css">        <span class="hljs-selector-class">.loading</span> <span class="hljs-selector-class">.player</span> <span class="hljs-selector-class">.bottom-mouth</span> &#123;</span><br><span class="language-css">            <span class="hljs-attribute">position</span>: absolute;</span><br><span class="language-css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            <span class="hljs-attribute">border</span>: <span class="hljs-number">15px</span> solid <span class="hljs-number">#fbbc05</span>;</span><br><span class="language-css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">45deg</span>);</span><br><span class="language-css">            <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-selector-class">.loading</span> <span class="hljs-selector-class">.player</span> <span class="hljs-selector-class">.top-mouth</span> &#123;</span><br><span class="language-css">            <span class="hljs-attribute">border-bottom-color</span>: transparent;</span><br><span class="language-css">            <span class="hljs-attribute">border-right-color</span>: transparent;</span><br><span class="language-css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">30deg</span>);</span><br><span class="language-css">            <span class="hljs-attribute">animation</span>: topBite <span class="hljs-number">0.2s</span> ease-in-out infinite alternate;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-selector-class">.loading</span> <span class="hljs-selector-class">.player</span> <span class="hljs-selector-class">.top-mouth</span><span class="hljs-selector-pseudo">::after</span> &#123;</span><br><span class="language-css">            <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;</span><br><span class="language-css">            <span class="hljs-attribute">position</span>: absolute;</span><br><span class="language-css">            <span class="hljs-attribute">margin-top</span>: -<span class="hljs-number">11px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">3px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">5px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">5px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">            <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#000</span>;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-selector-class">.loading</span> <span class="hljs-selector-class">.player</span> <span class="hljs-selector-class">.bottom-mouth</span> &#123;</span><br><span class="language-css">            <span class="hljs-attribute">border-top-color</span>: transparent;</span><br><span class="language-css">            <span class="hljs-attribute">border-left-color</span>: transparent;</span><br><span class="language-css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">60deg</span>);</span><br><span class="language-css">            <span class="hljs-attribute">animation</span>: bottomBite <span class="hljs-number">0.2s</span> ease-in-out infinite alternate;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-selector-class">.loading</span> <span class="hljs-selector-tag">span</span><span class="hljs-selector-class">.bean</span><span class="hljs-selector-pseudo">:nth-of-type</span>(<span class="hljs-number">1</span>) &#123;</span><br><span class="language-css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">            <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#1875e5</span>;</span><br><span class="language-css">            <span class="hljs-attribute">animation</span>: beanOut1 <span class="hljs-number">4s</span> linear infinite;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-selector-class">.loading</span> <span class="hljs-selector-tag">span</span><span class="hljs-selector-class">.bean</span><span class="hljs-selector-pseudo">:nth-of-type</span>(<span class="hljs-number">2</span>) &#123;</span><br><span class="language-css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">            <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#fbbc05</span>;</span><br><span class="language-css">            <span class="hljs-attribute">animation</span>: beanOut2 <span class="hljs-number">4s</span> linear infinite;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-selector-class">.loading</span> <span class="hljs-selector-tag">span</span><span class="hljs-selector-class">.bean</span><span class="hljs-selector-pseudo">:nth-of-type</span>(<span class="hljs-number">3</span>) &#123;</span><br><span class="language-css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">            <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">            <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#499255</span>;</span><br><span class="language-css">            <span class="hljs-attribute">animation</span>: beanOut3 <span class="hljs-number">4s</span> linear infinite;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-keyword">@keyframes</span> topBite &#123;</span><br><span class="language-css">            <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">45deg</span>);</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">20deg</span>);</span><br><span class="language-css">            &#125;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-keyword">@keyframes</span> bottomBite &#123;</span><br><span class="language-css">            <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">45deg</span>);</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">80deg</span>);</span><br><span class="language-css">            &#125;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-keyword">@keyframes</span> playerMove &#123;</span><br><span class="language-css">            <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">10px</span>);</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">30%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">70px</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">10px</span>);</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">50%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">70px</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">10px</span>) <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">180deg</span>);</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">80%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">10px</span>) <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">180deg</span>);</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">10px</span>) <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">360deg</span>);</span><br><span class="language-css">            &#125;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-comment">/**</span></span><br><span class="hljs-comment"><span class="language-css">            0% - 15% 吃豆人从起始点向左到中点的过程</span></span><br><span class="hljs-comment"><span class="language-css">            15% - 30% 吃豆人从中点向左到终点的过程</span></span><br><span class="hljs-comment"><span class="language-css">            30% - 50% 吃豆人在终点回头的过程</span></span><br><span class="hljs-comment"><span class="language-css">            50% - 65% 吃豆人从终点向右到中点的过程</span></span><br><span class="hljs-comment"><span class="language-css">            65% - 80% 吃豆人从中点到起始点的过程</span></span><br><span class="hljs-comment"><span class="language-css">            80% - 100% 吃豆人在起始点回头的过程</span></span><br><span class="hljs-comment"><span class="language-css">         */</span></span><br><span class="language-css">        <span class="hljs-keyword">@keyframes</span> beanOut1 &#123;</span><br><span class="language-css">            <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">15%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">30%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">74%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">77%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">80%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-keyword">@keyframes</span> beanOut2 &#123;</span><br><span class="language-css">            <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">9%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">12%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">15%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">30%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">50%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">59%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">62%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">65%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">80%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-keyword">@keyframes</span> beanOut3 &#123;</span><br><span class="language-css">            <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">15%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">24%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">27%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">30%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">50%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">65%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">80%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">            <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">        &#125;</span><br><span class="language-css">    </span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;app&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;loading-container&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;loading&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;player&quot;</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;top-mouth&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bottom-mouth&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bean&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bean&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bean&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Vue-组件"><a href="#Vue-组件" class="headerlink" title="Vue 组件"></a>Vue 组件</h2><h3 id="FLoading-vue"><a href="#FLoading-vue" class="headerlink" title="FLoading.vue"></a>FLoading.vue</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;loading&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;player&quot;</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;top-mouth&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bottom-mouth&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bean&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bean&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;bean&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;scss&quot;</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.loading</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">display</span>: flex;</span><br><span class="language-css">    <span class="hljs-attribute">align-items</span>: center;</span><br><span class="language-css">    <span class="hljs-attribute">justify-content</span>: space-around;</span><br><span class="language-css">    <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">perspective</span>: <span class="hljs-number">200px</span>;</span><br><span class="language-css">    <span class="hljs-attribute">transform-style</span>: preserve-<span class="hljs-number">3</span>d;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-class">.player</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">position</span>: absolute;</span><br><span class="language-css">        <span class="hljs-attribute">left</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">        <span class="hljs-attribute">top</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">30px</span>;</span><br><span class="language-css">        <span class="hljs-attribute">width</span>: <span class="hljs-number">30px</span>;</span><br><span class="language-css">        <span class="hljs-attribute">animation</span>: playerMove linear <span class="hljs-number">4s</span> infinite;</span><br><span class="language-css"></span><br><span class="language-css">        // 上下鄂</span><br><span class="language-css">        <span class="hljs-selector-class">.top-mouth</span>, <span class="hljs-selector-class">.bottom-mouth</span> &#123;</span><br><span class="language-css">            <span class="hljs-attribute">position</span>: absolute;</span><br><span class="language-css">            <span class="hljs-attribute">width</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            <span class="hljs-attribute">height</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">            <span class="hljs-attribute">border</span>: <span class="hljs-number">15px</span> solid <span class="hljs-number">#fbbc05</span>;</span><br><span class="language-css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">45deg</span>);</span><br><span class="language-css">            <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-selector-class">.top-mouth</span> &#123;</span><br><span class="language-css">            <span class="hljs-attribute">border-bottom-color</span>: transparent;</span><br><span class="language-css">            <span class="hljs-attribute">border-right-color</span>: transparent;</span><br><span class="language-css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">30deg</span>);</span><br><span class="language-css">            <span class="hljs-attribute">animation</span>:</span><br><span class="language-css">                topBite .<span class="hljs-number">2s</span> ease-in-out infinite alternate;</span><br><span class="language-css"></span><br><span class="language-css">            &amp;<span class="hljs-selector-pseudo">::after</span> &#123;</span><br><span class="language-css">                <span class="hljs-attribute">content</span>: <span class="hljs-string">&#x27;&#x27;</span>;</span><br><span class="language-css">                <span class="hljs-attribute">position</span>: absolute;</span><br><span class="language-css">                <span class="hljs-attribute">margin-top</span>: -<span class="hljs-number">11px</span>;</span><br><span class="language-css">                <span class="hljs-attribute">margin-left</span>: -<span class="hljs-number">3px</span>;</span><br><span class="language-css">                <span class="hljs-attribute">width</span>: <span class="hljs-number">5px</span>;</span><br><span class="language-css">                <span class="hljs-attribute">height</span>: <span class="hljs-number">5px</span>;</span><br><span class="language-css">                <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">                <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#000</span>;</span><br><span class="language-css">            &#125;</span><br><span class="language-css">        &#125;</span><br><span class="language-css"></span><br><span class="language-css">        <span class="hljs-selector-class">.bottom-mouth</span> &#123;</span><br><span class="language-css">            <span class="hljs-attribute">border-top-color</span>: transparent;</span><br><span class="language-css">            <span class="hljs-attribute">border-left-color</span>: transparent;</span><br><span class="language-css">            <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">60deg</span>);</span><br><span class="language-css">            <span class="hljs-attribute">animation</span>:</span><br><span class="language-css">                bottomBite .<span class="hljs-number">2s</span> ease-in-out infinite alternate;</span><br><span class="language-css">        &#125;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-tag">span</span><span class="hljs-selector-class">.bean</span><span class="hljs-selector-pseudo">:nth-of-type</span>(<span class="hljs-number">1</span>) &#123;</span><br><span class="language-css">        <span class="hljs-attribute">width</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">        <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">        <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#1875e5</span>;</span><br><span class="language-css">        <span class="hljs-attribute">animation</span>: beanOut1 <span class="hljs-number">4s</span> linear infinite;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-selector-tag">span</span><span class="hljs-selector-class">.bean</span><span class="hljs-selector-pseudo">:nth-of-type</span>(<span class="hljs-number">2</span>) &#123;</span><br><span class="language-css">        <span class="hljs-attribute">width</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">        <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">        <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#fbbc05</span>;</span><br><span class="language-css">        <span class="hljs-attribute">animation</span>: beanOut2 <span class="hljs-number">4s</span> linear infinite;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-selector-tag">span</span><span class="hljs-selector-class">.bean</span><span class="hljs-selector-pseudo">:nth-of-type</span>(<span class="hljs-number">3</span>) &#123;</span><br><span class="language-css">        <span class="hljs-attribute">width</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">        <span class="hljs-attribute">height</span>: <span class="hljs-number">13px</span>;</span><br><span class="language-css">        <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;</span><br><span class="language-css">        <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#499255</span>;</span><br><span class="language-css">        <span class="hljs-attribute">animation</span>: beanOut3 <span class="hljs-number">4s</span> linear infinite;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><br><span class="language-css"><span class="hljs-keyword">@keyframes</span> topBite &#123;</span><br><span class="language-css">    <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">45deg</span>);</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">20deg</span>);</span><br><span class="language-css">    &#125;</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><br><span class="language-css"><span class="hljs-keyword">@keyframes</span> bottomBite &#123;</span><br><span class="language-css">    <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">45deg</span>);</span><br><span class="language-css">    &#125;</span><br><span class="language-css">    <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">80deg</span>);</span><br><span class="language-css">    &#125;</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><br><span class="language-css"><span class="hljs-keyword">@keyframes</span> playerMove &#123;</span><br><span class="language-css">    <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">        // 总时间 .<span class="hljs-number">3</span> 向右移动</span><br><span class="language-css">        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">10px</span>);</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">30%</span> &#123;</span><br><span class="language-css">        // .<span class="hljs-number">2</span> 转身</span><br><span class="language-css">        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">70px</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">10px</span>);</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">50%</span> &#123;</span><br><span class="language-css">        // .<span class="hljs-number">3</span> 向左移动</span><br><span class="language-css">        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">70px</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">10px</span>) <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">180deg</span>);</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">80%</span> &#123;</span><br><span class="language-css">        // .<span class="hljs-number">2</span> 转身</span><br><span class="language-css">        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">10px</span>) <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">180deg</span>)</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0</span>) <span class="hljs-built_in">translateZ</span>(<span class="hljs-number">10px</span>) <span class="hljs-built_in">rotateY</span>(<span class="hljs-number">360deg</span>);</span><br><span class="language-css">    &#125;</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><br><span class="language-css"><span class="hljs-comment">/**</span></span><br><span class="hljs-comment"><span class="language-css">    0% - 15% 吃豆人从起始点向左到中点的过程</span></span><br><span class="hljs-comment"><span class="language-css">    15% - 30% 吃豆人从中点向左到终点的过程</span></span><br><span class="hljs-comment"><span class="language-css">    30% - 50% 吃豆人在终点回头的过程</span></span><br><span class="hljs-comment"><span class="language-css">    50% - 65% 吃豆人从终点向右到中点的过程</span></span><br><span class="hljs-comment"><span class="language-css">    65% - 80% 吃豆人从中点到起始点的过程</span></span><br><span class="hljs-comment"><span class="language-css">    80% - 100% 吃豆人在起始点回头的过程</span></span><br><span class="hljs-comment"><span class="language-css"> */</span></span><br><span class="language-css"><span class="hljs-keyword">@keyframes</span> beanOut1 &#123;</span><br><span class="language-css">    <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">15%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">30%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">74%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">77%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">80%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">&#125;</span><br><span class="language-css"><span class="hljs-keyword">@keyframes</span> beanOut2 &#123;</span><br><span class="language-css">    <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">9%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">12%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">15%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">30%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">50%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">59%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">62%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">65%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">80%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">&#125;</span><br><span class="language-css"><span class="hljs-keyword">@keyframes</span> beanOut3 &#123;</span><br><span class="language-css">    <span class="hljs-number">0%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">15%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">24%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">27%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">30%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">50%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">65%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">0</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">80%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css"></span><br><span class="language-css">    <span class="hljs-number">100%</span> &#123;</span><br><span class="language-css">        <span class="hljs-attribute">opacity</span>: <span class="hljs-number">1</span>;</span><br><span class="language-css">    &#125;</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">import</span> &#123; defineComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;vue&quot;</span>;</span><br><span class="language-javascript"><span class="hljs-keyword">import</span> <span class="hljs-title class_">FLoading</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@/FLoading.vue&quot;</span>;</span><br><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineComponent</span>(&#123;</span><br><span class="language-javascript">    <span class="hljs-attr">components</span>: &#123; <span class="hljs-title class_">FLoading</span> &#125;</span><br><span class="language-javascript">&#125;)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;loading-container&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">FLoading</span> /&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;scss&quot;</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-class">.loading-container</span> &#123;</span><br><span class="language-css">    <span class="hljs-attribute">display</span>: flex;</span><br><span class="language-css">    <span class="hljs-attribute">justify-content</span>: center;</span><br><span class="language-css">    <span class="hljs-attribute">align-items</span>: center;</span><br><span class="language-css">    <span class="hljs-attribute">height</span>: <span class="hljs-number">100vh</span>;</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%89%8D%E7%AB%AF/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/HTML/" class="print-no-link">#HTML</a>
+      
+        <a href="/tags/CSS/" class="print-no-link">#CSS</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>吃豆人加载动画</div>
+      <div>https://xin-fas.github.io/2023/09/05/吃豆人加载动画/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Xin-FAS</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年9月5日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2023年9月5日</div>
+        </div>
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/04/Vue2-7%E7%BB%84%E5%90%88%E5%BC%8F%E4%B8%AD%E4%BD%BF%E7%94%A8this/" title="Vue2.7组合式中使用this">
+                        <span class="hidden-mobile">Vue2.7组合式中使用this</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

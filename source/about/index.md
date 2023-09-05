@@ -8,10 +8,19 @@ layout: about
 
 {% note info %}
 
+九月四：
+
+1. 新增吃豆人动画。[查看](/2023/09/05/吃豆人加载动画/)
+1. 预告：`vue2 + vue-router3` 自动注册
+
+{% endnote %}
+
+{% note info %}
+
 九月三：
 
-1. 添加`vue2.7`组合式（setup语法糖）中使用router3。[查看](/2023/09/04/Vue2-7组合式中使用router3/)
-2. 添加`vue2.7`组合式（setup语法糖）中像`vue2`一样使用`this`。[查看](/2023/09/04/Vue2-7组合式中使用this/)
+1. 新增`vue2.7`组合式（setup语法糖）中使用router3。[查看](/2023/09/04/Vue2-7组合式中使用router3/)
+2. 新增`vue2.7`组合式（setup语法糖）中像`vue2`一样使用`this`。[查看](/2023/09/04/Vue2-7组合式中使用this/)
 
 {% endnote %}
 
