@@ -16,15 +16,15 @@
   <meta name="author" content="Xin-FAS">
   <meta name="keywords" content="">
   
-    <meta name="description" content="介绍众嗦粥汁，在setup的组合式语法中，this是无法获取当前Vue实例的，所以这在Vue2.7项目中使用vue-router@3就成为了困难，如下： 1234&lt;script setup&gt;&#x2F;&#x2F; 无效console.log(this.$router, this.$route)&lt;&#x2F;script&gt;  那vue-router@3版本又不支持hook，所以解决办法只有手动封装一个，">
+    <meta name="description" content="介绍这是一个能够自动注册页面至路由的工具函数，支持路由嵌套，自定义页面参数等 使用待写 autoRouter.js（待写）12345678910111213141516171819202122232425262728293031323334353637383940414243&#x2F;&#x2F; 获取文件名const getFileName &#x3D; (path, suffix &#x3D; true) &#x3D;&gt; (suffi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue2.7组合式中使用router3">
-<meta property="og:url" content="https://xin-fas.github.io/2023/09/04/Vue2-7%E7%BB%84%E5%90%88%E5%BC%8F%E4%B8%AD%E4%BD%BF%E7%94%A8router3/index.html">
+<meta property="og:title" content="vue2+vue-router3自动注册路由">
+<meta property="og:url" content="https://xin-fas.github.io/2023/09/06/vue2-vue-router3%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%86%8C%E8%B7%AF%E7%94%B1/index.html">
 <meta property="og:site_name" content="Xin-FAS&#39;blog">
-<meta property="og:description" content="介绍众嗦粥汁，在setup的组合式语法中，this是无法获取当前Vue实例的，所以这在Vue2.7项目中使用vue-router@3就成为了困难，如下： 1234&lt;script setup&gt;&#x2F;&#x2F; 无效console.log(this.$router, this.$route)&lt;&#x2F;script&gt;  那vue-router@3版本又不支持hook，所以解决办法只有手动封装一个，">
+<meta property="og:description" content="介绍这是一个能够自动注册页面至路由的工具函数，支持路由嵌套，自定义页面参数等 使用待写 autoRouter.js（待写）12345678910111213141516171819202122232425262728293031323334353637383940414243&#x2F;&#x2F; 获取文件名const getFileName &#x3D; (path, suffix &#x3D; true) &#x3D;&gt; (suffi">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-04T13:17:09.000Z">
-<meta property="article:modified_time" content="2023-09-06T14:28:21.955Z">
+<meta property="article:published_time" content="2023-09-06T14:21:00.000Z">
+<meta property="article:modified_time" content="2023-09-06T14:26:06.559Z">
 <meta property="article:author" content="Xin-FAS">
 <meta property="article:tag" content="Vue2">
 <meta property="article:tag" content="JavaScript">
@@ -33,7 +33,7 @@
   
   
   
-  <title>Vue2.7组合式中使用router3 - Xin-FAS&#39;blog</title>
+  <title>vue2+vue-router3自动注册路由 - Xin-FAS&#39;blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Vue2.7组合式中使用router3"></span>
+            <span id="subtitle" data-typed-text="vue2+vue-router3自动注册路由"></span>
           
         </div>
 
@@ -226,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-09-04 21:17" pubdate>
-          2023年9月4日 晚上
+        <time datetime="2023-09-06 22:21" pubdate>
+          2023年9月6日 晚上
         </time>
       </span>
     
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.3k 字
         
       </span>
     
@@ -277,7 +277,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Vue2.7组合式中使用router3</h1>
+            <h1 id="seo-header">vue2+vue-router3自动注册路由</h1>
             
               <p class="note note-success">
                 
@@ -290,20 +290,9 @@
             
               <div class="markdown-body">
                 
-                <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>众嗦粥汁，在<code>setup</code>的组合式语法中，<code>this</code>是无法获取当前<code>Vue</code>实例的，所以这在<code>Vue2.7</code>项目中使用<code>vue-router@3</code>就成为了困难，如下：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-comment">// 无效</span></span><br><span class="language-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">$router</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">$route</span>)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<p>那<code>vue-router@3</code>版本又不支持<code>hook</code>，所以解决办法只有手动封装一个，先看使用：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">import</span> &#123; useRouter, useRoute &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@/views/routerHook&quot;</span></span><br><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">const</span> router = <span class="hljs-title function_">useRouter</span>()</span><br><span class="language-javascript"><span class="hljs-keyword">const</span> route = <span class="hljs-title function_">useRoute</span>()</span><br><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-comment">// 以下正常使用</span></span><br><span class="language-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(router, route)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="routerHook-js"><a href="#routerHook-js" class="headerlink" title="routerHook.js"></a>routerHook.js</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; getCurrentInstance &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><br><span class="hljs-comment">// 获取当前实例，如果不存在则报错</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">getInstance</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-keyword">const</span> vm = <span class="hljs-title function_">getCurrentInstance</span>()<br>    <span class="hljs-keyword">if</span> (!vm) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;只能在setup中使用！&#x27;</span>)<br>    <span class="hljs-keyword">return</span> vm<br>&#125;<br><span class="hljs-comment">// 访问router</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">useRouter</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title function_">getInstance</span>().<span class="hljs-property">proxy</span>.<span class="hljs-property">$router</span><br><span class="hljs-comment">// 访问route</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">useRoute</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title function_">getInstance</span>().<span class="hljs-property">proxy</span>.<span class="hljs-property">$route</span><br><br></code></pre></td></tr></table></figure>
-
-<blockquote>
-<p><code>export const route =&gt; getInstance().proxy.$route</code> 这样会导致获取不到实例，必须要在<code>setup</code>中调用</p>
-</blockquote>
-<h2 id="更多问题"><a href="#更多问题" class="headerlink" title="更多问题"></a>更多问题</h2><div class="note note-warning">
-            <p><code>getCurrentInstance</code> 主要用于需要额外内部访问的官方 vue 库，而不是用于用户态应用程序代码。它被错误地记录在 WIP v3 文档中，但不再被视为公共 API。</p><p><code>getCurrentInstance()</code>最初<a target="_blank" rel="noopener" href="https://github.com/vuejs/docs/pull/590">记录于 2020 年 10 月 4 日</a>，但后来在 Vue 的创建者（Evan You）对 Composition API 文档的重大重构中于<a target="_blank" rel="noopener" href="https://github.com/vuejs/docs/commit/1ea66dc0e67abe5c518d487218bb7e2d6a5c5324">2021 年 8 月 31 日删除了该内容。</a>尽管它从文档中删除，<code>getCurrentInstance()</code>但仍然：</p><ul><li><a target="_blank" rel="noopener" href="https://github.com/vuejs/core/search?q=getCurrentInstance">广泛应用于Vue核心</a>。</li><li><a target="_blank" rel="noopener" href="https://github.com/vuejs/core/blob/d52907f/packages/runtime-core/src/component.ts#L561">未在代码中记录为已弃用</a>。</li><li><a target="_blank" rel="noopener" href="https://github.com/vuejs/core/blob/9c304bfe7942a20264235865b4bb5f6e53fdee0d/packages/runtime-core/src/index.ts#L78-L82">作为高级 API 的一部分导出</a>。</li></ul><p>鉴于它是一个未记录的内部 API，请谨慎使用。</p>
-          </div>
+                <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>这是一个能够自动注册页面至路由的工具函数，支持路由嵌套，自定义页面参数等</p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>待写</p>
+<h2 id="autoRouter-js（待写）"><a href="#autoRouter-js（待写）" class="headerlink" title="autoRouter.js（待写）"></a>autoRouter.js（待写）</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 获取文件名</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">getFileName</span> = (<span class="hljs-params">path, suffix = <span class="hljs-literal">true</span></span>) =&gt; (suffix ?<br>    <span class="hljs-regexp">/.*[/\\](.*?)$/</span> :<br>    <span class="hljs-regexp">/.*[/\\](.*?)\..*?$/</span>).<span class="hljs-title function_">exec</span>(<span class="hljs-string">&#x27;/&#x27;</span> + path)?.[<span class="hljs-number">1</span>]<br><span class="hljs-comment">// kebab-cased 转 PascalCase</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">toPascalCase</span> = str =&gt; (<br>    str = str.<span class="hljs-title function_">trim</span>(),<br>    str.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-regexp">/(?:^|-)(.)/g</span>, <span class="hljs-function">(<span class="hljs-params">_, val</span>) =&gt;</span> val.<span class="hljs-title function_">toUpperCase</span>())<br>)<br><span class="hljs-comment">// PascalCase 转 kebab-cased</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">toKebabCased</span> = str =&gt; (<br>    str = str.<span class="hljs-title function_">trim</span>(),<br>    str.<span class="hljs-title function_">replaceAll</span>(<span class="hljs-regexp">/[A-Z]/g</span>, <span class="hljs-function"><span class="hljs-params">val</span> =&gt;</span> <span class="hljs-string">`-<span class="hljs-subst">$&#123;val.toLowerCase()&#125;</span>`</span>).<span class="hljs-title function_">slice</span>(<span class="hljs-number">1</span>)<br>)<br><br><span class="hljs-comment">// 默认注册路径</span><br><span class="hljs-keyword">let</span> defaultRequireList = []<br><span class="hljs-keyword">try</span> &#123;<br>    defaultRequireList.<span class="hljs-title function_">push</span>(<span class="hljs-built_in">require</span>.<span class="hljs-title function_">context</span>(<span class="hljs-string">&#x27;../views-auto&#x27;</span>, <span class="hljs-literal">true</span>, <span class="hljs-regexp">/\.vue$/</span>))<br>&#125; <span class="hljs-keyword">catch</span> (e) &#123;&#125;<br><span class="hljs-keyword">try</span> &#123;<br>    defaultRequireList.<span class="hljs-title function_">push</span>(<span class="hljs-built_in">require</span>.<span class="hljs-title function_">context</span>(<span class="hljs-string">&#x27;../pages-auto&#x27;</span>, <span class="hljs-literal">true</span>, <span class="hljs-regexp">/\.vue$/</span>))<br>&#125; <span class="hljs-keyword">catch</span> (e) &#123;&#125;<br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">autoRouter</span> = (<span class="hljs-params">router, requireList = defaultRequireList</span>) =&gt; &#123;<br>    <span class="hljs-comment">// 默认路径不存在或无指定路径</span><br>    <span class="hljs-keyword">if</span> (!requireList.<span class="hljs-property">length</span>) <span class="hljs-keyword">return</span><br>    requireList.<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">requireContext</span> =&gt;</span> &#123;<br>        requireContext.<span class="hljs-title function_">keys</span>().<span class="hljs-title function_">forEach</span>(<span class="hljs-function"><span class="hljs-params">relativeComPath</span> =&gt;</span> &#123;<br>            <span class="hljs-comment">// 组件参数</span><br>            <span class="hljs-keyword">const</span> componentContext = requireContext(relativeComPath).<span class="hljs-property">default</span><br>            <span class="hljs-comment">// 组件名</span><br>            <span class="hljs-keyword">const</span> componentsName = <span class="hljs-title function_">toPascalCase</span>(<span class="hljs-title function_">getFileName</span>(relativeComPath, <span class="hljs-literal">false</span>))<br>            <span class="hljs-comment">// 路由name</span><br>            <span class="hljs-keyword">const</span> routerName = <span class="hljs-title function_">toKebabCased</span>(componentsName)<br>            <span class="hljs-comment">// 页面自定义路由参数</span><br>            <span class="hljs-keyword">const</span> componentRouterOptions = componentContext?.<span class="hljs-property">routerOptions</span> || &#123;&#125;<br>            <span class="hljs-comment">// TODO 待写</span><br>        &#125;)<br>    &#125;)<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> autoRouter<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -360,8 +349,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Vue2.7组合式中使用router3</div>
-      <div>https://xin-fas.github.io/2023/09/04/Vue2-7组合式中使用router3/</div>
+      <div>vue2+vue-router3自动注册路由</div>
+      <div>https://xin-fas.github.io/2023/09/06/vue2-vue-router3自动注册路由/</div>
     </div>
     <div class="license-meta">
       
@@ -373,7 +362,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年9月4日</div>
+          <div>2023年9月6日</div>
         </div>
       
       
@@ -410,18 +399,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/04/Vue2-7%E7%BB%84%E5%90%88%E5%BC%8F%E4%B8%AD%E4%BD%BF%E7%94%A8this/" title="Vue2.7组合式中使用this">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Vue2.7组合式中使用this</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/02/%E5%B0%81%E8%A3%85%E8%99%9A%E6%8B%9F%E5%85%89%E6%A0%87%E9%97%AA%E7%83%81%E6%95%88%E6%9E%9C/" title="封装虚拟光标闪烁效果">
-                        <span class="hidden-mobile">封装虚拟光标闪烁效果</span>
+                      <a href="/2023/09/05/%E5%90%83%E8%B1%86%E4%BA%BA%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB/" title="吃豆人加载动画">
+                        <span class="hidden-mobile">吃豆人加载动画</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

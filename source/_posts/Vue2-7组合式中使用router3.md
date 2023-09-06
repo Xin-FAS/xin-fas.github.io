@@ -1,7 +1,7 @@
 ---
 title: Vue2.7组合式中使用router3
 date: 2023-09-04 21:17:09
-tags: [Vue3, JavaScript]
+tags: [Vue2, JavaScript, VueRouter3]
 categories: [前端, Vue]
 ---
 
