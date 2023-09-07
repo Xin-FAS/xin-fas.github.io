@@ -8,10 +8,18 @@ layout: about
 
 {% note info %}
 
+九月七：
+
+1. 补全`vue2 + vue-router3`自动注册路由。[查看](/2023/09/06/vue2-vue-router3自动注册路由)
+
+{% endnote %}
+
+{% note info %}
+
 九月六：
 
-1. 更新`printFilePath.js`，使用`getMatchedComponents`代替手动查询。[查看]((/2023/08/28/实时获取当前页面源文件地址/))
-1. 更新部分`vue2 + vue-router3`自动注册路由
+1. 更新`printFilePath.js`，使用`getMatchedComponents`代替手动查询。[查看](/2023/08/28/实时获取当前页面源文件地址/)
+1. 更新`vue2 + vue-router3`自动注册路由（待补全）。[查看](/2023/09/06/vue2-vue-router3自动注册路由)
 
 {% endnote %}
 
