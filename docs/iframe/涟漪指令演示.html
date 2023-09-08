@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        .ripple {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+            transform: translate3d(-50%, -50%, 0) scale(0);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: rippleRound .6s ease-in-out;
+        }
+
+        @keyframes rippleRound {
+            0% {
+                transform: translate3d(-50%, -50%, 0) scale(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translate3d(-50%, -50%, 0) scale(1);
+                opacity: 0;
+            }
+        }
+        .btn {
+            width: 200px;
+            height: 100px;
+        }
+        .position-abs {
+            position: absolute;
+            left: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <button class="btn position-abs" v-ripple.abs="color">绝对定位</button>
+    <button class="btn" v-ripple="color">涟漪效果</button>
+    <div>
+        <span v-if="color">当前颜色{{ color }}</span>
+        <span v-else>选择涟漪颜色，默认 rgba(255,255,255,.8)</span>
+        <input type="color" v-model="color">
+    </div>
+</div>
+</body>
+<script>
+    // 初始化所在元素
+    const pNodeInit = (el, isAbs) => {
+            if (!isAbs) el.style.position = 'relative'
+            el.style.overflow = 'hidden'
+            // 兼容iphone
+            el.style['webkit-backface-visibility'] = 'hidden'
+            el.style['-webkit-transform'] = 'translate3d(0, 0, 0)'
+        }
+    // 创建/修改涟漪元素
+    const emitRippleNode = (color, target) => {
+        if (!target) {
+            target = document.createElement('span')
+            target.className = 'ripple'
+        }
+        target.style.background = `radial-gradient(ellipse 50% 50% at 50% 50%, ${color || 'rgba(255,255,255,.8)'} 80%,rgba(0,0,0,0) 100%)`
+        return target
+    }
+
+    const listenerClick = () => {
+        // 监听事件
+        let time
+        const start = event => {
+            if (time) return
+            const rippleNode = event.target.querySelector('span[class="ripple"]')
+            rippleNode.style.left = event.offsetX + 'px'
+            rippleNode.style.top = event.offsetY + 'px'
+            // 得到最大扩散的半径，开始扩散
+            const maxLen = Math.max(event.target.clientHeight, event.target.clientWidth)
+            rippleNode.style.width = maxLen * 2 + 'px'
+            rippleNode.style.height = maxLen * 2 + 'px'
+            rippleNode.style.display = 'block'
+            // 简单节流，让600毫秒内只执行一次
+            time = setTimeout(() => {
+                rippleNode.style.display = 'none'
+                time = undefined
+            }, 600)
+        }
+        return start
+    }
+
+    const ripple = {
+        bind (el, { value, modifiers }) {
+            // 当前元素初始化
+            pNodeInit(el, modifiers.abs)
+            // 涟漪元素初始化
+            el.appendChild(emitRippleNode(value))
+            // 开始监听点击
+            el.addEventListener('click', listenerClick())
+        },
+        unbind (el) {
+            // 取消监听
+            el.removeEventListener('click', listenerClick())
+            // 移除元素
+            el.removeChild(el.querySelector('span[class="ripple"]'))
+        },
+        update (el, { value, oldValue }) {
+            if (value === oldValue) return
+            const rippleNode = el.querySelector('span[class="ripple"]')
+            emitRippleNode(value, rippleNode)
+        }
+    }
+
+    new Vue({
+        el: '#app',
+        directives: {
+            ripple
+        },
+        data () {
+            return {
+                color: ''
+            }
+        }
+    })
+</script>
+</html>

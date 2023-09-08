@@ -1,6 +1,6 @@
 /* 配置亮色模式下滑时导航栏文字颜色 */
-html[data-user-color-scheme="light"] .top-nav-collapse :is(.nav-link, strong) {
-    color: #222 !important;
+html[data-user-color-scheme="light"] :is(.navbar-col-show, .top-nav-collapse) {
+    --navbar-text-color: #222;
 }
 
 /* mac代码样式 */
