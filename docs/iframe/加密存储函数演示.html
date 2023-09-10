@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <p>请打开控制台查看</p>
+    <button @click="setData(true)">存储到localStorage（刷新不丢失）</button>
+    <button @click="setData(false)">存储到map（刷新丢失）</button>
+    <button @click="getData">获取</button>
+</div>
+</body>
+<script>
+    /**
+     * @author Xin-FAS
+     */
+    // 存储数据
+    const dataMap = new Map()
+    // 基于cryptojs aes加密
+    const encryptAES = (value, key) => CryptoJS.AES.encrypt(JSON.stringify({ value }), key).toString()
+    // 基于cryptojs aes解密
+    const decryptAES = (value, key) => JSON.parse(CryptoJS.AES.decrypt(value, key).toString(CryptoJS.enc.Utf8)).value
+    // 生成散列值
+    const encryptPBKDF2 = (value, key) => CryptoJS.PBKDF2(value, key, { keySize: 128, iterations: 1024 }) + ''
+    // 存储
+    const setFStore = ({
+        key,
+        value,
+        duration = -1,
+        local = false
+    }) => {
+        // 伪随机生成盐值
+        const salt = CryptoJS.lib.WordArray.random(128)
+        // 使用PBKDF2迭代1024次生成散列值当作密钥
+        const encryptVi = encryptPBKDF2(key, salt)
+        // 加密value
+        const encryptValue = encryptAES(value, encryptVi)
+        // 加密key，这里使用不可逆SHA3
+        const encryptKey = CryptoJS.SHA3(key) + ''
+        // 加密后的内容，存盐值 + 结束时间
+        const encryptContent = encryptAES({
+            value: encryptValue,
+            vi: {
+                delay: duration === -1 ? duration : performance.now() + duration,
+                salt
+            }
+        }, key)
+        // 存储到local
+        if (local) localStorage.setItem(encryptKey, JSON.stringify(encryptContent))
+        // 存储到本地
+        else dataMap.set(encryptKey, encryptContent)
+    }
+    // 获取
+    const getFStore = key => {
+        // 获取加密key
+        const encryptKey = CryptoJS.SHA3(key) + ''
+        // 获取加密内容
+        let encryptContent = dataMap.get(encryptKey)
+        // 同时存在以map优先
+        const localEncryptContent = localStorage.getItem(encryptKey)
+        if (localEncryptContent && !encryptContent)
+            encryptContent = JSON.parse(localEncryptContent)
+        // 判空
+        if (!encryptContent) return
+        // 获取密钥，过期时间，盐值
+        const {
+            vi: {
+                delay,
+                salt
+            },
+            value: encryptValue
+        } = decryptAES(encryptContent, key)
+        // 存在过期时间
+        if (delay !== -1 && performance.now() > delay)
+            // 过期清空
+            return (dataMap.delete(encryptKey), localStorage.removeItem(encryptKey))
+        // 获取密钥
+        const encryptVi = encryptPBKDF2(key, salt)
+        // 解密
+        return decryptAES(encryptValue, encryptVi)
+    }
+
+    new Vue({
+        el: '#app',
+        methods: {
+            setData(local) {
+                setFStore({
+                    key: 'info',
+                    value: {
+                        name: 'Xin-FAS',
+                        age: 21
+                    },
+                    duration: 10000,
+                    local
+                })
+                console.log('已存储数据，十秒后过期')
+            },
+            getData () {
+                console.log(getFStore('info'))
+            }
+        }
+    })
+</script>
+</html>
