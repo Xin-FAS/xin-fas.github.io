@@ -16,15 +16,15 @@
   <meta name="author" content="Xin-FAS">
   <meta name="keywords" content="">
   
-    <meta name="description" content="* {             margin: 0;             padding: 0;         }             请打开控制台查看     存储到localStorage（刷新不丢失）     存储到map（刷新丢失）     获取        &#x2F;**      * @author Xin-FAS">
+    <meta name="description" content="* {             margin: 0;             padding: 0;         }             请打开控制台查看     存储到localStorage（刷新不丢失）     存储到map（刷新丢失）     获取        &#x2F;&#x2F; 存储数据     const dataMap &#x3D; n">
 <meta property="og:type" content="website">
 <meta property="og:title" content="page.title">
 <meta property="og:url" content="https://xin-fas.github.io/html/%E5%8A%A0%E5%AF%86%E5%AD%98%E5%82%A8%E5%87%BD%E6%95%B0%E6%BC%94%E7%A4%BA.html">
 <meta property="og:site_name" content="Xin-FAS&#39;blog">
-<meta property="og:description" content="* {             margin: 0;             padding: 0;         }             请打开控制台查看     存储到localStorage（刷新不丢失）     存储到map（刷新丢失）     获取        &#x2F;**      * @author Xin-FAS">
+<meta property="og:description" content="* {             margin: 0;             padding: 0;         }             请打开控制台查看     存储到localStorage（刷新不丢失）     存储到map（刷新丢失）     获取        &#x2F;&#x2F; 存储数据     const dataMap &#x3D; n">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-10T15:31:34.127Z">
-<meta property="article:modified_time" content="2023-09-10T15:31:34.127Z">
+<meta property="article:published_time" content="2023-09-11T13:33:11.595Z">
+<meta property="article:modified_time" content="2023-09-11T13:33:11.595Z">
 <meta property="article:author" content="Xin-FAS">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -256,9 +256,6 @@
 </div>
 </body>
 <script>
-    /**
-     * @author Xin-FAS
-     */
     // 存储数据
     const dataMap = new Map()
     // 基于cryptojs aes加密
@@ -286,12 +283,12 @@
         const encryptContent = encryptAES({
             value: encryptValue,
             vi: {
-                delay: duration === -1 ? duration : performance.now() + duration,
+                delay: duration === -1 ? duration : Date.now() + duration,
                 salt
             }
         }, key)
         // 存储到local
-        if (local) localStorage.setItem(encryptKey, JSON.stringify(encryptContent))
+        if (local) localStorage.setItem(encryptKey, encryptContent)
         // 存储到本地
         else dataMap.set(encryptKey, encryptContent)
     }
@@ -303,8 +300,7 @@
         let encryptContent = dataMap.get(encryptKey)
         // 同时存在以map优先
         const localEncryptContent = localStorage.getItem(encryptKey)
-        if (localEncryptContent && !encryptContent)
-            encryptContent = JSON.parse(localEncryptContent)
+        if (localEncryptContent && !encryptContent) encryptContent = localEncryptContent
         // 判空
         if (!encryptContent) return
         // 获取密钥，过期时间，盐值
@@ -315,15 +311,19 @@
             },
             value: encryptValue
         } = decryptAES(encryptContent, key)
-        // 存在过期时间
-        if (delay !== -1 && performance.now() > delay)
-            // 过期清空
-            return (dataMap.delete(encryptKey), localStorage.removeItem(encryptKey))
+        // 过期清空
+        if (delay !== -1 && Date.now() > delay) return removeFStore(key)
         // 获取密钥
         const encryptVi = encryptPBKDF2(key, salt)
         // 解密
         return decryptAES(encryptValue, encryptVi)
     }
+    // 删除
+    const removeFStore = key => (
+        encryptKey => (
+            dataMap.delete(encryptKey),
+                localStorage.removeItem(encryptKey)
+        ))(CryptoJS.SHA3(key) + '')
 
     new Vue({
         el: '#app',

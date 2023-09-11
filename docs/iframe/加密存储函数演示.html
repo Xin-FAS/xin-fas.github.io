@@ -20,9 +20,6 @@
 </div>
 </body>
 <script>
-    /**
-     * @author Xin-FAS
-     */
     // 存储数据
     const dataMap = new Map()
     // 基于cryptojs aes加密
@@ -50,12 +47,12 @@
         const encryptContent = encryptAES({
             value: encryptValue,
             vi: {
-                delay: duration === -1 ? duration : performance.now() + duration,
+                delay: duration === -1 ? duration : Date.now() + duration,
                 salt
             }
         }, key)
         // 存储到local
-        if (local) localStorage.setItem(encryptKey, JSON.stringify(encryptContent))
+        if (local) localStorage.setItem(encryptKey, encryptContent)
         // 存储到本地
         else dataMap.set(encryptKey, encryptContent)
     }
@@ -67,8 +64,7 @@
         let encryptContent = dataMap.get(encryptKey)
         // 同时存在以map优先
         const localEncryptContent = localStorage.getItem(encryptKey)
-        if (localEncryptContent && !encryptContent)
-            encryptContent = JSON.parse(localEncryptContent)
+        if (localEncryptContent && !encryptContent) encryptContent = localEncryptContent
         // 判空
         if (!encryptContent) return
         // 获取密钥，过期时间，盐值
@@ -79,15 +75,19 @@
             },
             value: encryptValue
         } = decryptAES(encryptContent, key)
-        // 存在过期时间
-        if (delay !== -1 && performance.now() > delay)
-            // 过期清空
-            return (dataMap.delete(encryptKey), localStorage.removeItem(encryptKey))
+        // 过期清空
+        if (delay !== -1 && Date.now() > delay) return removeFStore(key)
         // 获取密钥
         const encryptVi = encryptPBKDF2(key, salt)
         // 解密
         return decryptAES(encryptValue, encryptVi)
     }
+    // 删除
+    const removeFStore = key => (
+        encryptKey => (
+            dataMap.delete(encryptKey),
+                localStorage.removeItem(encryptKey)
+        ))(CryptoJS.SHA3(key) + '')
 
     new Vue({
         el: '#app',
