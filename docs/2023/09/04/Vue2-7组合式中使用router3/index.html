@@ -16,15 +16,15 @@
   <meta name="author" content="Xin-FAS">
   <meta name="keywords" content="">
   
-    <meta name="description" content="介绍众嗦粥汁，在setup的组合式语法中，this是无法获取当前Vue实例的，所以这在Vue2.7项目中使用vue-router@3就成为了困难，如下： 1234&lt;script setup&gt;&#x2F;&#x2F; 无效console.log(this.$router, this.$route)&lt;&#x2F;script&gt;  那vue-router@3版本又不支持hook，所以解决办法只有手动封装一个，">
+    <meta name="description" content="介绍众嗦粥汁，在setup的组合式语法中，this是无法获取当前Vue实例的，所以这在Vue2.7项目中使用vue-router@3就成为了困难，如下： 1234&lt;script setup&gt;&#x2F;&#x2F; 无效console.log(this.$router, this.$route)&lt;&#x2F;script&gt;  那vue-router@3版本又不支持hook，所以可以手动封装一个，先看使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Vue2.7组合式中使用router3">
 <meta property="og:url" content="https://xin-fas.github.io/2023/09/04/Vue2-7%E7%BB%84%E5%90%88%E5%BC%8F%E4%B8%AD%E4%BD%BF%E7%94%A8router3/index.html">
 <meta property="og:site_name" content="Xin-FAS&#39;blog">
-<meta property="og:description" content="介绍众嗦粥汁，在setup的组合式语法中，this是无法获取当前Vue实例的，所以这在Vue2.7项目中使用vue-router@3就成为了困难，如下： 1234&lt;script setup&gt;&#x2F;&#x2F; 无效console.log(this.$router, this.$route)&lt;&#x2F;script&gt;  那vue-router@3版本又不支持hook，所以解决办法只有手动封装一个，">
+<meta property="og:description" content="介绍众嗦粥汁，在setup的组合式语法中，this是无法获取当前Vue实例的，所以这在Vue2.7项目中使用vue-router@3就成为了困难，如下： 1234&lt;script setup&gt;&#x2F;&#x2F; 无效console.log(this.$router, this.$route)&lt;&#x2F;script&gt;  那vue-router@3版本又不支持hook，所以可以手动封装一个，先看使用">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-04T13:17:09.000Z">
-<meta property="article:modified_time" content="2023-09-06T14:28:21.955Z">
+<meta property="article:modified_time" content="2023-09-12T13:56:18.288Z">
 <meta property="article:author" content="Xin-FAS">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Vue2">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          1.3k 字
         
       </span>
     
@@ -282,7 +282,7 @@
               <p class="note note-success">
                 
                   
-                    本文最后更新于：2023年9月6日 晚上
+                    本文最后更新于：2023年9月12日 晚上
                   
                 
               </p>
@@ -293,8 +293,11 @@
                 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>众嗦粥汁，在<code>setup</code>的组合式语法中，<code>this</code>是无法获取当前<code>Vue</code>实例的，所以这在<code>Vue2.7</code>项目中使用<code>vue-router@3</code>就成为了困难，如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-comment">// 无效</span></span><br><span class="language-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">$router</span>, <span class="hljs-variable language_">this</span>.<span class="hljs-property">$route</span>)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<p>那<code>vue-router@3</code>版本又不支持<code>hook</code>，所以解决办法只有手动封装一个，先看使用：</p>
+<p>那<code>vue-router@3</code>版本又不支持<code>hook</code>，所以可以手动封装一个，先看使用：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">import</span> &#123; useRouter, useRoute &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;@/views/routerHook&quot;</span></span><br><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">const</span> router = <span class="hljs-title function_">useRouter</span>()</span><br><span class="language-javascript"><span class="hljs-keyword">const</span> route = <span class="hljs-title function_">useRoute</span>()</span><br><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-comment">// 以下正常使用</span></span><br><span class="language-javascript"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(router, route)</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>这让<code>router3</code>封装后可以更加贴合<code>router4</code>在<code>setup</code>中的使用，只需要跳转时，这种方法并不推荐，更推荐直接引入使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script setup&gt;<br><span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@/router&#x27;</span><br><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">toLogin</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>    router.<span class="hljs-title function_">push</span>(<span class="hljs-string">&#x27;/login&#x27;</span>)<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 
 <h2 id="routerHook-js"><a href="#routerHook-js" class="headerlink" title="routerHook.js"></a>routerHook.js</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> &#123; getCurrentInstance &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span><br><br><span class="hljs-comment">// 获取当前实例，如果不存在则报错</span><br><span class="hljs-keyword">const</span> <span class="hljs-title function_">getInstance</span> = (<span class="hljs-params"></span>) =&gt; &#123;<br>    <span class="hljs-keyword">const</span> vm = <span class="hljs-title function_">getCurrentInstance</span>()<br>    <span class="hljs-keyword">if</span> (!vm) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Error</span>(<span class="hljs-string">&#x27;只能在setup中使用！&#x27;</span>)<br>    <span class="hljs-keyword">return</span> vm<br>&#125;<br><span class="hljs-comment">// 访问router</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">useRouter</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title function_">getInstance</span>().<span class="hljs-property">proxy</span>.<span class="hljs-property">$router</span><br><span class="hljs-comment">// 访问route</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-title function_">useRoute</span> = (<span class="hljs-params"></span>) =&gt; <span class="hljs-title function_">getInstance</span>().<span class="hljs-property">proxy</span>.<span class="hljs-property">$route</span><br><br></code></pre></td></tr></table></figure>
 
@@ -379,7 +382,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年9月6日</div>
+          <div>2023年9月12日</div>
         </div>
       
       

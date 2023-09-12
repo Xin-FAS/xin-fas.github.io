@@ -16,7 +16,7 @@ console.log(this.$router, this.$route)
 </script>
 ```
 
-那`vue-router@3`版本又不支持`hook`，所以解决办法只有手动封装一个，先看使用：
+那`vue-router@3`版本又不支持`hook`，所以可以手动封装一个，先看使用：
 
 ```html
 <script setup>
@@ -27,6 +27,18 @@ const route = useRoute()
 
 // 以下正常使用
 console.log(router, route)
+</script>
+```
+
+这让`router3`封装后可以更加贴合`router4`在`setup`中的使用，只需要跳转时，这种方法并不推荐，更推荐直接引入使用
+
+```js
+<script setup>
+import router from '@/router'
+
+const toLogin = () => {
+    router.push('/login')
+}
 </script>
 ```
 
