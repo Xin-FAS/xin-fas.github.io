@@ -108,16 +108,41 @@ const createAxiosInstance = (baseOptions, {
     axiosInstance.interceptors.request.use(beforeFilter)
     axiosInstance.interceptors.response.use(afterFilter)
     return options => {
-        const waitInstance = (resolve, reject = err => err)=> axiosInstance(options).then(resolve, reject)
+        const waitInstance = ({
+            success,
+            error,
+            before = () => {},
+            after,
+        } = {}) => (
+            before(),
+            axiosInstance(options)
+                .then(success, error)
+                .finally(after)
+        )
         // 为请求实例添加mock属性
-        waitInstance.mock = (resolve, reject = err => err)=> (targetMockHTTP =>
-            Object.prototype.toString.call(targetMockHTTP) === '[object Promise]' || targetMockHTTP(resolve, reject)
+        waitInstance.mock = ({
+            success,
+            error,
+            before = () => {},
+            after,
+        } = {}) => (
+            // 判断是否为mock实例
+            targetMockHTTP => Object.prototype.toString.call(targetMockHTTP) === '[object Promise]' ||
+                (
+                    before(),
+                    targetMockHTTP({
+                        success,
+                        error,
+                        before,
+                        after
+                    })
+                )
         )(MockHTTP(options))
         return waitInstance
     }
 }
 
-// mock请求实例
+// mock请求实例（mock实例必须第一个初始化，因为后续要添加这个实例）
 const MockHTTP = createAxiosInstance({ baseURL: '/mock' })
 // 基础公共请求实例
 const BaseInstance = createAxiosInstance({ baseURL: '/api' })
@@ -178,7 +203,7 @@ mock(/\/mock\/demo/, 'get', {
 })
 ```
 
-## 使用
+## 使用介绍
 
 下列中的实例配置同`axios`配置（`axios > apis > xxx.js`）
 
@@ -197,7 +222,7 @@ const DemoAPI = name => BaseInstance({
 ```js
 DemoAPI('Xin-FAS')()
 ```
-说明：传入`name`为`Xin-FAS`，返回`/api/demo?name=Xin-FAS`接口数据
+说明：传入`name`为`Xin-FAS`，返回请求`/api/demo?name=Xin-FAS`接口后的`Promise`对象
 
 例二：
 
@@ -205,25 +230,53 @@ DemoAPI('Xin-FAS')()
 DemoAPI('Xin-FAS').mock()
 ```
 
-说明：传入`name`为`Xin-FAS`，返回`/mock/demo?name=Xin-FAS`接口数据，mock中拦截返回
-
-其中，以上两个例子，第二个方法中使用如同`promise.then`，可传入两个函数用于处理`then`和`catch`，如下：
+说明：传入`name`为`Xin-FAS`，返回请求`/mock/demo?name=Xin-FAS`接口后的`Promise`对象（mock中需要写好拦截）以上两个例子，第二个方法中可传入一个对象，对象参数如下：
 
 ```js
-DemoAPI('Xin-FAS')(
-    ({ data }) => data.filter(v => v),
-    // 接口中msg消息，拦截器中的配置 return Promise.reject(err)
-    err => Message.error(err)
-)
-```
-
-其中第二个函数默认值为`err => err`将错误（code值不为指定值）处理了，所以无法继续使用`catch`接收，真要对错误后续处理可在第二个参数中配置：
-
-```js
-DemoAPI('Xin-FAS')(0, err => {
-    // 错误后续处理
+DemoAPI('Xin-FAS')({
+    success (data) {
+    	// 业务请求成功后
+    },
+    error (msg) {
+        // 业务请求失败后
+    },
+    before () {
+        // 请求之前
+    },
+    after () {
+        // 请求之后（无论失败还是成功）
+    }
 })
 ```
+
+{% note warning %}
+
+在回调函数中使用普通函数存在`this`指向问题，`this`并不指向当前`vue`实例，所以要使用`this`需要使用箭头函数，如下写法：
+
+```js
+DemoAPI('Xin-FAS')({
+    success: data => {
+    	this.tableData = data
+    	// ...
+    },
+    before: () => this.loading = true,
+    after: () => this.loading = false
+})
+```
+
+{% endnote %}
+
+`success`回调就相当于`promise.then`，`error`回调就相当于`promise.error`，不使用回调形式则返回为`promise`对象，如下
+
+```js
+const data = DemoAPI('Xin-FAS')()
+// data -> promise
+data.then(data => {
+    
+})
+```
+
+但是对于错误处理，直接使用`catch`是无效的，因为默认的`error`回调默认值为`err => err`（上方代码中为空，但是对于`catch`为空则默认 `e => e`）
 
 ```js
 DemoAPI('Xin-FAS')()
@@ -235,42 +288,59 @@ DemoAPI('Xin-FAS')()
     })
 ```
 
-对于使用`await`正常使用
+发生业务后的错误处理需要写在`error`回调中
+
+`await`演示如下
 
 ```js
 const data = await DemoAPI('Xin-FAS')()
 ```
 
-`await` 的错误处理同上，存在默认处理，所以永远不会存在业务上的错误（code值不为指定值），真想要自定处理同上
-
 ```js
-const data = await DemoAPI('Xin-FAS')(0, err => {
-    // 错误后续处理
+const data = await DemoAPI('Xin-FAS')({
+    error () {
+        // 错误后续处理
+    }
 })
 ```
 
-基于上方演示，自定义的错误处理一般不存在，如真出现这样的需求，请尝试思考从业务逻辑上找问题，使用最多的场景演示如下：
+当出现`await`和回调一起使用时
 
 ```js
-// 数据初次处理/筛选
-const filterData = data => ....
-// 真实数据
-const data = await DemoAPI('Xin-FAS')(filterData)
-// 模拟数据
-// const mockData = await DemoAPI('Xin-FAS').mock(filterData)
-// 使用处理后的data
+const data = await DemoAPI('Xin-FAS')({
+    success (data) {
+    	console.log(data) // 正常输出
+    }
+})
+console.log(data) // undefined
+```
+
+这是因为`success`中同`then`，需要返回后才能被后续接受
+
+```js
+const data = await DemoAPI('Xin-FAS')({
+    success (data) {
+    	console.log(data) // 正常输出
+		return data
+    }
+})
+console.log(data) // 正常输出
+```
+
+```js
+const data = DemoAPI('Xin-FAS')({
+    success (data) {
+    	console.log(data) // 正常输出
+		return data
+    }
+})
+data.then(res => {
+    console.log(res) // 正常输出
+})
 ```
 
 {% note info %}
 
-对于第二个方法的第一个参数，想要跳过的话可以传入一个非函数参数，因为是封装了`promise.then`功能，如同上方代码中的`0`：
-
-```js
-(0, err => {
-    // 错误后续处理
-})
-```
-
-解释如下：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#%E5%8F%82%E6%95%B0
+封装代码中使用了`then`或`catch`为空的情况（当参数不为函数时，自动转为`e => e`），解释如下：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#%E5%8F%82%E6%95%B0
 
 {% endnote %}
