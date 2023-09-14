@@ -99,35 +99,41 @@ import { baseAfterFilter, baseBeforeFilter } from '@/http/axios/interceptor'
 const defaultBaseOptions = {
     timeout: 6000
 }
+const getType = val => Object.prototype.toString.call(val)
 // 创建一个axios请求对象
 const createAxiosInstance = (baseOptions, {
     beforeFilter = baseBeforeFilter,
-    afterFilter = baseAfterFilter,
+    afterFilter = baseAfterFilter
 } = {}) => {
     const axiosInstance = axios.create(Object.assign({}, defaultBaseOptions, baseOptions))
     axiosInstance.interceptors.request.use(beforeFilter)
     axiosInstance.interceptors.response.use(afterFilter)
     return options => {
-        const waitInstance = ({
-            success,
-            error,
-            before = () => {},
-            after,
-        } = {}) => (
-            before(),
-            axiosInstance(options)
-                .then(success, error)
+        const waitInstance = instanceOptions => {
+            if (getType(instanceOptions) === '[object Function]')
+                return axiosInstance(options)
+                    .then(res => instanceOptions(res), void 0)
+            const {
+                success = e => e,
+                error,
+                before = () => {},
+                after
+            } = instanceOptions
+            before()
+            return axiosInstance(options)
+                .then(res => success(res), error)
                 .finally(after)
-        )
+        }
         // 为请求实例添加mock属性
         waitInstance.mock = ({
             success,
             error,
-            before = () => {},
-            after,
+            before = () => {
+            },
+            after
         } = {}) => (
             // 判断是否为mock实例
-            targetMockHTTP => Object.prototype.toString.call(targetMockHTTP) === '[object Promise]' ||
+            targetMockHTTP => getType(targetMockHTTP) === '[object Promise]' ||
                 (
                     before(),
                     targetMockHTTP({
@@ -141,7 +147,6 @@ const createAxiosInstance = (baseOptions, {
         return waitInstance
     }
 }
-
 // mock请求实例（mock实例必须第一个初始化，因为后续要添加这个实例）
 const MockHTTP = createAxiosInstance({ baseURL: '/mock' })
 // 基础公共请求实例
@@ -151,10 +156,11 @@ const LocalInstance = createAxiosInstance({ baseURL: '/src/assets' })
 // 用户模块
 const UserInstance = createAxiosInstance({ baseURL: '/api/user' })
 
+
 export {
     BaseInstance,
     LocalInstance,
-    UserInstance
+    UserInstance,
 }
 ```
 
@@ -289,6 +295,25 @@ DemoAPI('Xin-FAS')()
 ```
 
 发生业务后的错误处理需要写在`error`回调中
+
+当只需要使用成功回调时，就不需要写对象了，直接写一个函数，作用相同，算是`success`简写形式
+
+```js
+DemoAPI('Xin-FAS')({
+    success: data => {
+    	this.tableData = data
+    	// ...
+    },
+})
+
+// 简写为
+DemoAPI('Xin-FAS')(data => {
+    this.tableData = data
+    // ...
+})
+```
+
+
 
 `await`演示如下
 
