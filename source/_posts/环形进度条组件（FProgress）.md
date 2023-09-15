@@ -45,7 +45,7 @@ export default {
             小数位数：<input type="number" min="0" v-model="fixed">
         </div>
         <div>
-            半径（不包含边框）：<input type="number" min="0" step="10" v-model="r">
+            半径（包含边框）：<input type="number" min="0" step="10" v-model="r">
         </div>
         <div>
             边框宽度：<input type="number" min="0" step="1" v-model="border">
@@ -95,7 +95,7 @@ input {
 <script>
 export default {
     props: {
-        // 半径（不包含边框）
+        // 半径（包含边框）
         r: {
             type: Number,
             default: 50
