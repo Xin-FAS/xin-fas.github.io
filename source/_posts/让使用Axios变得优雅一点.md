@@ -109,13 +109,13 @@ const createAxiosInstance = (baseOptions, {
     axiosInstance.interceptors.request.use(beforeFilter)
     axiosInstance.interceptors.response.use(afterFilter)
     return options => {
-        const waitInstance = instanceOptions => {
+        const waitInstance = (instanceOptions = {}) => {
             if (getType(instanceOptions) === '[object Function]')
                 return axiosInstance(options)
-                    .then(res => instanceOptions(res), void 0)
+                    .then(res => instanceOptions(res), e => e)
             const {
                 success = e => e,
-                error,
+                error = e => e,
                 before = () => {},
                 after
             } = instanceOptions
@@ -128,21 +128,17 @@ const createAxiosInstance = (baseOptions, {
         waitInstance.mock = ({
             success,
             error,
-            before = () => {
-            },
+            before,
             after
         } = {}) => (
             // 判断是否为mock实例
             targetMockHTTP => getType(targetMockHTTP) === '[object Promise]' ||
-                (
-                    before(),
-                    targetMockHTTP({
-                        success,
-                        error,
-                        before,
-                        after
-                    })
-                )
+                targetMockHTTP({
+                    success,
+                    error,
+                    before,
+                    after
+                })
         )(MockHTTP(options))
         return waitInstance
     }
