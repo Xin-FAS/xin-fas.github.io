@@ -112,16 +112,16 @@ const createAxiosInstance = (baseOptions, {
         const waitInstance = (instanceOptions = {}) => {
             if (getType(instanceOptions) === '[object Function]')
                 return axiosInstance(options)
-                    .then(res => instanceOptions(res), e => e)
+                    .then(instanceOptions, e => e)
             const {
-                success = e => e,
+                success,
                 error = e => e,
                 before = () => {},
                 after
             } = instanceOptions
             before()
             return axiosInstance(options)
-                .then(res => success(res), error)
+                .then(success, error)
                 .finally(after)
         }
         // 为请求实例添加mock属性
@@ -207,7 +207,9 @@ mock(/\/mock\/demo/, 'get', {
 
 ## 使用介绍
 
-下列中的实例配置同`axios`配置（`axios > apis > xxx.js`）
+### 基础使用
+
+此时有如 api 如：`/api/demo`，先定义接口方法（`axios > apis > xxx.js`）
 
 ```js
 const DemoAPI = name => BaseInstance({
@@ -219,66 +221,41 @@ const DemoAPI = name => BaseInstance({
 })
 ```
 
-页面中使用，例一：
+发出请求（真实地址：`/api/demo?name=Xin-FAS`）
 
 ```js
 DemoAPI('Xin-FAS')()
 ```
-说明：传入`name`为`Xin-FAS`，返回请求`/api/demo?name=Xin-FAS`接口后的`Promise`对象
+返回的是正常的`Promise`对象，后续可以正常使用`then`或`await`，但是不能使用`catch`去处理后续错误，理由在下面
 
-例二：
+发出使用mock的拦截请求（真实地址：`/mock/demo?name=Xin-FAS`）
 
 ```js
 DemoAPI('Xin-FAS').mock()
 ```
 
-说明：传入`name`为`Xin-FAS`，返回请求`/mock/demo?name=Xin-FAS`接口后的`Promise`对象（mock中需要写好拦截）以上两个例子，第二个方法中可传入一个对象，对象参数如下：
+几个内置的生命周期
 
 ```js
 DemoAPI('Xin-FAS')({
     success (data) {
-    	// 业务请求成功后
+    	// 业务请求成功后，同Promise.success
     },
     error (msg) {
-        // 业务请求失败后
+        // 业务请求失败后，同Promise.catch
     },
     before () {
         // 请求之前
     },
     after () {
-        // 请求之后（无论失败还是成功）
+        // 请求之后（无论失败还是成功），同Promise.finally
     }
 })
 ```
 
-{% note warning %}
+### 关于业务上的错误后续处理
 
-在回调函数中使用普通函数存在`this`指向问题，`this`并不指向当前`vue`实例，所以要使用`this`需要使用箭头函数，如下写法：
-
-```js
-DemoAPI('Xin-FAS')({
-    success: data => {
-    	this.tableData = data
-    	// ...
-    },
-    before: () => this.loading = true,
-    after: () => this.loading = false
-})
-```
-
-{% endnote %}
-
-`success`回调就相当于`promise.then`，`error`回调就相当于`promise.error`，不使用回调形式则返回为`promise`对象，如下
-
-```js
-const data = DemoAPI('Xin-FAS')()
-// data -> promise
-data.then(data => {
-    
-})
-```
-
-但是对于错误处理，直接使用`catch`是无效的，因为默认的`error`回调默认值为`err => err`（上方代码中为空，但是对于`catch`为空则默认 `e => e`）
+不能使用`catch`处理错误的原因在于，已经内置了错误处理，就算是`DemoAPI('Xin-FAS')()`直接使用也不会出现错误拦截，内置默认为`.catch(e => e)`，所以要进行错误的后续操作需要写在`error`中
 
 ```js
 DemoAPI('Xin-FAS')()
@@ -290,9 +267,44 @@ DemoAPI('Xin-FAS')()
     })
 ```
 
-发生业务后的错误处理需要写在`error`回调中
+正确使用：
 
-当只需要使用成功回调时，就不需要写对象了，直接写一个函数，作用相同，算是`success`简写形式
+```js
+DemoAPI('Xin-FAS')({
+    error: msg => {
+        // ...
+    },
+})
+```
+
+### this 指向问题
+
+在回调函数中使用普通函数存在`this`指向问题，`this`并不指向当前`vue`实例，所以要使用`this`需要使用箭头函数，如下写法：
+
+```js
+// 错误写法
+DemoAPI('Xin-FAS')({
+    success (data) {
+    	this.tableData = data
+    	// ...
+    },
+    before () { this.loading = true },
+    after () { this.loading = false }
+})
+// 正确写法
+DemoAPI('Xin-FAS')({
+    success: data => {
+    	this.tableData = data
+    	// ...
+    },
+    before: () => this.loading = true,
+    after: () => this.loading = false
+})
+```
+
+### 简写形式
+
+当只需要使用到成功处理时，如获取字典列表，可以在第二个方法中直接写一个函数：
 
 ```js
 DemoAPI('Xin-FAS')({
@@ -309,9 +321,9 @@ DemoAPI('Xin-FAS')(data => {
 })
 ```
 
+### await 使用演示
 
-
-`await`演示如下
+因为返回的是`promise`对象，所以`await`正常使用
 
 ```js
 const data = await DemoAPI('Xin-FAS')()
@@ -362,6 +374,6 @@ data.then(res => {
 
 {% note info %}
 
-封装代码中使用了`then`或`catch`为空的情况（当参数不为函数时，自动转为`e => e`），解释如下：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#%E5%8F%82%E6%95%B0
+封装代码中使用了`then`或`finally`为空的情况（当参数不为函数时，自动转为`e => e`），解释如下：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#%E5%8F%82%E6%95%B0
 
 {% endnote %}
