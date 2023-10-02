@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2023/09/17/8z1bothTEuZAsmr.png">
 <meta property="article:published_time" content="2023-09-17T13:21:04.000Z">
-<meta property="article:modified_time" content="2023-10-01T15:01:48.019Z">
+<meta property="article:modified_time" content="2023-10-02T14:49:18.744Z">
 <meta property="article:author" content="Xin-FAS">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary_large_image">
@@ -238,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.5k 字
+          7.4k 字
         
       </span>
     
@@ -282,7 +282,7 @@
               <p class="note note-success">
                 
                   
-                    本文最后更新于：2023年10月1日 晚上
+                    本文最后更新于：2023年10月2日 晚上
                   
                 
               </p>
@@ -360,9 +360,31 @@
 <p>然后，使用这个<code>createDocumentHandler</code>方法创建出<code>documentHandler</code>属性，下面我们分析<code>createDocumentHandler</code>方法，源码如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">createDocumentHandler</span>(<span class="hljs-params">el, binding, vnode</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">function</span>(<span class="hljs-params">mouseup = &#123;&#125;, mousedown = &#123;&#125;</span>) &#123;<br>    <span class="hljs-keyword">if</span> (!vnode ||<br>      !vnode.<span class="hljs-property">context</span> ||<br>      !mouseup.<span class="hljs-property">target</span> ||<br>      !mousedown.<span class="hljs-property">target</span> ||<br>      el.<span class="hljs-title function_">contains</span>(mouseup.<span class="hljs-property">target</span>) ||<br>      el.<span class="hljs-title function_">contains</span>(mousedown.<span class="hljs-property">target</span>) ||<br>      el === mouseup.<span class="hljs-property">target</span> ||<br>      (vnode.<span class="hljs-property">context</span>.<span class="hljs-property">popperElm</span> &amp;&amp;<br>      (vnode.<span class="hljs-property">context</span>.<span class="hljs-property">popperElm</span>.<span class="hljs-title function_">contains</span>(mouseup.<span class="hljs-property">target</span>) ||<br>      vnode.<span class="hljs-property">context</span>.<span class="hljs-property">popperElm</span>.<span class="hljs-title function_">contains</span>(mousedown.<span class="hljs-property">target</span>)))) <span class="hljs-keyword">return</span>;<br><br>    <span class="hljs-keyword">if</span> (binding.<span class="hljs-property">expression</span> &amp;&amp;<br>      el[ctx].<span class="hljs-property">methodName</span> &amp;&amp;<br>      vnode.<span class="hljs-property">context</span>[el[ctx].<span class="hljs-property">methodName</span>]) &#123;<br>      vnode.<span class="hljs-property">context</span>[el[ctx].<span class="hljs-property">methodName</span>]();<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      el[ctx].<span class="hljs-property">bindingFn</span> &amp;&amp; el[ctx].<span class="hljs-title function_">bindingFn</span>();<br>    &#125;<br>  &#125;;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>直接去除边界情况，直接看重点：</p>
+<p>先看什么条件下直接返回空：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js">!vnode ||  <span class="hljs-comment">// 当前虚拟节点不存在 或</span><br>!vnode.<span class="hljs-property">context</span> ||  <span class="hljs-comment">// 虚拟节点中不存在当前vue实例 或</span><br>!mouseup.<span class="hljs-property">target</span> ||  <span class="hljs-comment">// mouseup 元素节点不存在 或</span><br>!mousedown.<span class="hljs-property">target</span> ||  <span class="hljs-comment">// mousedown 元素节点不存在 或</span><br>el.<span class="hljs-title function_">contains</span>(mouseup.<span class="hljs-property">target</span>) ||  <span class="hljs-comment">// mouseup 元素节点为当前指令元素的子节点 或</span><br>el.<span class="hljs-title function_">contains</span>(mousedown.<span class="hljs-property">target</span>) ||  <span class="hljs-comment">// mousedown 元素节点为当前指令元素的子节点 或</span><br>el === mouseup.<span class="hljs-property">target</span> ||  <span class="hljs-comment">// 当前元素为 mouseup 元素节点 或 </span><br>(vnode.<span class="hljs-property">context</span>.<span class="hljs-property">popperElm</span> &amp;&amp;  <span class="hljs-comment">// 当前实例存在 popperElm 对象</span><br>(vnode.<span class="hljs-property">context</span>.<span class="hljs-property">popperElm</span>.<span class="hljs-title function_">contains</span>(mouseup.<span class="hljs-property">target</span>) ||  <span class="hljs-comment">// mouseup 元素节点为popperElm 对象节点的子节点</span><br>vnode.<span class="hljs-property">context</span>.<span class="hljs-property">popperElm</span>.<span class="hljs-title function_">contains</span>(mousedown.<span class="hljs-property">target</span>)))  <span class="hljs-comment">// mousedown 元素节点为popperElm 对象节点的子节点</span><br></code></pre></td></tr></table></figure>
+
+<p>如果满足以下一个条件就直接返回空</p>
+<ol>
+<li>当前虚拟节点不存在</li>
+<li>虚拟节点中不存在当前vue实例</li>
+<li><code>mouseup</code>元素节点不存在</li>
+<li><code>mousedown</code> 元素节点不存在</li>
+<li><code>mouseup</code> 元素节点为当前指令元素的子节点</li>
+<li><code>mousedown</code> 元素节点为当前指令元素的子节点</li>
+<li>当前元素为 <code>mouseup</code> 元素节点</li>
+<li>当前实例中存在<code>popperElm</code> 对象并且满足以下一个条件<ol>
+<li><code>mouseup</code>元素节点为<code>popperElm</code> 对象节点的子节点</li>
+<li><code>mousedown</code> 元素节点为<code>popperElm</code>对象节点的子节点</li>
+</ol>
+</li>
+</ol>
+<p>重点部分：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">if</span> (<br>    binding.<span class="hljs-property">expression</span> &amp;&amp;<br>    el[ctx].<span class="hljs-property">methodName</span> &amp;&amp;<br>    vnode.<span class="hljs-property">context</span>[el[ctx].<span class="hljs-property">methodName</span>]<br>) &#123;<br>    vnode.<span class="hljs-property">context</span>[el[ctx].<span class="hljs-property">methodName</span>]();<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    el[ctx].<span class="hljs-property">bindingFn</span> &amp;&amp; el[ctx].<span class="hljs-title function_">bindingFn</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p>看第一个判断条件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">binding.<span class="hljs-property">expression</span> &amp;&amp; el[ctx].<span class="hljs-property">methodName</span> &amp;&amp; vnode.<span class="hljs-property">context</span>[el[ctx].<span class="hljs-property">methodName</span>]<br></code></pre></td></tr></table></figure>
+
+<p>如果<code>指令有绑定值</code> 同时<code>这个元素上的指令属性中存在绑定值</code>还同时在当前实例上存在这个绑定值对应方法就直接调用那个方法</p>
 
                 
               </div>
@@ -434,7 +456,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2023年10月1日</div>
+          <div>2023年10月2日</div>
         </div>
       
       
