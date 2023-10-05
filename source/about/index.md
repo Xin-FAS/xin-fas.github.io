@@ -6,7 +6,13 @@ layout: about
 
 ## 历史更新日志
 {% note info %}
+十月三加班，预计十月二十继续更新
+
+{% endnote %}
+
+{% note info %}
 十月二：
+
 1. 更新：分析`v-clickoutside`源码片段三。[查看](/2023/09/17/实现点击非目标指令/)
 
 {% endnote %}
