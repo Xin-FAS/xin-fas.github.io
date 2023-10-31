@@ -6,11 +6,17 @@ layout: about
 
 ## 历史更新日志
 {% note info %}
+十月三十一：
+
+1. 更新：完成对`v-clickoutside`的源码分析。[查看](/2023/10/30/分析v-clickoutside源码/)
+
+{% endnote %}
+{% note info %}
+
 十月三十：
 
 1. 新增：独立分离源码分析。[查看](/2023/10/30/分析v-clickoutside源码/)
-
-1. 更新：修复其他地方小错误。
+2. 更新：修复其他地方小错误。
 
 {% endnote %}
 

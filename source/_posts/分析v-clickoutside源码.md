@@ -7,9 +7,7 @@ categories: [前端,Vue]
 
 ## 如何调试源码
 
-先创建一个`vue2`的项目，对于直接修改使用npm下载的依赖包中的源码代码进行调试是不行的，因为项目中使用的是编译后的element组件代码，也就是`lib`文件夹下的代码
-
-![Snipaste_2023-09-17_21-37-44.png](https://s2.loli.net/2023/09/17/8z1bothTEuZAsmr.png)
+先创建一个`vue2`的项目，对于直接修改使用npm下载的依赖包中的源码代码进行调试是不行的，因为项目中使用的是编译后的element组件代码，也就是`lib`文件夹下的代码。
 
 所以正确的调试步骤如下：
 
@@ -113,9 +111,9 @@ export default {
 };
 ```
 
-## on方法
+## 先查看工具函数
 
-先看源码中引入的`on`方法的源码
+### on 方法
 
 ```js
 import { on } from 'element-ui/src/utils/dom';
@@ -140,11 +138,11 @@ export const on = (function() {
 })();
 ```
 
-可以看到这是一个立即执行函数，里面存在变量`isServer`，是否为服务端，可以视为`false`（具体见下面补充）
+`isServer`：是否为服务端环境，我们可以视为`false`
 
 > 补充`isServer`：Vue.js 是一个用于构建客户端应用的框架，这个属性通常用于在服务端渲染（SSR）时区分客户端和服务端环境。我们并不使用SSR，所以可以视为`false`
 
-只要正常存在`document.addEventListener`，就返回一个方法，这个方法接受三个参数（节点对象，事件名，处理方法），可为对应元素使用`addEventListener`建立监听事件
+可以看到这是一个立即执行函数，只要正常存在`document.addEventListener`，就返回一个方法，这个方法接受三个参数（节点对象，事件名，处理方法），可为对应元素使用`addEventListener`建立监听事件
 
 > 关于`document.addEventListener`第三个参数
 >
@@ -166,143 +164,186 @@ on(document, 'mousedown', e => startClick = e)
 
 {% endnote %}
 
-## 继续分析（分段一）
+### createDocumentHandler 方法
+
+源码如下：
 
 ```js
-const nodeList = [];
-const ctx = '@@clickoutsideContext';
+function createDocumentHandler (el, binding, vnode) {
+    return function (mouseup = {}, mousedown = {}) {
+        if (!vnode ||
+            !vnode.context ||
+            !mouseup.target ||
+            !mousedown.target ||
+            el.contains(mouseup.target) ||
+            el.contains(mousedown.target) ||
+            el === mouseup.target ||
+            (vnode.context.popperElm &&
+                (vnode.context.popperElm.contains(mouseup.target) ||
+                    vnode.context.popperElm.contains(mousedown.target)))) return;
 
-let startClick;
-let seed = 0;
-```
-
-这四个参数，目前不知道干啥的，见名字
-
-1. `nodeList`：存放node节点
-2. `ctx`：某个唯一参数
-3. `startClick`：开始点击？
-4. `seed`：名次？起源？后代？
-
-没关系，我们后续再确认
-
-## 继续分析（分段二）
-
-```js
-!Vue.prototype.$isServer && on(document, 'mousedown', e => (startClick = e));
-
-!Vue.prototype.$isServer && on(document, 'mouseup', e => {
-  nodeList.forEach(node => node[ctx].documentHandler(e, startClick));
-});
-```
-
-一点一点看：
-
-```js
-!Vue.prototype.$isServer // 客户端时为true
-
-on(document, 'mousedown', e => (startClick = e)) // 注册一个鼠标按下事件
-
-on(document, 'mouseup', e => {
-  nodeList.forEach(node => node[ctx].documentHandler(e, startClick));
-}) // 注册一个鼠标松开事件
-```
-
-> `mousedown`：https://developer.mozilla.org/zh-CN/docs/Web/API/Element/mousedown_event
->
-> `mouseup`：https://developer.mozilla.org/zh-CN/docs/Web/API/Element/mouseup_event
-
-事件内容先不看，先记住有这两个事件，鼠标按下和鼠标松开
-
-## 继续分析（分段三）
-
-```js
-bind(el, binding, vnode) {
-  nodeList.push(el);
-  const id = seed++;
-  el[ctx] = {
-    id,
-    documentHandler: createDocumentHandler(el, binding, vnode),
-    methodName: binding.expression,
-    bindingFn: binding.value
-  };
-},
-```
-
-首先，把使用指令的元素都添加到了`nodeList`数组中，然后将`seed`的值赋值给了`id`，然后自增，所以就推测出了分段一中`seed`这个属性的作用，就是让每个元素有一个唯一值。
-
-然后，使用这个`createDocumentHandler`方法创建出`documentHandler`属性，下面我们分析`createDocumentHandler`方法，源码如下：
-
-```js
-function createDocumentHandler(el, binding, vnode) {
-  return function(mouseup = {}, mousedown = {}) {
-    if (!vnode ||
-      !vnode.context ||
-      !mouseup.target ||
-      !mousedown.target ||
-      el.contains(mouseup.target) ||
-      el.contains(mousedown.target) ||
-      el === mouseup.target ||
-      (vnode.context.popperElm &&
-      (vnode.context.popperElm.contains(mouseup.target) ||
-      vnode.context.popperElm.contains(mousedown.target)))) return;
-
-    if (binding.expression &&
-      el[ctx].methodName &&
-      vnode.context[el[ctx].methodName]) {
-      vnode.context[el[ctx].methodName]();
-    } else {
-      el[ctx].bindingFn && el[ctx].bindingFn();
-    }
-  };
+        if (binding.expression &&
+            el[ctx].methodName &&
+            vnode.context[el[ctx].methodName]) {
+            vnode.context[el[ctx].methodName]();
+        } else {
+            el[ctx].bindingFn && el[ctx].bindingFn();
+        }
+    };
 }
 ```
 
-先看什么条件下直接返回空：
+使用如下：
 
 ```js
-!vnode ||  // 当前虚拟节点不存在 或
-!vnode.context ||  // 虚拟节点中不存在当前vue实例 或
-!mouseup.target ||  // mouseup 元素节点不存在 或
-!mousedown.target ||  // mousedown 元素节点不存在 或
-el.contains(mouseup.target) ||  // mouseup 元素节点为当前指令元素的子节点 或
-el.contains(mousedown.target) ||  // mousedown 元素节点为当前指令元素的子节点 或
-el === mouseup.target ||  // 当前元素为 mouseup 元素节点 或 
-(vnode.context.popperElm &&  // 当前实例存在 popperElm 对象
-(vnode.context.popperElm.contains(mouseup.target) ||  // mouseup 元素节点为popperElm 对象节点的子节点
-vnode.context.popperElm.contains(mousedown.target)))  // mousedown 元素节点为popperElm 对象节点的子节点
+bind (el, binding, vnode) {
+    nodeList.push(el);
+    const id = seed++;
+    el[ctx] = {
+        id,
+        documentHandler: createDocumentHandler(el, binding, vnode),
+        methodName: binding.expression,
+        bindingFn: binding.value
+    };
+}
+// 使用documentHandler的地方
+!Vue.prototype.$isServer && on(document, 'mouseup', e => {
+    nodeList.forEach(node => node[ctx].documentHandler(e, startClick));
+});
 ```
 
-如果满足以下一个条件就直接返回空
+接受三个参数，这三个参数都是vue指令里面的参数就不说了，重点是返回的方法
 
-1. 当前虚拟节点不存在
-2. 虚拟节点中不存在当前vue实例
-3. `mouseup`元素节点不存在
-4. `mousedown` 元素节点不存在
-5. `mouseup` 元素节点为当前指令元素的子节点
-6. `mousedown` 元素节点为当前指令元素的子节点
-7. 当前元素为 `mouseup` 元素节点
-8. 当前实例中存在`popperElm` 对象并且满足以下一个条件
-   1. `mouseup`元素节点为`popperElm` 对象节点的子节点
-   2. `mousedown` 元素节点为`popperElm`对象节点的子节点
-
-重点部分：
+`documentHandler`可传入两个参数，看源码中第一个参数传入了`鼠标松开时的dom节点`，第二个参数为`鼠标按下时的dom节点`，内部重点如下：
 
 ```js
-if (
-    binding.expression &&
+if (binding.expression &&
     el[ctx].methodName &&
-    vnode.context[el[ctx].methodName]
-) {
+    vnode.context[el[ctx].methodName]) {
     vnode.context[el[ctx].methodName]();
 } else {
     el[ctx].bindingFn && el[ctx].bindingFn();
 }
 ```
 
-看第一个判断条件：
+1. `binding.expression`：指令绑定的字符串，如`v-demo="demoName"`中就是`demoName`，而不是它的值
+2. `el[ctx].methodName`：同上，（不能理解为什么还要判断一次）
+3. `vnode.context[el[ctx].methodName]`：当前vue实例中存在这个名字（当绑定名的值不是方法时后续就会报错）
+
+所以解释如下：当这个指令有绑定名，并且在当前的实例中存在这个属性就会直接调用，反之，如果这个指令存在绑定名但是这个值并没有在当前实例中，就会直接调用绑定值
+
+尝试了半天也没有想到为什么要区分开这两个情况不直接调用， 我还是太菜了，总结就是一个作用：`调用指令绑定的方法`
+
+分析好重点的部分的作用就只是调用方法后，来看下哪些情况下会直接返空
 
 ```js
-binding.expression && el[ctx].methodName && vnode.context[el[ctx].methodName]
+!vnode || // 当前虚拟节点不存在 或
+!vnode.context || // 虚拟节点中不存在当前vue实例 或
+!mouseup.target || // 记录的鼠标松开时的元素不存在 或
+!mousedown.target || // 记录的鼠标按下时的元素不存在 或
+el.contains(mouseup.target) || // 记录的鼠标松开时的元素为当前指令元素或当前指令元素的子元素 或
+el.contains(mousedown.target) || // 记录的鼠标按下时的元素为当前指令元素或当前指令元素的子元素 或
+el === mouseup.target ||  // 当前元素为记录的鼠标松开时的元素 或 
+(vnode.context.popperElm &&  // 当前实例存在 popperElm 对象
+(vnode.context.popperElm.contains(mouseup.target) ||  // mouseup 元素节点为popperElm 对象节点的子节点
+vnode.context.popperElm.contains(mousedown.target)))  // mousedown 元素节点为popperElm 对象节点的子节点
 ```
 
-如果`指令有绑定值` 同时`这个元素上的指令属性中存在绑定值`还同时在当前实例上存在这个绑定值对应方法就直接调用那个方法
+以上判断中最后三行为针对`popper.js`，目前能力不足，但是其他都是很好分析的
+
+总结下重点只有两个：
+
+1. 鼠标按下时的元素不能为指定元素本身或子元素
+2. 鼠标抬起的元素不能为指定元素本身或子元素
+
+所以整个`createDocumentHandler`返回的方法分析总结如下：
+
+传入鼠标抬起和按下两个dom节点，如果这两个节点中的元素不为当前元素本身或子元素就调用指令绑定的方法
+
+## 整体的详细分析
+
+```js
+import Vue from 'vue';
+import { on } from 'element-ui/src/utils/dom';
+
+const nodeList = []; // 用于存放使用了这个指令的全部元素节点
+const ctx = '@@clickoutsideContext'; // 用于在元素节点上添加属性（第五十一行），表示这个指令所添加的唯一属性名
+
+let startClick; // 鼠标按下时的dom节点（看第十行）
+let seed = 0; // 使用这个指令的元素的唯一值（第五十行）
+
+!Vue.prototype.$isServer && on(document, 'mouseddown', e => (startClick = e)); // 建立鼠标按下事件，记录给startClick
+
+!Vue.prototype.$isServer && on(document, 'mouseup', e => {
+    nodeList.forEach(node => node[ctx].documentHandler(e, startClick)); // 建立鼠标松开事件，遍历全部dom节点，使用元素上的documentHandler方法，来判断和调用方法
+});
+
+function createDocumentHandler (el, binding, vnode) {
+    return function (mouseup = {}, mousedown = {}) {
+        if (
+            !vnode || // 当前虚拟节点不存在 或
+            !vnode.context || // 虚拟节点中不存在当前vue实例 或
+            !mouseup.target || // 记录的鼠标松开时的元素不存在 或
+            !mousedown.target || // 记录的鼠标按下时的元素不存在 或
+            el.contains(mouseup.target) || // 记录的鼠标松开时的元素为当前指令元素或当前指令元素的子元素 或
+            el.contains(mousedown.target) || // 记录的鼠标按下时的元素为当前指令元素或当前指令元素的子元素 或
+            el === mouseup.target ||  // 当前元素为记录的鼠标松开时的元素 或
+            (vnode.context.popperElm &&  // 当前实例存在 popperElm 对象
+                (vnode.context.popperElm.contains(mouseup.target) ||  // mouseup 元素节点为popperElm 对象节点的子节点
+                    vnode.context.popperElm.contains(mousedown.target)))  // mousedown 元素节点为popperElm 对象节点的子节点
+        ) return;
+        if (
+            binding.expression && // 指令存在绑定名
+            el[ctx].methodName && // 同上
+            vnode.context[el[ctx].methodName] // 当前实例中存在绑定名的值
+        ) {
+            vnode.context[el[ctx].methodName](); // 调用当前实例中绑定名的方法
+        } else {
+            el[ctx].bindingFn && el[ctx].bindingFn(); // 当前实例中不存在绑定名的值时直接调用指令值方法
+        }
+    };
+}
+
+/**
+ * v-clickoutside
+ * @desc 点击元素外面才会触发的事件
+ * @example
+ * ```vue
+ * <div v-element-clickoutside="handleClose">
+ * ```
+ */
+export default {
+    bind (el, binding, vnode) {
+        nodeList.push(el); // 初始化添加进列表中待监听判断
+        const id = seed++; // 让每一个元素的属性唯一
+        el[ctx] = { // 记录给监听鼠标的事件使用
+            id,
+            documentHandler: createDocumentHandler(el, binding, vnode),
+            methodName: binding.expression,
+            bindingFn: binding.value
+        };
+    },
+
+    update (el, binding, vnode) { // 值更新时不需要再次添加监听元素列表，只要更新当前元素身上的值即可
+        el[ctx].documentHandler = createDocumentHandler(el, binding, vnode);
+        el[ctx].methodName = binding.expression;
+        el[ctx].bindingFn = binding.value;
+    },
+
+    unbind (el) {
+        let len = nodeList.length; // 元素卸载时先获取待监听元素列表的长度待后续遍历
+
+        for (let i = 0; i < len; i++) { // 遍历元素列表
+            if (nodeList[i][ctx].id === el[ctx].id) { // 当监听列表中元素身上属性的id为当前元素上的id
+                nodeList.splice(i, 1); // 移除这个位置一个元素
+                break; // 退出循环
+            }
+        }
+        delete el[ctx]; // 最后删除这个元素身上的属性对象
+    }
+};
+```
+
+## 源码总结
+
+这个实现方法主要由鼠标监听事件实现，通过把元素加上自身属性后添加进`nodeList`，然后在鼠标抬起的时候判断鼠标是否在元素之外来触发绑定的方法，唯一让我不理解的就是源码中`methodName`的作用，自己也尝试了外部引入方法，`data`中定义方法，还是在全局的原型链上定义方法，还是无法理解，我太菜了
