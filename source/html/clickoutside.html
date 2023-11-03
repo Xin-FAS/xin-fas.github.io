@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .demo-div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 25px;
+            color: white;
+            width: 150px;
+            height: 150px;
+            background: #5e6d82;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="demo-div" v-clickoutside="clickFn">
+        目标元素
+        <button style="user-select: none" @click="changeClickFn">改变点击事件</button>
+    </div>
+</div>
+</body>
+<script>
+    /**
+     * @author Xin-FAS
+     */
+
+        // 修改自 element-ui 源码中的 on 方法
+    const onListener = (function () {
+            if (document.addEventListener) return function (element, event, handler) {
+                if (element && event && handler) element.addEventListener(event, handler)
+            }
+            return function (element, event, handler) {
+                if (element && event && handler) element.attachEvent('on' + event, handler)
+            }
+        })()
+    // 存放全部元素
+    const nodeList = []
+    // 唯一指令属性名
+    const ctx = 'Xin-FAS:clickoutside'
+    // 鼠标按下时的元素
+    let mousedownNode
+    // 用于生成唯一id
+    let seed = 0
+    // 监听鼠标按下
+    onListener(document, 'mousedown', e => mousedownNode = e.target)
+    // 监听鼠标抬起
+    onListener(document, 'mouseup', e => nodeList.forEach(el => documentHandler(el, e.target)))
+    // 判断是否执行的主要逻辑
+    const documentHandler = (el, mouseupNode) => {
+        if (
+            !el[ctx] ||
+            el.contains(mouseupNode) ||
+            el.contains(mousedownNode)
+        ) return
+        el[ctx].cb()
+    }
+    const clickoutside = {
+        bind (el, binding) {
+            // 添加进监听列表，同时给元素上添加处理时需要的属性
+            nodeList.push(el)
+            el[ctx] = {
+                cb: binding.value,
+                id: seed++
+            }
+        },
+        update (el, binding) {
+            // 重置元素上的属性
+            el[ctx] = {
+                cb: binding.value,
+                id: seed++
+            }
+        },
+        unbind (el) {
+            // 先从监听列表中移除该元素
+            for (let [ index, item ] of nodeList.entries()) {
+                if (item.id === el[ctx].id) {
+                    nodeList.splice(index, 1)
+                    break
+                }
+            }
+            // 删除该元素上的属性
+            delete el[ctx]
+        }
+    }
+
+
+    new Vue({
+        el: '#app',
+        directives: {
+            clickoutside
+        },
+        data () {
+            return {
+                clickFn: this.demoFn1
+            }
+        },
+        methods: {
+            demoFn1 () {
+                console.log('点击事件1')
+            },
+            demoFn2 () {
+                console.log('点击事件2')
+            },
+            changeClickFn () {
+                this.clickFn = this.clickFn === this.demoFn1 ? this.demoFn2 : this.demoFn1
+            }
+        }
+    })
+</script>
+</html>
