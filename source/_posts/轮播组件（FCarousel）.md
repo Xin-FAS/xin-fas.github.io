@@ -3,6 +3,7 @@ title: 轮播列表组件（FCarousel）
 date: 2023-08-17 08:58:44
 tags: [Vue2, Vue3, JavaScript]
 categories: [前端,Vue]
+sticky: 5
 ---
 
 ## 需求

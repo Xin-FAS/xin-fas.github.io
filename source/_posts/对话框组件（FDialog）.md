@@ -3,6 +3,7 @@ title: 对话框组件（FDialog）
 date: 2023-09-15 22:17:15
 tags: [Vue2, Vue3]
 categories: [前端, Vue]
+sticky: 5
 ---
 
 ## 介绍

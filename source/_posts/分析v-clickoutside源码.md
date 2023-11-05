@@ -3,6 +3,7 @@ title: 分析v-clickoutside源码
 date: 2023-10-30 16:35:30
 tags: [JavaScript]
 categories: [前端,Vue]
+sticky: 10
 ---
 
 ## 如何调试源码
